@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://diarxy7hphrpt"]
+
+[ext_resource type="AudioStream" uid="uid://b22l6l2j5wq64" path="res://assets/music/Cluckycluck-Piano.mp3" id="1_jl8hs"]
+
+[node name="Music" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_jl8hs")
+autoplay = true
+bus = &"Music"
