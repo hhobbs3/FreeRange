@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1s6y177uspfv"
+path="res://.godot/imported/Sweet Fluff-mainscorewithviolin.mp3-170a55a34308d22df09f6d948905c86f.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Sweet Fluff-mainscorewithviolin.mp3"
+dest_files=["res://.godot/imported/Sweet Fluff-mainscorewithviolin.mp3-170a55a34308d22df09f6d948905c86f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

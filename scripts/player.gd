@@ -12,13 +12,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var max_flaps: int = 10
 var flap_force: float = 100.0
 var flap_count: int = 0
+var head = 'idle'
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	# Handle jump.
+	# Handle jump / flap
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			flap_count = 0
@@ -26,6 +27,14 @@ func _physics_process(delta):
 		elif flap_count < max_flaps:
 			velocity.y = -flap_force
 			flap_count += 1
+			
+	# Handle head state
+	if Input.is_action_just_pressed("look_up"):
+		head = 'look_up'
+	if Input.is_action_just_pressed("look_down"):
+		head = 'look_down'
+	if Input.is_action_just_released('look_up') or Input.is_action_just_released('look_down'):
+		head = 'idle'
 
 	# Get the input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")
@@ -39,11 +48,18 @@ func _physics_process(delta):
 	# Play animations
 	if is_on_floor():
 		if direction == 0:
-			animated_sprite_2d.play('idle')
+			if head == "look_up":
+				animated_sprite_2d.play('look_up')
+			elif head == "look_down":
+				animated_sprite_2d.play("look_down")
+			else:
+				animated_sprite_2d.play('idle')
 		else:
 			animated_sprite_2d.play("run")
-	else:
+	elif flap_count == 0:
 		animated_sprite_2d.play("jump")
+	else:
+		animated_sprite_2d.play("flap")
 	
 		
 	# Apply movement
