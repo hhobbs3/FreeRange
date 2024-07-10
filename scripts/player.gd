@@ -9,8 +9,8 @@ const JUMP_VELOCITY = -300.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
-var max_flaps: int = 1000
-var flap_force: float = 500.0
+var max_flaps: int = 10
+var flap_force: float = 100.0
 var flap_count: int = 0
 var head = 'idle'
 
