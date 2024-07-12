@@ -1,8 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dxgtnbeodk0v5"]
+[gd_scene load_steps=12 format=3 uid="uid://dxgtnbeodk0v5"]
 
+[ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_6ejnh"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/player.tscn" id="1_tpdlq"]
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_vt2g4"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="2_nunkb"]
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange1.gd" id="4_h5f6a"]
+[ext_resource type="PackedScene" uid="uid://jdss6n7u7ylj" path="res://scenes/chicken_character.tscn" id="6_70e58"]
+[ext_resource type="PackedScene" uid="uid://dv86tli7pfo81" path="res://scenes/chicken.tscn" id="7_67e0l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuoqo"]
 texture = ExtResource("2_nunkb")
@@ -783,7 +787,33 @@ texture = ExtResource("2_nunkb")
 [sub_resource type="TileSet" id="TileSet_62q0j"]
 sources/0 = SubResource("TileSetAtlasSource_1bp0b")
 
-[node name="Map01FreeRange" type="Node2D"]
+[node name="Map01FreeRange" type="Node2D" node_paths=PackedStringArray("character_to_kill")]
+script = ExtResource("1_6ejnh")
+character_to_kill = NodePath("Chicken")
+
+[node name="Character" type="Node2D" parent="."]
+script = ExtResource("1_vt2g4")
+species = "Chicken"
+health = 1
+jump_power = 300
+flap_power = 100
+num_flaps = 10
+speed = 120
+opacity = 1.0
+can_attack = true
+
+[node name="Chicken" type="Node2D" parent="."]
+script = ExtResource("1_vt2g4")
+species = "Chicken"
+health = 1
+jump_power = 300
+flap_power = 100
+num_flaps = 10
+speed = 120
+opacity = 1.0
+can_attack = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chicken"]
 
 [node name="Player" parent="." instance=ExtResource("1_tpdlq")]
 position = Vector2(1, -2)
@@ -871,3 +901,11 @@ modulate = Color(0, 0.588235, 0, 1)
 tile_set = SubResource("TileSet_62q0j")
 format = 2
 script = ExtResource("4_h5f6a")
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Chicken Character" parent="Enemies" instance=ExtResource("6_70e58")]
+position = Vector2(-73, -2)
+
+[node name="Chicken" parent="Enemies" instance=ExtResource("7_67e0l")]
+position = Vector2(40, -1)

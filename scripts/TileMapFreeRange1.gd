@@ -6,8 +6,8 @@ var altitude = FastNoiseLite.new()
 var grass = FastNoiseLite.new()
 var width = 100
 var height = 50
-@onready var player = get_parent().get_parent().get_child(0)
 @onready var canvas_layer = get_parent()
+@onready var player = $"../../Player"
 
 func _ready():
 	moisture.seed = randi()
