@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_6ejnh"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/player.tscn" id="1_tpdlq"]
-[ext_resource type="Script" path="res://scripts/Character.gd" id="1_vt2g4"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="2_nunkb"]
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange1.gd" id="4_h5f6a"]
 [ext_resource type="PackedScene" uid="uid://jdss6n7u7ylj" path="res://scenes/chicken_character.tscn" id="6_70e58"]
+[ext_resource type="PackedScene" uid="uid://bm1neekvm2v0f" path="res://scenes/character_snake.tscn" id="7_ncur3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuoqo"]
 texture = ExtResource("2_nunkb")
@@ -788,31 +788,7 @@ sources/0 = SubResource("TileSetAtlasSource_1bp0b")
 
 [node name="Map01FreeRange" type="Node2D" node_paths=PackedStringArray("character_to_kill")]
 script = ExtResource("1_6ejnh")
-character_to_kill = NodePath("Chicken")
-
-[node name="Character" type="Node2D" parent="."]
-script = ExtResource("1_vt2g4")
-species = "Chicken"
-health = 1
-jump_power = 300
-flap_power = 100
-num_flaps = 10
-speed = 120
-opacity = 1.0
-can_attack = true
-
-[node name="Chicken" type="Node2D" parent="."]
-script = ExtResource("1_vt2g4")
-species = "Chicken"
-health = 1
-jump_power = 300
-flap_power = 100
-num_flaps = 10
-speed = 120
-opacity = 1.0
-can_attack = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Chicken"]
+character_to_kill = NodePath("")
 
 [node name="Player" parent="." instance=ExtResource("1_tpdlq")]
 position = Vector2(1, -2)
@@ -905,3 +881,9 @@ script = ExtResource("4_h5f6a")
 
 [node name="Chicken Character" parent="Enemies" instance=ExtResource("6_70e58")]
 position = Vector2(-73, -2)
+speed = 130.0
+jump_velocity = -300.0
+max_flaps = 5
+
+[node name="Character Snake" parent="Enemies" instance=ExtResource("7_ncur3")]
+position = Vector2(93, -37)

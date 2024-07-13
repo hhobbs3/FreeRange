@@ -1,20 +1,17 @@
 extends CharacterBody2D
 
-
-const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
-
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 @onready var player = $"../../Player"
 
+@export var speed : float
+@export var jump_velocity : float
+@export var max_flaps: int
+@export var flap_force: float = 100.0
+var flap_count = 0
 
-var max_flaps: int = 10
-var flap_force: float = 100.0
-var flap_count: int = 0
 var head = 'idle'
 var has_collided_with_player = false;
 var past_direction = 0
@@ -42,7 +39,7 @@ func player_controll(delta):
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			flap_count = 0
-			velocity.y = JUMP_VELOCITY
+			velocity.y = jump_velocity
 		elif flap_count < max_flaps:
 			velocity.y = -flap_force
 			flap_count += 1
@@ -83,9 +80,9 @@ func player_controll(delta):
 		
 	# Apply movement
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 	
@@ -106,13 +103,14 @@ func ai_controll(delta):
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
 
+	animated_sprite_2d.play("run")
 	print(direction)
-	if direction > -30:
-		velocity.x = SPEED / 3
-	elif direction < 30:
-		velocity.x = -1 * SPEED / 3
+	if int(direction) > -30:
+		velocity.x = speed / 3
+	elif int(direction) < 30:
+		velocity.x = -1 * speed / 3
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 	#var x = position.distance_to(player_position)
 	print(position)
 	print(player_position)
