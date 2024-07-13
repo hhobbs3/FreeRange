@@ -9,6 +9,9 @@ const JUMP_VELOCITY = -300.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
+@onready var player = $"../../Player"
+
+
 var max_flaps: int = 10
 var flap_force: float = 100.0
 var flap_count: int = 0
@@ -16,28 +19,41 @@ var head = 'idle'
 var has_collided_with_player = false;
 var past_direction = 0
 
+var player_position
+var target_position
+
 func _physics_process(delta):
+		# Add the gravity.
+	if not is_on_floor():
+		velocity.y += gravity * delta
+		
+	# player controlled vs ai controlled
+	if has_collided_with_player:
+		player_controll(delta)
+	else:
+		ai_controll(delta)
+
+func player_controll(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-	if has_collided_with_player:
-		# Handle jump / flap
-		if Input.is_action_just_pressed("jump"):
-			if is_on_floor():
-				flap_count = 0
-				velocity.y = JUMP_VELOCITY
-			elif flap_count < max_flaps:
-				velocity.y = -flap_force
-				flap_count += 1
-				
+	# Handle jump / flap
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			flap_count = 0
+			velocity.y = JUMP_VELOCITY
+		elif flap_count < max_flaps:
+			velocity.y = -flap_force
+			flap_count += 1
+			
 	# Handle head state
-		if Input.is_action_just_pressed("look_up"):
-			head = 'look_up'
-		if Input.is_action_just_pressed("look_down"):
-			head = 'look_down'
-		if Input.is_action_just_released('look_up') or Input.is_action_just_released('look_down'):
-			head = 'idle'
+	if Input.is_action_just_pressed("look_up"):
+		head = 'look_up'
+	if Input.is_action_just_pressed("look_down"):
+		head = 'look_down'
+	if Input.is_action_just_released('look_up') or Input.is_action_just_released('look_down'):
+		head = 'idle'
 
 	# Get the input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")
@@ -65,18 +81,44 @@ func _physics_process(delta):
 		animated_sprite_2d.play("flap")
 	
 		
-	if has_collided_with_player:
-		# Apply movement
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+	# Apply movement
+	if direction:
+		velocity.x = direction * SPEED
 	else:
-		direction = (randi() % 3) - 1 + past_direction
-		if direction:
-			velocity.x = direction * SPEED / 3
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED / 3)
-		past_direction = direction % 3
+		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	
+func ai_controll(delta):
+	# look at the player (good for fliers)
+	player_position = player.position
+	if false:
+		target_position = (player_position - position).normalized()
+		if position.distance_to(player_position) > 3:
+			look_at(Vector2(player_position.x, 0))
+		
+	# Get the input direction: -1, 0, 1
+	var direction = player.position.x - position.x
+	
+	# Flip the Sprite
+	if direction > 0:
+		animated_sprite_2d.flip_h = false
+	elif direction < 0:
+		animated_sprite_2d.flip_h = true
+
+	print(direction)
+	if direction > -30:
+		velocity.x = SPEED / 3
+	elif direction < 30:
+		velocity.x = -1 * SPEED / 3
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	#var x = position.distance_to(player_position)
+	print(position)
+	print(player_position)
+	if position.distance_to(player_position) < 20:
+		has_collided_with_player = true
+	
+	move_and_slide()
+		
+
