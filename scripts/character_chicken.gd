@@ -104,16 +104,14 @@ func ai_controll(delta):
 		animated_sprite_2d.flip_h = true
 
 	animated_sprite_2d.play("run")
-	print(direction)
+
 	if int(direction) > -30:
 		velocity.x = speed / 3
 	elif int(direction) < 30:
 		velocity.x = -1 * speed / 3
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	#var x = position.distance_to(player_position)
-	print(position)
-	print(player_position)
+
 	if position.distance_to(player_position) < 20:
 		has_collided_with_player = true
 	

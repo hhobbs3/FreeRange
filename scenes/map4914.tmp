@@ -791,7 +791,6 @@ script = ExtResource("1_6ejnh")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
-autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_tpdlq")]
 position = Vector2(1, -2)

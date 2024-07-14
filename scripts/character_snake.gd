@@ -99,17 +99,14 @@ func ai_controll(delta):
 
 	animated_sprite_2d.play("run")
 
-	print(direction)
 	if int(direction) > -0:
 		velocity.x = speed
 	elif int(direction) < 0:
 		velocity.x = -1 * speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
-	#var x = position.distance_to(player_position)
-	print(position)
-	print(player_position)
-	
+
+
 	move_and_slide()
 		
 
