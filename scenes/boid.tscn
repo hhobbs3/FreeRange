@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://d32o1u22qrwy5"]
+
+[ext_resource type="Script" path="res://scripts/boid.gd" id="1_q4dbq"]
+
+[node name="Boid" type="Node"]
+script = ExtResource("1_q4dbq")
+
+[node name="boid" type="Area2D" parent="." groups=["boid"]]
+
+[node name="Polygon2D" type="Polygon2D" parent="boid"]
+polygon = PackedVector2Array(57, 0, 0, -20, -7, 0, 0, 20)
+
+[node name="CollisionVision" type="CollisionPolygon2D" parent="boid"]
+polygon = PackedVector2Array(-50, 0, 20, -80, 180, 0, 20, 80)
+
+[node name="CollisionBody" type="CollisionPolygon2D" parent="boid"]
+polygon = PackedVector2Array(57, 0, 0, -20, -7, 0, 0, 20)
+
+[node name="Node2D" type="Node2D" parent="boid"]
+
+[node name="RayCast2D_F1" type="RayCast2D" parent="boid/Node2D"]
+target_position = Vector2(162, -9)
+
+[node name="RayCast2D2_F2" type="RayCast2D" parent="boid/Node2D"]
+target_position = Vector2(156, 12)
+
+[node name="RayCast2D3_L1" type="RayCast2D" parent="boid/Node2D"]
+target_position = Vector2(70, -55)
+
+[node name="RayCast2D4_R1" type="RayCast2D" parent="boid/Node2D"]
+target_position = Vector2(70, 55)
