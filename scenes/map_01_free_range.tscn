@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_6ejnh"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/player.tscn" id="1_tpdlq"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="2_nunkb"]
-[ext_resource type="Script" path="res://scripts/TileMapFreeRange1.gd" id="4_h5f6a"]
+[ext_resource type="Script" path="res://scripts/TileMapFreeRange.gd" id="4_h5f6a"]
 [ext_resource type="PackedScene" uid="uid://jdss6n7u7ylj" path="res://scenes/chicken_character.tscn" id="6_70e58"]
 [ext_resource type="PackedScene" uid="uid://bm1neekvm2v0f" path="res://scenes/character_snake.tscn" id="7_ncur3"]
 

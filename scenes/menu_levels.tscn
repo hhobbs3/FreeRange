@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2rauie487ebu"]
+
+[ext_resource type="Script" path="res://scripts/menu_levels.gd" id="1_tyktf"]
+
+[node name="MenuLevels" type="Node2D"]
+script = ExtResource("1_tyktf")
+
+[node name="ButtonManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 354.0
+offset_bottom = 243.0
+
+[node name="Demo" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "Original Demo"
+
+[node name="Free Range" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 60.0
+offset_right = 250.0
+offset_bottom = 100.0
+text = "Free Range"
+
+[node name="BOID" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 110.0
+offset_right = 250.0
+offset_bottom = 150.0
+text = "BOID
+"
+
+[node name="NA" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 160.0
+offset_right = 250.0
+offset_bottom = 200.0
+text = "N/A
+"
+
+[connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
+[connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]

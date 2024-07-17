@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4g84evq8oi4"]
+
+[ext_resource type="Script" path="res://scripts/menu_main.gd" id="1_a8y2j"]
+
+[node name="MenuMain" type="Node2D"]
+script = ExtResource("1_a8y2j")
+
+[node name="ButtonManager" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Play" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 250.0
+offset_bottom = 50.0
+text = "Play"
+
+[node name="Upgrades" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 60.0
+offset_right = 250.0
+offset_bottom = 100.0
+text = "Upgrades"
+
+[node name="Options" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 110.0
+offset_right = 250.0
+offset_bottom = 150.0
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 160.0
+offset_right = 250.0
+offset_bottom = 200.0
+text = "Quit
+"
+
+[connection signal="pressed" from="ButtonManager/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="ButtonManager/Upgrades" to="." method="_on_upgrades_pressed"]
+[connection signal="pressed" from="ButtonManager/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="ButtonManager/Quit" to="." method="_on_quit_pressed"]
