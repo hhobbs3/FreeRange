@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://bvfq3u43868e6"]
+
+[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="1_vx0hy"]
+[ext_resource type="Script" path="res://scripts/MapProcedural.gd" id="2_d82su"]
+[ext_resource type="PackedScene" uid="uid://bbjh2rxjs7yba" path="res://scenes/player_top_down.tscn" id="3_xnolo"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ygl8f"]
+texture = ExtResource("1_vx0hy")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_toiof"]
+sources/0 = SubResource("TileSetAtlasSource_ygl8f")
+
+[node name="MapProceduralTerrain" type="Node2D"]
+
+[node name="MapProcedural" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_toiof")
+format = 2
+script = ExtResource("2_d82su")
+
+[node name="Player" parent="." instance=ExtResource("3_xnolo")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -7)
+position_smoothing_enabled = true
