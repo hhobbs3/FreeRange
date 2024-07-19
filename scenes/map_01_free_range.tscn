@@ -805,6 +805,34 @@ zoom = Vector2(4, 4)
 limit_bottom = 100
 position_smoothing_enabled = true
 
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+texture_filter = 1
+motion_scale = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
+position = Vector2(0, -160)
+texture = ExtResource("7_h5d27")
+centered = false
+
+[node name="bg_grass-3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.33, 0.33)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/bg_grass-3"]
+position = Vector2(320, 22)
+texture = ExtResource("8_iqh27")
+
+[node name="bg_grass-2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(15, -70)
+motion_scale = Vector2(0.66, 0.66)
+motion_mirroring = Vector2(640, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/bg_grass-2"]
+position = Vector2(305, 66)
+texture = ExtResource("9_od6wp")
+
 [node name="-3" type="CanvasLayer" parent="."]
 layer = -3
 visible = false
@@ -876,7 +904,7 @@ format = 2
 script = ExtResource("4_h5f6a")
 
 [node name="3" type="CanvasLayer" parent="."]
-layer = 3
+layer = 2
 follow_viewport_enabled = true
 follow_viewport_scale = 3.0
 
@@ -896,33 +924,5 @@ max_flaps = 5
 
 [node name="Character Snake" parent="Enemies" instance=ExtResource("7_ncur3")]
 position = Vector2(93, -37)
-
-[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-
-[node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
-texture_filter = 1
-motion_scale = Vector2(0, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
-position = Vector2(0, -160)
-texture = ExtResource("7_h5d27")
-centered = false
-
-[node name="bg_grass-3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2(0.33, 0.33)
-motion_mirroring = Vector2(640, 0)
-
-[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/bg_grass-3"]
-position = Vector2(320, 22)
-texture = ExtResource("8_iqh27")
-
-[node name="bg_grass-2" type="ParallaxLayer" parent="ParallaxBackground"]
-position = Vector2(15, -70)
-motion_scale = Vector2(0.66, 0.66)
-motion_mirroring = Vector2(640, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/bg_grass-2"]
-position = Vector2(305, 66)
-texture = ExtResource("9_od6wp")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

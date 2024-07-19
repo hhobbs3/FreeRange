@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name SnakeEnemy
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -85,6 +86,7 @@ func player_controll(delta):
 	move_and_slide()
 	
 func ai_controll(delta):
+	'''
 	# look at the player (good for fliers)
 	player_position = player.position
 		
@@ -106,7 +108,13 @@ func ai_controll(delta):
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-
+	'''
 	move_and_slide()
+	if velocity.length() > 0:
+		animated_sprite_2d.play("run")
+	if velocity.x > 0:
+		animated_sprite_2d.flip_h = false
+	else:
+		animated_sprite_2d.flip_h = true
 		
 
