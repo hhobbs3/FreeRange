@@ -20,3 +20,6 @@ func Physics_Update(delta: float):
 	if direction.length() > 120:
 		print('switch to idle')
 		Transitioned.emit(self, "Idle")
+	if direction.length() < 10:
+		print('switch to die')
+		Transitioned.emit(self, "Die")

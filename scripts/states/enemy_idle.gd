@@ -3,6 +3,7 @@ class_name EnemyIdle
 
 @export var enemy: CharacterBody2D
 @export var move_speed := 10.0
+@onready var collision_snake = $"../../CollisionShape2DSnake"
 
 var player: CharacterBody2D
 
@@ -32,6 +33,11 @@ func Physics_Update(delta: float):
 	
 	var direction = player.global_position - enemy.global_position
 	
+	print(direction.length())
 	if direction.length() < 60:
 		print('switch to idle')
 		Transitioned.emit(self, "Follow")
+		
+	if direction.length() < 10:
+		print('switch to die')
+		Transitioned.emit(self, "Die")

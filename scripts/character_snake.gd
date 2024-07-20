@@ -11,6 +11,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_flaps: int
 @export var flap_force: float = 100.0
 
+@onready var health = 1
+
 
 var head = 'idle'
 var has_collided_with_player = false;
@@ -91,9 +93,30 @@ func ai_controll(delta):
 		animated_sprite_2d.play("run")
 	if velocity.length() == 0:
 		animated_sprite_2d.play("idle")
+	
+	if health == 0:
+		animated_sprite_2d.play("die")
+		
 	if velocity.x > 0:
 		animated_sprite_2d.flip_h = false
 	else:
 		animated_sprite_2d.flip_h = true
 		
-
+func take_damage():
+	print('take_damage (character_snake)')
+	animated_sprite_2d.animation = 'hit'
+	var t = Timer.new()
+	t.set_wait_time(0.1)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	await t.timeout
+	animated_sprite_2d.animation = 'die' 
+	t.set_wait_time(0.5)
+	t.set_one_shot(true)
+	self.add_child(t)
+	t.start()
+	await t.timeout
+	t.queue_free()
+	queue_free()
+	
