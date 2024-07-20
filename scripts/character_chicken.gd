@@ -87,34 +87,14 @@ func player_controll(delta):
 	move_and_slide()
 	
 func ai_controll(delta):
-	# look at the player (good for fliers)
-	player_position = player.position
-	if false:
-		target_position = (player_position - position).normalized()
-		if position.distance_to(player_position) > 3:
-			look_at(Vector2(player_position.x, 0))
-		
-	# Get the input direction: -1, 0, 1
-	var direction = player.position.x - position.x
-	
-	# Flip the Sprite
-	if direction > 0:
-		animated_sprite_2d.flip_h = false
-	elif direction < 0:
-		animated_sprite_2d.flip_h = true
-
-	animated_sprite_2d.play("run")
-
-	if int(direction) > -30:
-		velocity.x = speed / 3
-	elif int(direction) < 30:
-		velocity.x = -1 * speed / 3
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	if position.distance_to(player_position) < 20:
-		has_collided_with_player = true
-	
 	move_and_slide()
+	if velocity.length() > 0:
+		animated_sprite_2d.play("run")
+	if velocity.length() == 0:
+		animated_sprite_2d.play("idle")
+	if velocity.x > 0:
+		animated_sprite_2d.flip_h = false
+	else:
+		animated_sprite_2d.flip_h = true
 		
 

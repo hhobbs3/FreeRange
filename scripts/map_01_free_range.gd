@@ -17,4 +17,3 @@ func _on_timer_timeout():
 	var enemy = enemy_scene.instantiate()
 	enemy.position = Vector2(randi_range(0, 20), -100)
 	add_child(enemy)
-	print('raining snakes')

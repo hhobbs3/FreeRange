@@ -1,7 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cejlljc1wtqyh"]
+[gd_scene load_steps=14 format=3 uid="uid://cejlljc1wtqyh"]
 
 [ext_resource type="Script" path="res://scripts/spawn_enemy.gd" id="1_tr7vk"]
 [ext_resource type="Texture2D" uid="uid://54lb7rw0a30h" path="res://assets/sprites/slime_purple.png" id="2_uy2pe"]
+[ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="3_5c2a1"]
+[ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="4_y1vcf"]
+[ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="5_047ew"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8m76"]
 atlas = ExtResource("2_uy2pe")
@@ -69,5 +72,17 @@ shape = SubResource("RectangleShape2D_f3qdr")
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(-5.96046e-08, 4.5)
 scale = Vector2(0.2, 0.65)
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_5c2a1")
+initial_state = NodePath("")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("4_y1vcf")
+enemy = NodePath("")
+
+[node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
+script = ExtResource("5_047ew")
+enemy = NodePath("")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

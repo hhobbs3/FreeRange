@@ -86,32 +86,11 @@ func player_controll(delta):
 	move_and_slide()
 	
 func ai_controll(delta):
-	'''
-	# look at the player (good for fliers)
-	player_position = player.position
-		
-	# Get the input direction: -1, 0, 1
-	var direction = player.position.x - position.x
-	
-	# Flip the Sprite
-	if direction > 0:
-		animated_sprite_2d.flip_h = false
-	elif direction < 0:
-		animated_sprite_2d.flip_h = true
-
-	animated_sprite_2d.play("run")
-
-	if int(direction) > -0:
-		velocity.x = speed
-	elif int(direction) < 0:
-		velocity.x = -1 * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	'''
 	move_and_slide()
 	if velocity.length() > 0:
 		animated_sprite_2d.play("run")
+	if velocity.length() == 0:
+		animated_sprite_2d.play("idle")
 	if velocity.x > 0:
 		animated_sprite_2d.flip_h = false
 	else:

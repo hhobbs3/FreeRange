@@ -15,4 +15,4 @@ extends Node2D
 
 func die():
 	health = 0
-	print(species + ' died.')
+	# print(species + ' died.')

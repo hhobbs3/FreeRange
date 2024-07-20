@@ -45,7 +45,7 @@ offset_bottom = 200.0
 text = "N/A
 "
 
-[connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
+[connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]
 [connection signal="pressed" from="ButtonManager/Procedural Map" to="." method="_on_procedural_map_pressed"]
