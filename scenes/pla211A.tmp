@@ -225,7 +225,7 @@ autoplay = "idle"
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_l11gq")
 
-[node name="Area2D" type="Area2D" parent="." groups=["attack", "hit", "horizontal_attack"]]
+[node name="Area2D" type="Area2D" parent="." groups=["Hit", "attack", "horizontal_attack"]]
 
 [node name="CollisionShape2DHorizontalAttack" type="CollisionShape2D" parent="Area2D" groups=["Hit"]]
 position = Vector2(15, -8)

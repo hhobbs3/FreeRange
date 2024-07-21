@@ -208,19 +208,19 @@ sprite_frames = SubResource("SpriteFrames_x7dfe")
 animation = &"die"
 autoplay = "idle"
 
-[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="." groups=["hit"]]
+[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_l11gq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_l11gq")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_jxb7g")
 initial_state = NodePath("Idle")
-
-[node name="Area2D" type="Area2D" parent="StateMachine"]
-
-[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="StateMachine/Area2D" groups=["hit"]]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_l11gq")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("6_gwxov")
@@ -233,8 +233,4 @@ script = ExtResource("8_uwlvj")
 script = ExtResource("7_ti05k")
 enemy = NodePath("../..")
 
-[connection signal="area_entered" from="StateMachine/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="StateMachine/Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="StateMachine/Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="StateMachine/Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="StateMachine/Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

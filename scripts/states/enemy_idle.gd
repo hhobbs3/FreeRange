@@ -33,11 +33,16 @@ func Physics_Update(delta: float):
 	
 	var direction = player.global_position - enemy.global_position
 	
-	print(direction.length())
 	if direction.length() < 60:
 		print('switch to idle')
 		Transitioned.emit(self, "Follow")
 		
-	if direction.length() < 10:
-		print('switch to die')
+		
+func _on_area_2d_area_entered(area):
+	print('area1')
+	print(area.get_groups())
+	if area.is_in_group('hit'):
+		enemy.health -= 1
+		print(enemy.health)
+		print('hit')
 		Transitioned.emit(self, "Die")

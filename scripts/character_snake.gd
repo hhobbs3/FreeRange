@@ -13,7 +13,6 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @onready var health = 1
 
-
 var head = 'idle'
 var has_collided_with_player = false;
 var flap_count = 0 
@@ -103,7 +102,6 @@ func ai_controll(delta):
 		animated_sprite_2d.flip_h = true
 		
 func take_damage():
-	print('take_damage (character_snake)')
 	animated_sprite_2d.animation = 'hit'
 	var t = Timer.new()
 	t.set_wait_time(0.1)
@@ -119,4 +117,3 @@ func take_damage():
 	await t.timeout
 	t.queue_free()
 	queue_free()
-	

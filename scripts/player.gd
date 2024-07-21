@@ -115,7 +115,7 @@ func knockback(enemy_velocity: Vector2):
 
 
 func _on_area_2d_body_entered(body):
-	print(body)
+	print('in player body entered ' + str(body))
 	if body.is_in_group('Hit'):
 		body.take_damage()
 		print('_on_area_2d_body_entered player area2d')

@@ -25,5 +25,4 @@ func Update(delta: float):
 		stop_moving()
 
 func Physics_Update(delta: float):
-	print('die...')
 	character_snake.health = 0

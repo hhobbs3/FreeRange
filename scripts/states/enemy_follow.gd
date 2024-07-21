@@ -16,10 +16,20 @@ func Physics_Update(delta: float):
 		enemy.velocity = direction.normalized() * move_speed
 	else:
 		enemy.velocity = Vector2()
-		
+	
+	#if direction.length() < 10:
+	#	print('switch to die')
+	#	Transitioned.emit(self, "Die")
+	
 	if direction.length() > 120:
 		print('switch to idle')
 		Transitioned.emit(self, "Idle")
-	if direction.length() < 10:
-		print('switch to die')
+	
+func _on_area_2d_area_entered(area):
+	print('area2')
+	print(area.get_groups())
+	if area.is_in_group('hit'):
+		enemy.health -= 1
+		print(enemy.health)
+		print('hit')
 		Transitioned.emit(self, "Die")
