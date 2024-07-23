@@ -1,7 +1,7 @@
 extends State
 class_name EnemyDie
 
-@export var enemy: CharacterBody2D
+@export var enemy: CharacterNPC
 @export var move_speed := 10.0
 @onready var collision_snake = $"../../CollisionShape2DSnake"
 @onready var character_snake = $"../.."

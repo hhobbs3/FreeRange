@@ -1,7 +1,6 @@
 extends Node2D
-@export var character_to_kill : Character 
 var enemy_scene = preload("res://scenes/spawn_enemy.tscn")
-const CHARACTER_SNAKE = preload("res://scenes/character_snake.tscn")
+const CHARACTER_SNAKE = preload("res://scenes/characters/character_snake.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

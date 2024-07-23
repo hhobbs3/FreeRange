@@ -1,23 +1,5 @@
-extends CharacterBody2D
-class_name SnakeEnemy
-
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-@onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var player = $"../../Player"
-
-@export var speed : float
-@export var jump_velocity : float
-@export var max_flaps: int
-@export var flap_force: float = 100.0
-
-@onready var health = 1
-
-var head = 'idle'
-var has_collided_with_player = false;
-var flap_count = 0 
-var player_position
-var target_position
+extends CharacterNPC
+class_name ChickenNPC
 
 func _physics_process(delta):
 		# Add the gravity.
@@ -92,28 +74,9 @@ func ai_controll(delta):
 		animated_sprite_2d.play("run")
 	if velocity.length() == 0:
 		animated_sprite_2d.play("idle")
-	
-	if health == 0:
-		animated_sprite_2d.play("die")
-		
 	if velocity.x > 0:
 		animated_sprite_2d.flip_h = false
 	else:
 		animated_sprite_2d.flip_h = true
 		
-func take_damage():
-	animated_sprite_2d.animation = 'hit'
-	var t = Timer.new()
-	t.set_wait_time(0.1)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	await t.timeout
-	animated_sprite_2d.animation = 'die' 
-	t.set_wait_time(0.5)
-	t.set_one_shot(true)
-	self.add_child(t)
-	t.start()
-	await t.timeout
-	t.queue_free()
-	queue_free()
+

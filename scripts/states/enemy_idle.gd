@@ -1,9 +1,9 @@
 extends State
 class_name EnemyIdle
 
-@export var enemy: CharacterBody2D
+@export var enemy: CharacterNPC
 @export var move_speed := 10.0
-@onready var collision_snake = $"../../CollisionShape2DSnake"
+
 
 var player: CharacterBody2D
 
@@ -30,12 +30,16 @@ func Update(delta: float):
 func Physics_Update(delta: float):
 	if enemy:
 		enemy.velocity = move_direction * move_speed
+
+		var direction = player.global_position - enemy.global_position
 	
-	var direction = player.global_position - enemy.global_position
+		if enemy.health < 1:
+			print('switch to die')
+			Transitioned.emit(self, "Die")
 	
-	if direction.length() < 60:
-		print('switch to idle')
-		Transitioned.emit(self, "Follow")
+		if direction.length() < 60:
+			print('switch to idle')
+			Transitioned.emit(self, "Follow")
 		
 		
 func _on_area_2d_area_entered(area):
@@ -43,6 +47,10 @@ func _on_area_2d_area_entered(area):
 	print(area.get_groups())
 	if area.is_in_group('hit'):
 		enemy.health -= 1
-		print(enemy.health)
-		print('hit')
-		Transitioned.emit(self, "Die")
+
+
+func _on_area_2d_body_entered(body):
+	print('body1')
+	print(body.get_groups())
+	if body.is_in_group('Player'):
+		enemy.health -= 1
