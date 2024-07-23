@@ -29,6 +29,13 @@ var flap_count: int = 0
 var head = 'idle'
 var has_collided_with_player = true;
 
+signal facing_direction_changed(facing_right : bool)
+
+func _read():
+	# monitoring = false
+	# player.connect("facing_direction_changed", on_player_facing_direction_changed)
+	pass
+	
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
@@ -67,7 +74,8 @@ func _physics_process(delta):
 		animated_sprite_2d.flip_h = false
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
-	
+
+	emit_signal("facing_direction_changed", !animated_sprite_2d.flip_h)
 	# Play animations
 	if is_on_floor():
 		if direction == 0:

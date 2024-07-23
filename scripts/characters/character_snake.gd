@@ -88,16 +88,10 @@ func _on_area_2d_area_entered(area):
 	print(area.get_groups())
 	if area.is_in_group('hit'):
 		health -= 1
-		print(health)
-		print('hit')
-
-
 
 func _on_area_2d_body_entered(body):
 	print('body1A')
 	print(body.get_groups())
 	if body.is_in_group('Player'):
 		health -= 1
-		print(health)
-		print('hit')
 

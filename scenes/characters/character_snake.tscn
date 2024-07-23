@@ -212,15 +212,16 @@ autoplay = "idle"
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_l11gq")
 
+[node name="Area2D" type="Area2D" parent="CollisionShape2DSnake"]
+position = Vector2(0, 5)
+
+[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="CollisionShape2DSnake/Area2D" groups=["hit"]]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_l11gq")
+
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_10nws")
 initial_state = NodePath("Idle")
-
-[node name="Area2D" type="Area2D" parent="StateMachine"]
-
-[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="StateMachine/Area2D" groups=["hit"]]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_l11gq")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_s8i4n")
@@ -234,8 +235,8 @@ enemy = NodePath("../..")
 script = ExtResource("9_etxcg")
 enemy = NodePath("../..")
 
-[connection signal="area_entered" from="StateMachine/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="StateMachine/Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="StateMachine/Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="StateMachine/Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="StateMachine/Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]

@@ -33,12 +33,8 @@ func Physics_Update(delta: float):
 
 		var direction = player.global_position - enemy.global_position
 	
-		if enemy.health < 1:
-			print('switch to die')
-			Transitioned.emit(self, "Die")
-	
 		if direction.length() < 60:
-			print('switch to idle')
+			print('switch to follow')
 			Transitioned.emit(self, "Follow")
 		
 		
@@ -46,11 +42,19 @@ func _on_area_2d_area_entered(area):
 	print('area1')
 	print(area.get_groups())
 	if area.is_in_group('hit'):
-		enemy.health -= 1
+		take_damage(1)
+		
 
 
 func _on_area_2d_body_entered(body):
 	print('body1')
 	print(body.get_groups())
 	if body.is_in_group('Player'):
-		enemy.health -= 1
+		take_damage(1)
+
+func take_damage(damage):
+	enemy.health -= damage
+	if enemy.health <= 0:
+		print('switch to die')
+		Transitioned.emit(self, "Die")
+		
