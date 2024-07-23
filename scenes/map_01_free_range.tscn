@@ -798,7 +798,7 @@ wait_time = 2.0
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("1_tpdlq")]
-position = Vector2(1, -2)
+position = Vector2(-19, -2)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 position = Vector2(0, -7)
@@ -917,14 +917,13 @@ script = ExtResource("4_h5f6a")
 
 [node name="Enemies" type="Node" parent="."]
 
+[node name="Character Snake" parent="Enemies" instance=ExtResource("7_ncur3")]
+
 [node name="Chicken Character" parent="Enemies" instance=ExtResource("6_70e58")]
 position = Vector2(-73, -2)
 speed = 130.0
 jump_velocity = -300.0
 max_flaps = 5
-
-[node name="Character Snake" parent="Enemies" instance=ExtResource("7_ncur3")]
-position = Vector2(93, -37)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3
