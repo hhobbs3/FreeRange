@@ -14,7 +14,7 @@ func randomize_wander():
 	if randi() % 3 == 0:
 		move_direction = Vector2(0,0)
 	else:
-		move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+		move_direction = Vector2(randf_range(-1, 1), 0).normalized()
 	wander_time = randf_range(1, 3)
 	
 func Enter():
@@ -29,13 +29,14 @@ func Update(delta: float):
 
 func Physics_Update(delta: float):
 	if enemy:
-		enemy.velocity = move_direction * move_speed
+		enemy.velocity = move_direction * move_speed 
 
 		var direction = player.global_position - enemy.global_position
 	
 		if direction.length() < 60:
 			print('switch to follow')
 			Transitioned.emit(self, "Follow")
+
 		
 		
 func _on_area_2d_area_entered(area):

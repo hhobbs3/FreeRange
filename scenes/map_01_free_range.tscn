@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dxgtnbeodk0v5"]
 
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_6ejnh"]
-[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/player.tscn" id="1_tpdlq"]
+[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player.tscn" id="1_tpdlq"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="2_nunkb"]
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange.gd" id="4_h5f6a"]
 [ext_resource type="PackedScene" uid="uid://jdss6n7u7ylj" path="res://scenes/characters/character_chicken.tscn" id="6_70e58"]

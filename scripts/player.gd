@@ -4,11 +4,12 @@ class_name Player
 signal health_changed
 
 const SPEED = 130.0
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -400.0
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var fall_gravity = gravity * 1.5
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 @onready var collision_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
@@ -18,13 +19,13 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var max_health = 3
 @onready var current_health: int = max_health
 
-@export var knockback_power: int = 500
+@export var knockback_power: int = 400
 
 var is_hurt: bool = false
 var is_attacking: bool = false
 
 var max_flaps: int = 10
-var flap_force: float = 100.0
+var flap_force: float = JUMP_VELOCITY / 2
 var flap_count: int = 0
 var head = 'idle'
 var has_collided_with_player = true;
@@ -36,10 +37,18 @@ func _read():
 	# player.connect("facing_direction_changed", on_player_facing_direction_changed)
 	pass
 	
+	
+
+func get_gravity(velocity: Vector2):
+	if velocity.y < 0:
+		return gravity
+	return fall_gravity
+
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += gravity * delta
+		velocity.y += get_gravity(velocity) * delta
+
 
 	# Handle attack
 	if Input.is_action_just_pressed("horizontal_attack"):
@@ -55,9 +64,13 @@ func _physics_process(delta):
 			flap_count = 0
 			velocity.y = JUMP_VELOCITY
 		elif flap_count < max_flaps:
-			velocity.y = -flap_force
+			velocity.y = flap_force
 			flap_count += 1
-			
+	
+	if Input.is_action_just_released('jump') and velocity.y < 0:
+		velocity.y = JUMP_VELOCITY / 4
+
+	
 	# Handle head state
 	if Input.is_action_just_pressed("look_up"):
 		head = 'look_up'
