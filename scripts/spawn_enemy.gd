@@ -1,6 +1,6 @@
 extends Area2D
 
-func _process(delta):
+func _process(_delta):
 	position.y += 1
 
 

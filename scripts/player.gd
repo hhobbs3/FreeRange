@@ -38,18 +38,11 @@ func _read():
 	# monitoring = false
 	# player.connect("facing_direction_changed", on_player_facing_direction_changed)
 	pass
-	
-	
-
-func get_gravity(velocity: Vector2):
-	if velocity.y < 0:
-		return gravity
-	return fall_gravity
 
 func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
-		velocity.y += get_gravity(velocity) * delta
+		velocity.y += gravity * delta
 
 
 	# Handle attack

@@ -7,7 +7,7 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 
@@ -16,8 +16,8 @@ func _on_demo_pressed():
 
 
 func _on_free_range_pressed():
-	get_tree().change_scene_to_file("res://scenes/map_01_free_range.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/map_01_free_range.tscn")
 
 
 func _on_procedural_map_pressed():
-	get_tree().change_scene_to_file("res://scenes/map_procedural_terrain.tscn")
+	get_tree().change_scene_to_file("res://scenes/maps/map_procedural_terrain.tscn")

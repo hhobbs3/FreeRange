@@ -16,18 +16,18 @@ func _ready():
 	grass.seed = randi()
 
 
-func _process(delta):
+func _process(_delta):
 	generate_chunk(player.position)
 	
-func generate_chunk(position):
-	var tile_pos = local_to_map(position)
+func generate_chunk(player_position):
+	var tile_pos = local_to_map(player_position)
 	for x in range(width):
 		# randomize the tiles more
 		# randomize the heights more
-		var g = grass.get_noise_2d(tile_pos.x-width/2+x,0)
+		var g = grass.get_noise_2d(tile_pos.x-width/2.0+x,0)
 		
-		set_cell(0, Vector2i(tile_pos.x-width/2 + x, 0), 0, Vector2(round(g+2), 6))
+		set_cell(0, Vector2i(tile_pos.x-width/2.0 + x, 0), 0, Vector2(round(g+2), 6))
 		for y in range(height):
-			set_cell(0, Vector2i(tile_pos.x-width/2 + x, 1 + y), 0, Vector2(0, 7))
+			set_cell(0, Vector2i(tile_pos.x-width/2.0 + x, 1 + y), 0, Vector2(0, 7))
 
 

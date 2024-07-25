@@ -9,13 +9,13 @@ var player: CharacterBody2D
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	var direction = Vector2(player.global_position.x - enemy.global_position.x,0)
 	
 	if direction.length() > 25:
 		enemy.velocity = direction.normalized() * move_speed
 	else:
-		enemy.velocity = Vector2()
+		Transitioned.emit(self, "Attack")
 		
 	if direction.length() > 120:
 		print('switch to idle')

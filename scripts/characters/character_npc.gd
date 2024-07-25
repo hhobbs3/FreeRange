@@ -18,6 +18,6 @@ var flap_count = 0
 var player_position
 var target_position
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	pass
 	

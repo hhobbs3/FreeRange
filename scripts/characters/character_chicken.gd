@@ -68,7 +68,7 @@ func player_controll(delta):
 
 	move_and_slide()
 	
-func ai_controll(delta):
+func ai_controll(_delta):
 	move_and_slide()
 	if velocity.length() > 0:
 		animated_sprite_2d.play("run")

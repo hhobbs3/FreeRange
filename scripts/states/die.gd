@@ -24,5 +24,5 @@ func Update(delta: float):
 	else: 
 		stop_moving()
 
-func Physics_Update(delta: float):
+func Physics_Update(_delta: float):
 	character_snake.health = 0
