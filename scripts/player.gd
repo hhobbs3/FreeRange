@@ -5,6 +5,7 @@ signal health_changed
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -400.0
+@onready var collision_shape_2d_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -13,6 +14,7 @@ var fall_gravity = gravity * 1.5
 @onready var animated_sprite_2d = $AnimatedSprite2D
 
 @onready var collision_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
+@onready var sprite_attack_box = $Area2D/CollisionShape2DHorizontalAttack/SpriteAttackBox
 
 
 @onready var hurt_timer = Timer
@@ -54,9 +56,11 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("horizontal_attack"):
 		print('horizontal_attack player')
 		collision_horizontal_attack.disabled = false
+		sprite_attack_box.visible = true
 		# attack animation
 	else:
 		collision_horizontal_attack.disabled = true
+		sprite_attack_box.visible = false
 
 	# Handle jump / flap
 	if Input.is_action_just_pressed("jump"):
@@ -85,8 +89,10 @@ func _physics_process(delta):
 	# Flip the Sprite
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
+		collision_shape_2d_horizontal_attack.position.x = 15
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
+		collision_shape_2d_horizontal_attack.position.x = -15
 
 	emit_signal("facing_direction_changed", !animated_sprite_2d.flip_h)
 	# Play animations

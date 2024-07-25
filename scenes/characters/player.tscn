@@ -212,7 +212,7 @@ animations = [{
 radius = 5.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lu10"]
-size = Vector2(10.5458, 14.528)
+size = Vector2(11, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -239,8 +239,11 @@ script = ExtResource("4_k3s3i")
 facing_left_position = Vector2(-15, -10)
 facing_right_position = Vector2(15, -10)
 
-[node name="Sprite2D" type="Sprite2D" parent="Area2D/CollisionShape2DHorizontalAttack"]
+[node name="SpriteAttackBox" type="Sprite2D" parent="Area2D/CollisionShape2DHorizontalAttack"]
+visible = false
 modulate = Color(1, 1, 1, 0.211765)
+position = Vector2(-3.27826e-07, -2.98023e-08)
+scale = Vector2(0.17056, 0.235832)
 texture = ExtResource("5_upfpb")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
