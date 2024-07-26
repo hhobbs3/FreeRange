@@ -253,10 +253,12 @@ initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("7_s8i4n")
+move_speed = 30.0
 enemy = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("8_qps6d")
+move_speed = 0.0
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]

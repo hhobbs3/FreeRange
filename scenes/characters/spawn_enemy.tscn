@@ -78,6 +78,7 @@ script = ExtResource("3_clnvo")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_4dl3j")
+move_speed = 80.0
 
 [node name="Follow" type="Node" parent="StateMachine"]
 script = ExtResource("5_krtcs")
