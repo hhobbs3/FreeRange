@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dxgtnbeodk0v5"]
+[gd_scene load_steps=14 format=3 uid="uid://dxgtnbeodk0v5"]
 
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_i3ram"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player.tscn" id="2_2jlt0"]
@@ -8,7 +8,6 @@
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="6_oymlj"]
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange.gd" id="7_0o4ht"]
 [ext_resource type="PackedScene" uid="uid://bm1neekvm2v0f" path="res://scenes/characters/character_snake.tscn" id="8_hiunb"]
-[ext_resource type="PackedScene" uid="uid://jdss6n7u7ylj" path="res://scenes/characters/character_chicken.tscn" id="9_sqmfg"]
 [ext_resource type="Script" path="res://scripts/bar_health.gd" id="10_hueky"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuoqo"]
@@ -795,6 +794,7 @@ script = ExtResource("1_i3ram")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
+one_shot = true
 autostart = true
 
 [node name="Player" parent="." instance=ExtResource("2_2jlt0")]
@@ -918,12 +918,6 @@ script = ExtResource("7_0o4ht")
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Character Snake" parent="Enemies" instance=ExtResource("8_hiunb")]
-
-[node name="Chicken Character" parent="Enemies" instance=ExtResource("9_sqmfg")]
-position = Vector2(-73, -2)
-speed = 130.0
-jump_velocity = -300.0
-max_flaps = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3

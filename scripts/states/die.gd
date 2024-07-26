@@ -5,11 +5,12 @@ class_name EnemyDie
 @export var move_speed := 10.0
 @onready var collision_snake = $"../../CollisionShape2DSnake"
 @onready var character_snake = $"../.."
+@onready var timer = $Timer
 
 var player: CharacterBody2D
 
 var move_direction : Vector2
-var wander_time : float
+
 
 func stop_moving():
 	move_direction = Vector2(0,0)
@@ -19,10 +20,12 @@ func Enter():
 	stop_moving()
 	
 func Update(delta: float):
-	if wander_time > 0:
-		wander_time -= delta
-	else: 
-		stop_moving()
+	stop_moving()
+	timer.start()
 
 func Physics_Update(_delta: float):
 	character_snake.health = 0
+
+
+func _on_timer_timeout():
+	queue_free()

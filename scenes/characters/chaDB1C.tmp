@@ -259,10 +259,6 @@ enemy = NodePath("../..")
 script = ExtResource("8_qps6d")
 enemy = NodePath("../..")
 
-[node name="Timer" type="Timer" parent="StateMachine/Die"]
-wait_time = 5.0
-one_shot = true
-
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("9_etxcg")
 enemy = NodePath("../..")
@@ -280,5 +276,3 @@ one_shot = true
 [connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
-[connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

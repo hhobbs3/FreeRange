@@ -33,7 +33,6 @@ func on_child_transition(state, new_state_name):
 		return
 	
 	if current_state:
-		print(str(current_state) + ' ' + str(new_state))
 		current_state.Exit()
 	
 	new_state.Enter()
