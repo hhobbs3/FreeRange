@@ -6,6 +6,7 @@ signal health_changed
 const SPEED = 130.0
 const JUMP_VELOCITY = -400.0
 @onready var collision_shape_2d_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
+@onready var animation_tree :AnimationTree = $AnimationTree
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -38,6 +39,12 @@ func _read():
 	# monitoring = false
 	# player.connect("facing_direction_changed", on_player_facing_direction_changed)
 	pass
+
+func _ready():
+	animation_tree.active = true
+
+func _process(delta):
+	update_animation_parameters()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -141,3 +148,24 @@ func _on_area_2d_body_entered(body):
 		print('_on_area_2d_body_entered player area2d')
 	else:
 		pass
+
+func update_animation_parameters():
+	# velocity
+	if velocity == Vector2.ZERO:
+		animation_tree['parameters/conditions/attack'] = true
+		animation_tree['parameters/conditions/moving'] = false
+	else:
+		animation_tree['parameters/conditions/attack'] = false
+		animation_tree['parameters/conditions/moving'] = true
+		
+	# attacks
+	if Input.is_action_just_pressed('horizontal_attack'):
+		animation_tree['parameters/conditions/attack'] = true
+	else:
+		animation_tree['parameters/conditions/attack'] = false
+	
+	# jump
+	if Input.is_action_just_pressed('jump'):
+		animation_tree['parameters/conditions/jump'] = true
+	else:
+		animation_tree['parameters/conditions/jump'] = false
