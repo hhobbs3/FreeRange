@@ -4,7 +4,7 @@ class_name State
 @export var enemy: CharacterNPC
 
 var player: CharacterBody2D
-
+@onready var animated_sprite_2d = $AnimatedSprite2D
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 signal Transitioned
 

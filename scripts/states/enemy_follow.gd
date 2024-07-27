@@ -19,6 +19,7 @@ func Physics_Update(_delta: float):
 	# near, follow
 	if direction.length() > 25:
 		enemy.velocity = direction.normalized() * move_speed
+		enemy.animated_sprite_2d.play("run")
 	else:
 		# close, attack
 		print('switch to attack')

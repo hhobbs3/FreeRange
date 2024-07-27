@@ -18,12 +18,13 @@ func Enter():
 
 func Physics_Update(_delta: float):
 	character_snake.health = 0
-	print('TIME TO DIE')
 	stop_moving()
 	timer.start(1)
+	enemy.animated_sprite_2d.play("die")
 	
 
 func _on_timer_timeout():
 	# never seems to make it here
+	print('YOU DIED')
 	enemy.queue_free()
 	pass
