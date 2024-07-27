@@ -214,6 +214,7 @@ radius = 6.32456
 size = Vector2(11, 14)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
 collision_layer = 2
 script = ExtResource("1_eyslv")
 

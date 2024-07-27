@@ -15,17 +15,15 @@ func stop_moving():
 	
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
-	stop_moving()
-	
-func Update(_delta: float):
-	print('TIME TO DIE')
-	stop_moving()
-	timer.start()
-	
 
 func Physics_Update(_delta: float):
 	character_snake.health = 0
-
+	print('TIME TO DIE')
+	stop_moving()
+	timer.start(1)
+	
 
 func _on_timer_timeout():
-	queue_free()
+	# never seems to make it here
+	enemy.queue_free()
+	pass

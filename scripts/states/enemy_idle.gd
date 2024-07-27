@@ -24,6 +24,8 @@ func Update(delta: float):
 		randomize_wander()
 
 func Physics_Update(_delta: float):
+	if enemy.health <= 0:
+		Transitioned.emit(self, "Die")
 	if enemy:
 		enemy.velocity = move_direction * move_speed 
 		var direction = player.global_position - enemy.global_position
