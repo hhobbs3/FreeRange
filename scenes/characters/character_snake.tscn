@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://bm1neekvm2v0f"]
+[gd_scene load_steps=40 format=3 uid="uid://bm1neekvm2v0f"]
 
 [ext_resource type="Script" path="res://scripts/characters/character_snake.gd" id="1_kwj57"]
 [ext_resource type="Texture2D" uid="uid://ijo5wlivhuo3" path="res://assets/sprites/fruit.png" id="2_1sqht"]
@@ -8,9 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://csnhd5rw6e1n4" path="res://assets/sprites/chicken1.png" id="5_2ubpl"]
 [ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="6_10nws"]
 [ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="7_s8i4n"]
+[ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="7_ue3ih"]
+[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="8_6rhgh"]
 [ext_resource type="Script" path="res://scripts/states/die.gd" id="8_qps6d"]
 [ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="9_etxcg"]
 [ext_resource type="Script" path="res://scripts/states/enemy_attack.gd" id="10_l3kts"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
+radius = 5.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nr1g2"]
 atlas = ExtResource("2_1sqht")
@@ -221,8 +226,8 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q363h"]
+size = Vector2(11, 14)
 
 [node name="Character Snake" type="CharacterBody2D" groups=["hit", "snake"]]
 collision_layer = 2
@@ -230,22 +235,38 @@ script = ExtResource("1_kwj57")
 speed = 80.0
 flap_force = 0.0
 
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="Area2D" groups=["hit"]]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_l11gq")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x7dfe")
-animation = &"jump"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2DSnake" type="CollisionShape2D" parent="." groups=["hit"]]
 position = Vector2(0, -5)
 shape = SubResource("CircleShape2D_l11gq")
 
-[node name="Area2D" type="Area2D" parent="CollisionShape2DSnake"]
-position = Vector2(0, 5)
+[node name="EnemyAreaHorizontalAttack" type="Area2D" parent="." groups=["attack", "enemy_attack", "horizontal_attack"]]
 
-[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="CollisionShape2DSnake/Area2D" groups=["hit"]]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_l11gq")
+[node name="EnemyCollisionHorizontalAttack" type="CollisionShape2D" parent="EnemyAreaHorizontalAttack" groups=["enemy_attack"]]
+position = Vector2(15, -10)
+scale = Vector2(1.8322, 1.3251)
+shape = SubResource("RectangleShape2D_q363h")
+disabled = true
+script = ExtResource("7_ue3ih")
+facing_left_position = Vector2(-15, -10)
+facing_right_position = Vector2(15, -10)
+
+[node name="SpriteAttackBox" type="Sprite2D" parent="EnemyAreaHorizontalAttack/EnemyCollisionHorizontalAttack"]
+modulate = Color(1, 1, 1, 0.211765)
+position = Vector2(-3.27826e-07, -2.98023e-08)
+scale = Vector2(0.17056, 0.235832)
+texture = ExtResource("8_6rhgh")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_10nws")
@@ -277,10 +298,10 @@ enemy = NodePath("../..")
 wait_time = 3.0
 one_shot = true
 
-[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="CollisionShape2DSnake/Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

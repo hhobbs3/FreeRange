@@ -17,7 +17,7 @@ func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 	stop_moving()
 	
-func Update(delta: float):
+func Update(_delta: float):
 	print('TIME TO DIE')
 	stop_moving()
 	timer.start()

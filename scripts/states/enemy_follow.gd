@@ -19,6 +19,7 @@ func Physics_Update(_delta: float):
 		enemy.velocity = direction.normalized() * move_speed
 	else:
 		# close, attack
+		print('switch to attack')
 		Transitioned.emit(self, "Attack")
 		
 	

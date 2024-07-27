@@ -22,7 +22,7 @@ func Physics_Update(_delta: float):
 
 func _on_area_2d_area_entered(area):
 	print('area')
-	if area.is_in_group('hit'):
+	if area.is_in_group('player_attack'):
 		take_damage(1)
 		
 func take_damage(damage):

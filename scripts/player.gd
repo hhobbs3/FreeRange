@@ -5,17 +5,17 @@ signal health_changed
 
 const SPEED = 130.0
 const JUMP_VELOCITY = -400.0
-@onready var collision_shape_2d_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
-@onready var animation_tree :AnimationTree = $AnimationTree
+
+
+
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_gravity = gravity * 1.5
 @onready var animated_sprite_2d = $AnimatedSprite2D
-
-@onready var collision_horizontal_attack = $Area2D/CollisionShape2DHorizontalAttack
-@onready var sprite_attack_box = $Area2D/CollisionShape2DHorizontalAttack/SpriteAttackBox
+@onready var player_collision_horizontal_attack = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
+@onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
 
 
 @onready var hurt_timer = Timer
@@ -35,16 +35,6 @@ var has_collided_with_player = true;
 
 signal facing_direction_changed(facing_right : bool)
 
-func _read():
-	# monitoring = false
-	# player.connect("facing_direction_changed", on_player_facing_direction_changed)
-	pass
-
-func _ready():
-	animation_tree.active = true
-
-func _process(delta):
-	update_animation_parameters()
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -55,12 +45,12 @@ func _physics_process(delta):
 	# Handle attack
 	if Input.is_action_just_pressed("horizontal_attack"):
 		print('horizontal_attack player')
-		collision_horizontal_attack.disabled = false
-		sprite_attack_box.visible = true
+		player_collision_horizontal_attack.disabled = false
+		player_sprite_attack_box.visible = true
 		# attack animation
 	else:
-		collision_horizontal_attack.disabled = true
-		sprite_attack_box.visible = false
+		player_collision_horizontal_attack.disabled = true
+		player_sprite_attack_box.visible = false
 
 	# Handle jump / flap
 	if Input.is_action_just_pressed("jump"):
@@ -89,10 +79,10 @@ func _physics_process(delta):
 	# Flip the Sprite
 	if direction > 0:
 		animated_sprite_2d.flip_h = false
-		collision_shape_2d_horizontal_attack.position.x = 15
+		player_collision_horizontal_attack.position.x = 15
 	elif direction < 0:
 		animated_sprite_2d.flip_h = true
-		collision_shape_2d_horizontal_attack.position.x = -15
+		player_collision_horizontal_attack.position.x = -15
 
 	emit_signal("facing_direction_changed", !animated_sprite_2d.flip_h)
 	# Play animations
@@ -148,24 +138,24 @@ func _on_area_2d_body_entered(body):
 		print('_on_area_2d_body_entered player area2d')
 	else:
 		pass
-
-func update_animation_parameters():
-	# velocity
-	if velocity == Vector2.ZERO:
-		animation_tree['parameters/conditions/attack'] = true
-		animation_tree['parameters/conditions/moving'] = false
-	else:
-		animation_tree['parameters/conditions/attack'] = false
-		animation_tree['parameters/conditions/moving'] = true
 		
-	# attacks
-	if Input.is_action_just_pressed('horizontal_attack'):
-		animation_tree['parameters/conditions/attack'] = true
-	else:
-		animation_tree['parameters/conditions/attack'] = false
-	
-	# jump
-	if Input.is_action_just_pressed('jump'):
-		animation_tree['parameters/conditions/jump'] = true
-	else:
-		animation_tree['parameters/conditions/jump'] = false
+#func _on_area_2d_area_entered(area):
+#	print('area')
+#	if area.is_in_group('enemy_attack'):
+#		take_damage(1)
+#		
+func _on_area_2d_chicken_hitbox_area_entered(area):
+	print('area')
+	if area.is_in_group('enemy_attack'):
+		take_damage(1)
+		
+func take_damage(damage):
+	current_health -= damage
+	if current_health <= 0:
+		print('health = ' + str(current_health))
+		print('switch to die')
+		print('die')
+		# Transitioned.emit(self, "Die")
+
+
+
