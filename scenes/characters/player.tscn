@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=54 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eyslv"]
 [ext_resource type="Texture2D" uid="uid://csnhd5rw6e1n4" path="res://assets/sprites/chicken1.png" id="3_o1phd"]
@@ -208,18 +208,82 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
-radius = 5.0
+radius = 6.32456
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lu10"]
 size = Vector2(11, 14)
+
+[sub_resource type="Animation" id="Animation_8nd6q"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_qi6yx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Node/Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_h3xhc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hrons"]
+_data = {
+"RESET": SubResource("Animation_h3xhc"),
+"idle": SubResource("Animation_8nd6q")
+}
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_sur17"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_w4yeh"]
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_t3fi1"]
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ynnt1"]
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_csrl5"]
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ry46l"]
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_sur17"]
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_csrl5"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_unegx"]
 advance_mode = 2
@@ -270,16 +334,20 @@ advance_mode = 2
 advance_condition = &"moving"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_tugow"]
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_t3fi1")
-states/Idle/position = Vector2(364, 100)
-states/Jump/node = SubResource("AnimationNodeBlendSpace2D_ynnt1")
-states/Jump/position = Vector2(449, 1)
-states/Walk/node = SubResource("AnimationNodeBlendSpace2D_csrl5")
-states/Walk/position = Vector2(532, 100)
 states/attack/node = SubResource("AnimationNodeBlendSpace2D_sur17")
 states/attack/position = Vector2(449, 200)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_unegx"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_r1arp"), "Jump", "Idle", SubResource("AnimationNodeStateMachineTransition_wmio0"), "Idle", "Walk", SubResource("AnimationNodeStateMachineTransition_nw7aq"), "Walk", "Jump", SubResource("AnimationNodeStateMachineTransition_cg1os"), "Jump", "Walk", SubResource("AnimationNodeStateMachineTransition_fujfl"), "Walk", "Idle", SubResource("AnimationNodeStateMachineTransition_gv6v2"), "Idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnl6n"), "attack", "Idle", SubResource("AnimationNodeStateMachineTransition_tj0nc"), "Walk", "attack", SubResource("AnimationNodeStateMachineTransition_gh7k0"), "attack", "Walk", SubResource("AnimationNodeStateMachineTransition_apeab")]
-graph_offset = Vector2(-46, -44)
+states/flap/node = SubResource("AnimationNodeBlendSpace2D_w4yeh")
+states/flap/position = Vector2(711, -82)
+states/idle/node = SubResource("AnimationNodeBlendSpace2D_t3fi1")
+states/idle/position = Vector2(364, 100)
+states/jump/node = SubResource("AnimationNodeBlendSpace2D_ynnt1")
+states/jump/position = Vector2(532, -9)
+states/jump_end/node = SubResource("AnimationNodeBlendSpace2D_ry46l")
+states/jump_end/position = Vector2(720, 30)
+states/walk/node = SubResource("AnimationNodeBlendSpace2D_csrl5")
+states/walk/position = Vector2(532, 100)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_unegx"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_r1arp"), "jump", "idle", SubResource("AnimationNodeStateMachineTransition_wmio0"), "idle", "walk", SubResource("AnimationNodeStateMachineTransition_nw7aq"), "walk", "jump", SubResource("AnimationNodeStateMachineTransition_cg1os"), "jump", "walk", SubResource("AnimationNodeStateMachineTransition_fujfl"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_gv6v2"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnl6n"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_tj0nc"), "walk", "attack", SubResource("AnimationNodeStateMachineTransition_gh7k0"), "attack", "walk", SubResource("AnimationNodeStateMachineTransition_apeab")]
+graph_offset = Vector2(3, -135)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 2
@@ -288,11 +356,11 @@ script = ExtResource("1_eyslv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x7dfe")
-animation = &"look_up"
+animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -5)
+position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l11gq")
 
 [node name="Area2D" type="Area2D" parent="." groups=["attack", "hit", "horizontal_attack"]]
@@ -313,19 +381,33 @@ position = Vector2(-3.27826e-07, -2.98023e-08)
 scale = Vector2(0.17056, 0.235832)
 texture = ExtResource("5_upfpb")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Node" type="Node" parent="."]
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hrons")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="Node"]
+root_node = NodePath("../..")
 tree_root = SubResource("AnimationNodeStateMachine_tugow")
 anim_player = NodePath("../AnimationPlayer")
 parameters/conditions/attack = false
 parameters/conditions/idle = false
 parameters/conditions/jump = false
 parameters/conditions/moving = false
-parameters/Idle/blend_position = Vector2(0, 0)
-parameters/Jump/blend_position = Vector2(0, 0)
-parameters/Walk/blend_position = Vector2(0, 0)
 parameters/attack/blend_position = Vector2(0, 0)
+parameters/flap/blend_position = Vector2(0, 0)
+parameters/idle/blend_position = Vector2(0, 0)
+parameters/jump/blend_position = Vector2(0, 0)
+parameters/jump_end/blend_position = Vector2(0, 0)
+parameters/walk/blend_position = Vector2(0, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node"]
+visible = false
+texture = ExtResource("3_qi6yx")
+hframes = 12
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
