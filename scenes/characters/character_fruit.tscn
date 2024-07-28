@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="8_nrcoc"]
 [ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="9_aeesq"]
 [ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="10_7x8lt"]
-[ext_resource type="Script" path="res://scripts/states/die.gd" id="11_mdbb0"]
+[ext_resource type="Script" path="res://scripts/states/enemy_die.gd" id="11_mdbb0"]
 [ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="12_d7574"]
 [ext_resource type="Script" path="res://scripts/states/enemy_attack.gd" id="13_rej17"]
 

@@ -1,4 +1,4 @@
-extends State
+extends StateNPCEnemy
 class_name EnemyFollow
 
 @export var move_speed := 80.0

@@ -1,6 +1,5 @@
-extends State
+extends StateNPCEnemy
 class_name EnemyIdle
-
 @export var move_speed := 0.0
 
 var move_direction : Vector2

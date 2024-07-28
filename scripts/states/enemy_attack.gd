@@ -1,4 +1,4 @@
-extends State
+extends StateNPCEnemy
 class_name EnemyAttack
 
 @onready var timer = $Timer
