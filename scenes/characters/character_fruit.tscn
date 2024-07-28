@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://csnhd5rw6e1n4" path="res://assets/sprites/chicken1.png" id="6_v1fs8"]
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="7_r8rbv"]
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="8_nrcoc"]
-[ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="9_aeesq"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_aeesq"]
 [ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="10_7x8lt"]
 [ext_resource type="Script" path="res://scripts/states/enemy_die.gd" id="11_mdbb0"]
 [ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="12_d7574"]

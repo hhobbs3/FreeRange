@@ -1,14 +1,18 @@
-[gd_scene load_steps=37 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=38 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eyslv"]
 [ext_resource type="Texture2D" uid="uid://csnhd5rw6e1n4" path="res://assets/sprites/chicken1.png" id="3_o1phd"]
 [ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="3_qi6yx"]
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="4_k3s3i"]
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="5_upfpb"]
-[ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="6_wav04"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_wav04"]
 [ext_resource type="Script" path="res://scripts/states/player_idle.gd" id="7_4rjly"]
 [ext_resource type="Script" path="res://scripts/states/player_die.gd" id="8_usndc"]
 [ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="9_kynji"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stbbf"]
+atlas = ExtResource("3_qi6yx")
+region = Rect2(224, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p55d"]
 atlas = ExtResource("3_qi6yx")
@@ -108,6 +112,14 @@ region = Rect2(224, 64, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x7dfe"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stbbf")
+}],
+"loop": true,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5p55d")
@@ -225,7 +237,7 @@ script = ExtResource("1_eyslv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x7dfe")
-animation = &"idle"
+animation = &"die"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -256,21 +268,24 @@ position = Vector2(-3.27826e-07, -2.98023e-08)
 scale = Vector2(0.17056, 0.235832)
 texture = ExtResource("5_upfpb")
 
-[node name="StateMachine" type="Node" parent="."]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("6_wav04")
+initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("7_4rjly")
 
-[node name="Die" type="Node" parent="StateMachine"]
+[node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_usndc")
+player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]
-wait_time = 5.0
+wait_time = 3.0
 one_shot = true
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("9_kynji")
+player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
 wait_time = 3.0

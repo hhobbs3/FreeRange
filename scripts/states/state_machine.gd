@@ -10,13 +10,10 @@ func _ready():
 	# hook up states from children nodes
 	for child in get_children():
 		if child is State:
-			print('x')
 			states[child.name.to_lower()] = child
 			child.Transitioned.connect(on_child_transition)
-			print(child.name.to_lower())
 	# set up initial state
 	if initial_state:
-		print('initial_state')
 		current_state = initial_state
 		initial_state.Enter()
 		

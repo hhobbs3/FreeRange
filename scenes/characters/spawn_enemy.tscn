@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/spawn_enemy.gd" id="1_7ml0j"]
 [ext_resource type="Texture2D" uid="uid://54lb7rw0a30h" path="res://assets/sprites/slime_purple.png" id="2_gceub"]
-[ext_resource type="Script" path="res://scripts/states/StateMachine.gd" id="3_clnvo"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_bydw7"]
 [ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="4_4dl3j"]
 [ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="5_krtcs"]
 
@@ -74,7 +74,7 @@ position = Vector2(-5.96046e-08, 4.5)
 scale = Vector2(0.2, 0.65)
 
 [node name="StateMachine" type="Node" parent="."]
-script = ExtResource("3_clnvo")
+script = ExtResource("3_bydw7")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource("4_4dl3j")

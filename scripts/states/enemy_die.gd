@@ -25,6 +25,6 @@ func Physics_Update(_delta: float):
 
 func _on_timer_timeout():
 	# never seems to make it here
-	print('YOU DIED')
+	print('ENEMY DIED')
 	enemy.queue_free()
 	pass

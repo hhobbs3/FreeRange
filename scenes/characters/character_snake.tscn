@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="7_ue3ih"]
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="8_6rhgh"]
 [ext_resource type="Script" path="res://scripts/states/enemy_die.gd" id="8_qps6d"]
-[ext_resource type="Script" path="res://scripts/states/state_machine_enemy.gd" id="9_21mw3"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_3m5rs"]
 [ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="9_etxcg"]
 [ext_resource type="Script" path="res://scripts/states/enemy_attack.gd" id="10_l3kts"]
 
@@ -291,7 +291,7 @@ scale = Vector2(0.17056, 0.235832)
 texture = ExtResource("8_6rhgh")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("9_21mw3")
+script = ExtResource("9_3m5rs")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]

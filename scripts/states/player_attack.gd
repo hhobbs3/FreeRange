@@ -1,4 +1,4 @@
-extends State
+extends StatePlayer
 class_name PlayerAttack
 
 

@@ -15,19 +15,16 @@ func randomize_wander():
 	wander_time = randf_range(1, 3)
 	
 func Enter():
-	print('enter idle')
 	player = get_tree().get_first_node_in_group("Player")
 	randomize_wander()
 	
 func Update(delta: float):
-	print('enter update')
 	if wander_time > 0:
 		wander_time -= delta
 	else: 
 		randomize_wander()
 
 func Physics_Update(_delta: float):
-	print('enter physics update')
 	if enemy.health <= 0:
 		Transitioned.emit(self, "Die")
 	if enemy:
@@ -35,7 +32,6 @@ func Physics_Update(_delta: float):
 		var direction = player.global_position - enemy.global_position
 		# near, follow
 		if direction.length() < 120:
-			print('switch to follow')
 			Transitioned.emit(self, "Follow")
 	# animation
 	if enemy.velocity.length() > 0:

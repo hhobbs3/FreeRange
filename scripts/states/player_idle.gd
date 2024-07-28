@@ -1,4 +1,4 @@
-extends State
+extends StatePlayer
 class_name PlayerIdle
 
 
@@ -9,13 +9,24 @@ var wander_time : float
 	
 func Enter():
 	print('enter idle')
-
-	
 	
 func Update(delta: float):
-	print('enter update')
-
+	pass
 
 func Physics_Update(_delta: float):
-	print('enter physics update')
+	# Die
+	if player:
+		print('player health ' + str(player.current_health))
+		if player.current_health <= 0:
+			pass # Transitioned.emit(self, "Die")
+
+	# Move
+	
+	
+	# Jump
+	
+	# Attack
+	
+	# Idle
+	# player.animated_sprite_2d.play('idle')
 

@@ -41,7 +41,6 @@ func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
 
-
 	# Handle attack
 	if Input.is_action_just_pressed("horizontal_attack"):
 		print('horizontal_attack player')
