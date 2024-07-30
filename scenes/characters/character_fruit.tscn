@@ -280,7 +280,6 @@ enemy = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
 script = ExtResource("11_mdbb0")
-move_speed = 0.0
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]

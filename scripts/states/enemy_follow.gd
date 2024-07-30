@@ -7,8 +7,14 @@ func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 
 func Physics_Update(_delta: float):
+	# no health
 	if enemy.health <= 0:
+		print('follow => die')
 		Transitioned.emit(self, "Die")
+	# falling
+	if not enemy.is_on_floor():
+		Transitioned.emit(self, "Fall")
+		
 	var direction = Vector2(player.global_position.x - enemy.global_position.x,0)
 	
 	# too far, idle

@@ -25,15 +25,21 @@ func Update(delta: float):
 		randomize_wander()
 
 func Physics_Update(_delta: float):
+	# no health
 	if enemy.health <= 0:
+		print('idle => die')
 		Transitioned.emit(self, "Die")
+	# falling
+	if not enemy.is_on_floor():
+		print('not on floor')
+		Transitioned.emit(self, "Fall")
 	if enemy:
 		enemy.velocity = move_direction * move_speed 
 		var direction = player.global_position - enemy.global_position
 		# near, follow
 		if direction.length() < 120:
 			Transitioned.emit(self, "Follow")
-	# animation
+	# idle animation
 	if enemy.velocity.length() > 0:
 		enemy.animated_sprite_2d.play("run")
 	if enemy.velocity.length() == 0:
