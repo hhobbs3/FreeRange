@@ -10,8 +10,8 @@ func Enter():
 
 func Physics_Update(_delta: float):
 	
-	if enemy.health <= 0:
-		Transitioned.emit(self, "Die")
+	# if enemy.health <= 0:
+	# 	Transitioned.emit(self, "Die")
 	if timer.time_left <= 0:
 		enemy.enemy_collision_horizontal_attack.disabled = true
 		sprite_attack_box.visible = false

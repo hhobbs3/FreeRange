@@ -25,10 +25,7 @@ func Update(delta: float):
 		randomize_wander()
 
 func Physics_Update(_delta: float):
-	# no health
-	if enemy.health <= 0:
-		print('idle => die')
-		Transitioned.emit(self, "Die")
+	#	Transitioned.emit(self, "Die")
 	# falling
 	if not enemy.is_on_floor():
 		print('not on floor')
@@ -44,3 +41,7 @@ func Physics_Update(_delta: float):
 		enemy.animated_sprite_2d.play("run")
 	if enemy.velocity.length() == 0:
 		enemy.animated_sprite_2d.play("idle")
+
+
+func _on_area_2d_area_exited(area):
+	pass # Replace with function body.

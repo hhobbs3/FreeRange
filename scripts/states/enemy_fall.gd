@@ -8,8 +8,8 @@ func Enter():
 
 func Physics_Update(delta: float):
 	if enemy:
-		if enemy.health <= 0:
-			Transitioned.emit(self, "Die")
+		#if enemy.health <= 0:
+		#	Transitioned.emit(self, "Die")
 		print('falling')
 		enemy.velocity.y += gravity * delta
 		if enemy.is_on_floor():

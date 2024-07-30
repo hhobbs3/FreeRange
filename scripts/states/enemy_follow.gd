@@ -8,9 +8,9 @@ func Enter():
 
 func Physics_Update(_delta: float):
 	# no health
-	if enemy.health <= 0:
-		print('follow => die')
-		Transitioned.emit(self, "Die")
+	#if enemy.health <= 0:
+	#	print('follow => die')
+	#	Transitioned.emit(self, "Die")
 	# falling
 	if not enemy.is_on_floor():
 		Transitioned.emit(self, "Fall")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://bm1neekvm2v0f"]
+[gd_scene load_steps=36 format=3 uid="uid://bm1neekvm2v0f"]
 
 [ext_resource type="Script" path="res://scripts/characters/character_snake.gd" id="1_kwj57"]
 [ext_resource type="Texture2D" uid="uid://d1bxp5i6s6p71" path="res://assets/sprites/snake.png" id="4_2u6jc"]
@@ -12,8 +12,8 @@
 [ext_resource type="Script" path="res://scripts/states/enemy_attack.gd" id="10_l3kts"]
 [ext_resource type="Script" path="res://scripts/states/enemy_fall.gd" id="10_p1l0t"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
-radius = 5.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xswh7"]
+size = Vector2(25, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l2tbe"]
 atlas = ExtResource("4_2u6jc")
@@ -188,6 +188,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtgv8"]
+size = Vector2(25, 15)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q363h"]
 size = Vector2(11, 14)
 
@@ -202,18 +205,18 @@ health = 3
 
 [node name="CollisionShape2DSnake" type="CollisionShape2D" parent="Area2D" groups=["hit"]]
 z_index = 1
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_l11gq")
+position = Vector2(0.5, -7)
+shape = SubResource("RectangleShape2D_xswh7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x7dfe")
-animation = &"damage"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="CollisionShape2DSnake" type="CollisionShape2D" parent="." groups=["hit"]]
-position = Vector2(0, -5)
-shape = SubResource("CircleShape2D_l11gq")
+position = Vector2(0.5, -6.5)
+shape = SubResource("RectangleShape2D_dtgv8")
 
 [node name="EnemyAreaHorizontalAttack" type="Area2D" parent="." groups=["attack", "enemy_attack", "horizontal_attack"]]
 
@@ -276,6 +279,8 @@ one_shot = true
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_exited"]
+[connection signal="area_shape_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
 [connection signal="body_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
