@@ -7,10 +7,6 @@ func Enter():
 	player = get_tree().get_first_node_in_group("Player")
 
 func Physics_Update(_delta: float):
-	# no health
-	#if enemy.health <= 0:
-	#	print('follow => die')
-	#	Transitioned.emit(self, "Die")
 	# falling
 	if not enemy.is_on_floor():
 		Transitioned.emit(self, "Fall")
@@ -31,4 +27,7 @@ func Physics_Update(_delta: float):
 		print('switch to attack')
 		Transitioned.emit(self, "Attack")
 		
-	
+func _on_hitbox_area_entered(area):
+	var took_damage = StateNpcEnemyHelperFunctions.take_damage(area, enemy, 1)
+	if took_damage:
+		Transitioned.emit(self, "Damage")

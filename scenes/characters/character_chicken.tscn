@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="2_tjtxv"]
 [ext_resource type="Texture2D" uid="uid://csnhd5rw6e1n4" path="res://assets/sprites/chicken1.png" id="3_m0418"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="4_x5ifa"]
-[ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="5_07jfk"]
-[ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="6_333kd"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="5_07jfk"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="6_333kd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5p55d"]
 atlas = ExtResource("2_tjtxv")

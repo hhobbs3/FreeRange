@@ -1,5 +1,5 @@
 extends StateNPCEnemy
-class_name EnemyDie
+class_name EnemyDamage
 
 @export var move_speed := 0.0
 @onready var timer = $Timer
@@ -13,22 +13,20 @@ func stop_moving():
 	
 func Enter():
 	player = get_tree().get_first_node_in_group("Player")
-	enemy.health = 0
+	var direction = Vector2(-(player.global_position.x - enemy.global_position.x),-(player.global_position.y - enemy.global_position.y))
 	enemy.enemy_collision_horizontal_attack.disabled = true
-	stop_moving()
-	enemy.animated_sprite_2d.play("die")
-	timer.start(1)
+	enemy.velocity = direction
+	enemy.animated_sprite_2d.play("damage")
+	timer.start(0.5)
 
 func Physics_Update(_delta: float):
 	pass
-	# enemy.health = 0
-	# enemy.enemy_collision_horizontal_attack.disabled = true
-	# stop_moving()
-	# enemy.animated_sprite_2d.play("die")
-	# timer.start(1)
 
 func _on_timer_timeout():
+	stop_moving()
 	# never seems to make it here
-	print('ENEMY DIED')
-	enemy.queue_free()
-	pass
+	if enemy.health <= 0:
+		Transitioned.emit(self, "Die")
+	else:
+		Transitioned.emit(self, "Idle")
+	

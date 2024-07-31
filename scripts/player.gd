@@ -138,11 +138,6 @@ func _on_area_2d_body_entered(body):
 	else:
 		pass
 		
-#func _on_area_2d_area_entered(area):
-#	print('area')
-#	if area.is_in_group('enemy_attack'):
-#		take_damage(1)
-#		
 func _on_area_2d_chicken_hitbox_area_entered(area):
 	print('area')
 	if area.is_in_group('enemy_attack'):
@@ -150,6 +145,7 @@ func _on_area_2d_chicken_hitbox_area_entered(area):
 		
 func take_damage(damage):
 	current_health -= damage
+	velocity.y -= 100
 	if current_health <= 0:
 		print('health = ' + str(current_health))
 		print('switch to die')

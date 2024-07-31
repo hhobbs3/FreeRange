@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://scripts/spawn_enemy.gd" id="1_7ml0j"]
 [ext_resource type="Texture2D" uid="uid://54lb7rw0a30h" path="res://assets/sprites/slime_purple.png" id="2_gceub"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_bydw7"]
-[ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="4_4dl3j"]
-[ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="5_krtcs"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="4_2ofsn"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="5_paflg"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g8m76"]
 atlas = ExtResource("2_gceub")
@@ -77,10 +77,10 @@ scale = Vector2(0.2, 0.65)
 script = ExtResource("3_bydw7")
 
 [node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_4dl3j")
+script = ExtResource("4_2ofsn")
 move_speed = 80.0
 
 [node name="Follow" type="Node" parent="StateMachine"]
-script = ExtResource("5_krtcs")
+script = ExtResource("5_paflg")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

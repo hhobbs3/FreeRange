@@ -41,7 +41,8 @@ func Physics_Update(_delta: float):
 		enemy.animated_sprite_2d.play("run")
 	if enemy.velocity.length() == 0:
 		enemy.animated_sprite_2d.play("idle")
-
-
-func _on_area_2d_area_exited(area):
-	pass # Replace with function body.
+		
+func _on_hitbox_area_entered(area):
+	var took_damage = StateNpcEnemyHelperFunctions.take_damage(area, enemy, 1)
+	if took_damage:
+		Transitioned.emit(self, "Damage")

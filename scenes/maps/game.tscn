@@ -1,19 +1,19 @@
 [gd_scene load_steps=19 format=3 uid="uid://dvanub5qep1uh"]
 
-[ext_resource type="Texture2D" uid="uid://bedndwil8ulfo" path="res://assets/sprites/world_tileset.png" id="1_cb8dx"]
-[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player.tscn" id="1_mflcp"]
-[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_pim1l"]
-[ext_resource type="PackedScene" uid="uid://c4n6x3e7fw70i" path="res://scenes/platform.tscn" id="4_oealg"]
-[ext_resource type="PackedScene" uid="uid://ds17db2ns3fxe" path="res://scenes/coin.tscn" id="4_riqly"]
-[ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="5_164ee"]
-[ext_resource type="PackedScene" uid="uid://cbpaewbjnpu3k" path="res://scenes/killzone.tscn" id="5_wvmat"]
-[ext_resource type="FontFile" uid="uid://beq3fobq35yqg" path="res://assets/fonts/PixelOperator8.ttf" id="6_6555m"]
-[ext_resource type="PackedScene" uid="uid://dk4e0c4mhufd0" path="res://scenes/slime.tscn" id="6_thh44"]
+[ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_g0eq0"]
+[ext_resource type="FontFile" uid="uid://beq3fobq35yqg" path="res://assets/fonts/PixelOperator8.ttf" id="2_cv5vs"]
+[ext_resource type="PackedScene" uid="uid://cbpaewbjnpu3k" path="res://scenes/killzone.tscn" id="3_rqpr2"]
+[ext_resource type="Texture2D" uid="uid://bedndwil8ulfo" path="res://assets/sprites/world_tileset.png" id="4_x4k8g"]
+[ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="5_pbvl1"]
+[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player.tscn" id="6_ydaqx"]
+[ext_resource type="PackedScene" uid="uid://c4n6x3e7fw70i" path="res://scenes/platform.tscn" id="7_s0hpf"]
+[ext_resource type="PackedScene" uid="uid://dk4e0c4mhufd0" path="res://scenes/slime.tscn" id="8_g65kh"]
+[ext_resource type="PackedScene" uid="uid://ds17db2ns3fxe" path="res://scenes/coin.tscn" id="9_lybtv"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fek1d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ctvkf"]
-texture = ExtResource("1_cb8dx")
+texture = ExtResource("4_x4k8g")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -136,7 +136,7 @@ texture = ExtResource("1_cb8dx")
 2:4/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kh4o7"]
-texture = ExtResource("5_164ee")
+texture = ExtResource("5_pbvl1")
 0:0/0 = 0
 1:0/0 = 0
 2:0/0 = 0
@@ -321,7 +321,7 @@ sources/0 = SubResource("TileSetAtlasSource_ctvkf")
 sources/1 = SubResource("TileSetAtlasSource_kh4o7")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cqvqm"]
-texture = ExtResource("1_cb8dx")
+texture = ExtResource("4_x4k8g")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -763,7 +763,7 @@ _data = {
 
 [node name="GameManager" type="Node" parent="."]
 unique_name_in_owner = true
-script = ExtResource("1_pim1l")
+script = ExtResource("1_g0eq0")
 
 [node name="ScoreLabel" type="Label" parent="GameManager"]
 offset_left = 332.0
@@ -771,11 +771,11 @@ offset_top = -54.0
 offset_right = 463.0
 offset_bottom = -31.0
 theme_override_colors/font_color = Color(0.0980392, 0.313726, 0.752941, 1)
-theme_override_fonts/font = ExtResource("6_6555m")
+theme_override_fonts/font = ExtResource("2_cv5vs")
 theme_override_font_sizes/font_size = 8
 text = "You collected 0 coins"
 
-[node name="Killzone" parent="." instance=ExtResource("5_wvmat")]
+[node name="Killzone" parent="." instance=ExtResource("3_rqpr2")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 position = Vector2(35, 102)
@@ -789,7 +789,7 @@ offset_top = -14.0
 offset_right = -49.0
 offset_bottom = 1.0
 theme_override_colors/font_color = Color(0.0117647, 0.14902, 0.34902, 1)
-theme_override_fonts/font = ExtResource("6_6555m")
+theme_override_fonts/font = ExtResource("2_cv5vs")
 theme_override_font_sizes/font_size = 8
 text = "Space to jump"
 
@@ -832,7 +832,7 @@ layer_0/tile_data = PackedInt32Array(131079, 262145, 4, 131078, 196609, 4, 13107
 [node name="0" type="CanvasLayer" parent="Visuals"]
 follow_viewport_enabled = true
 
-[node name="Player" parent="Visuals/0" instance=ExtResource("1_mflcp")]
+[node name="Player" parent="Visuals/0" instance=ExtResource("6_ydaqx")]
 z_index = 5
 position = Vector2(1, -2)
 
@@ -851,10 +851,10 @@ layer_1/tile_data = PackedInt32Array(196607, 0, 0, 131072, 0, 0, 65537, 0, 0, 65
 
 [node name="Platforms" type="Node" parent="Visuals/0"]
 
-[node name="Platform3" parent="Visuals/0/Platforms" instance=ExtResource("4_oealg")]
+[node name="Platform3" parent="Visuals/0/Platforms" instance=ExtResource("7_s0hpf")]
 position = Vector2(77, -37)
 
-[node name="Platform" parent="Visuals/0/Platforms" instance=ExtResource("4_oealg")]
+[node name="Platform" parent="Visuals/0/Platforms" instance=ExtResource("7_s0hpf")]
 position = Vector2(163, -44)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Visuals/0/Platforms/Platform"]
@@ -865,36 +865,36 @@ autoplay = "move"
 
 [node name="Enemies" type="Node" parent="Visuals/0"]
 
-[node name="Slime" parent="Visuals/0/Enemies" instance=ExtResource("6_thh44")]
+[node name="Slime" parent="Visuals/0/Enemies" instance=ExtResource("8_g65kh")]
 position = Vector2(140, 48)
 
 [node name="Coins" type="Node" parent="Visuals/0"]
 
-[node name="Coin" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(156, -57)
 
-[node name="Coin2" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin2" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(170, -57)
 
-[node name="Coin3" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin3" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(185, -57)
 
-[node name="Coin4" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin4" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(201, -57)
 
-[node name="Coin5" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin5" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(216, -57)
 
-[node name="Coin6" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin6" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(234, -57)
 
-[node name="Coin7" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin7" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(251, -57)
 
-[node name="Coin8" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin8" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(267, -57)
 
-[node name="Coin9" parent="Visuals/0/Coins" instance=ExtResource("4_riqly")]
+[node name="Coin9" parent="Visuals/0/Coins" instance=ExtResource("9_lybtv")]
 position = Vector2(282, -57)
 
 [node name="TileMap2" type="TileMap" parent="Visuals/0"]

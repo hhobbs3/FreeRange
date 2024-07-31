@@ -8,17 +8,17 @@ var move_direction : Vector2
 var wander_time : float
 	
 func Enter():
-	print('enter idle')
+	pass
 	
-func Update(delta: float):
+func Update(_delta: float):
 	pass
 
 func Physics_Update(_delta: float):
 	# Die
 	if player:
-		print('player health ' + str(player.current_health))
+		# print('player health ' + str(player.current_health))
 		if player.current_health <= 0:
-			pass # Transitioned.emit(self, "Die")
+			Transitioned.emit(self, "Die")
 
 	# Move
 	

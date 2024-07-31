@@ -2,15 +2,15 @@
 
 [ext_resource type="Script" path="res://scripts/characters/character_snake.gd" id="1_kwj57"]
 [ext_resource type="Texture2D" uid="uid://d1bxp5i6s6p71" path="res://assets/sprites/snake.png" id="4_2u6jc"]
-[ext_resource type="Script" path="res://scripts/states/enemy_idle.gd" id="7_s8i4n"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_idle.gd" id="6_xfyt8"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_die.gd" id="7_646ox"]
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="7_ue3ih"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_damage.gd" id="8_2yinv"]
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="8_6rhgh"]
-[ext_resource type="Script" path="res://scripts/states/enemy_damage.gd" id="8_ii61t"]
-[ext_resource type="Script" path="res://scripts/states/enemy_die.gd" id="8_qps6d"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_3m5rs"]
-[ext_resource type="Script" path="res://scripts/states/enemy_follow.gd" id="9_etxcg"]
-[ext_resource type="Script" path="res://scripts/states/enemy_attack.gd" id="10_l3kts"]
-[ext_resource type="Script" path="res://scripts/states/enemy_fall.gd" id="10_p1l0t"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_follow.gd" id="9_h0ry7"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_fall.gd" id="10_2f6ni"]
+[ext_resource type="Script" path="res://scripts/states/enemy/enemy_attack.gd" id="11_uub0b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xswh7"]
 size = Vector2(25, 14)
@@ -135,7 +135,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"damage",
-"speed": 5.0
+"speed": 15.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -192,7 +192,7 @@ animations = [{
 size = Vector2(25, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q363h"]
-size = Vector2(11, 14)
+size = Vector2(2.19369, 4.95731)
 
 [node name="CharacterSnake" type="CharacterBody2D" groups=["hit", "snake"]]
 collision_layer = 2
@@ -201,9 +201,9 @@ speed = 80.0
 flap_force = 0.0
 health = 3
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="Area2D" groups=["hit"]]
+[node name="CollisionShape2DSnake" type="CollisionShape2D" parent="Hitbox" groups=["hit"]]
 z_index = 1
 position = Vector2(0.5, -7)
 shape = SubResource("RectangleShape2D_xswh7")
@@ -213,6 +213,7 @@ position = Vector2(0, -12)
 sprite_frames = SubResource("SpriteFrames_x7dfe")
 animation = &"attack"
 autoplay = "idle"
+frame_progress = 0.710599
 
 [node name="CollisionShape2DSnake" type="CollisionShape2D" parent="." groups=["hit"]]
 position = Vector2(0.5, -6.5)
@@ -221,7 +222,7 @@ shape = SubResource("RectangleShape2D_dtgv8")
 [node name="EnemyAreaHorizontalAttack" type="Area2D" parent="." groups=["attack", "enemy_attack", "horizontal_attack"]]
 
 [node name="EnemyCollisionHorizontalAttack" type="CollisionShape2D" parent="EnemyAreaHorizontalAttack" groups=["enemy_attack"]]
-position = Vector2(15, -10)
+position = Vector2(14.9904, -6.28446)
 scale = Vector2(1.8322, 1.3251)
 shape = SubResource("RectangleShape2D_q363h")
 disabled = true
@@ -231,8 +232,8 @@ facing_right_position = Vector2(15, -10)
 
 [node name="SpriteAttackBox" type="Sprite2D" parent="EnemyAreaHorizontalAttack/EnemyCollisionHorizontalAttack"]
 modulate = Color(1, 1, 1, 0.211765)
-position = Vector2(-3.27826e-07, -2.98023e-08)
-scale = Vector2(0.17056, 0.235832)
+position = Vector2(0.00526047, -0.00165647)
+scale = Vector2(0.0381294, 0.0539265)
 texture = ExtResource("8_6rhgh")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -240,12 +241,12 @@ script = ExtResource("9_3m5rs")
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("7_s8i4n")
+script = ExtResource("6_xfyt8")
 move_speed = 30.0
 enemy = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("8_qps6d")
+script = ExtResource("7_646ox")
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]
@@ -253,7 +254,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Damage" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("8_ii61t")
+script = ExtResource("8_2yinv")
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Damage"]
@@ -261,28 +262,26 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Follow" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("9_etxcg")
+script = ExtResource("9_h0ry7")
 enemy = NodePath("../..")
 
 [node name="Fall" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("10_p1l0t")
+script = ExtResource("10_2f6ni")
 enemy = NodePath("../..")
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("enemy")]
-script = ExtResource("10_l3kts")
+script = ExtResource("11_uub0b")
 enemy = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
 wait_time = 3.0
 one_shot = true
 
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_entered"]
-[connection signal="area_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_exited"]
-[connection signal="area_shape_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_area_shape_entered"]
-[connection signal="body_entered" from="Area2D" to="StateMachine/Idle" method="_on_area_2d_body_entered"]
-[connection signal="body_entered" from="Area2D" to="StateMachine/Follow" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Idle" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Damage" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Follow" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Fall" method="_on_hitbox_area_entered"]
+[connection signal="area_entered" from="Hitbox" to="StateMachine/Attack" method="_on_hitbox_area_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Damage/Timer" to="StateMachine/Damage" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

@@ -8,11 +8,12 @@ func Enter():
 
 func Physics_Update(delta: float):
 	if enemy:
-		#if enemy.health <= 0:
-		#	Transitioned.emit(self, "Die")
-		print('falling')
 		enemy.velocity.y += gravity * delta
 		if enemy.is_on_floor():
 			Transitioned.emit(self, "Idle")
 		
 	
+func _on_hitbox_area_entered(area):
+	var took_damage = StateNpcEnemyHelperFunctions.take_damage(area, enemy, 1)
+	if took_damage:
+		Transitioned.emit(self, "Damage")
