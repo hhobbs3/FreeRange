@@ -17,7 +17,7 @@ func Enter():
 	enemy.enemy_collision_horizontal_attack.disabled = true
 	enemy.velocity = direction
 	enemy.animated_sprite_2d.play("damage")
-	timer.start(0.5)
+	timer.start(0.3)
 
 func Physics_Update(_delta: float):
 	pass

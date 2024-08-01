@@ -192,7 +192,7 @@ animations = [{
 size = Vector2(25, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q363h"]
-size = Vector2(2.19369, 4.95731)
+size = Vector2(3.83106, 4.95731)
 
 [node name="CharacterSnake" type="CharacterBody2D" groups=["hit", "snake"]]
 collision_layer = 2
@@ -222,7 +222,7 @@ shape = SubResource("RectangleShape2D_dtgv8")
 [node name="EnemyAreaHorizontalAttack" type="Area2D" parent="." groups=["attack", "enemy_attack", "horizontal_attack"]]
 
 [node name="EnemyCollisionHorizontalAttack" type="CollisionShape2D" parent="EnemyAreaHorizontalAttack" groups=["enemy_attack"]]
-position = Vector2(14.9904, -6.28446)
+position = Vector2(16.4904, -6.28446)
 scale = Vector2(1.8322, 1.3251)
 shape = SubResource("RectangleShape2D_q363h")
 disabled = true

@@ -22,7 +22,7 @@ func Physics_Update(_delta: float):
 	if direction.length() > 25:
 		enemy.velocity = direction.normalized() * move_speed
 		enemy.animated_sprite_2d.play("run")
-	else:
+	elif enemy.health > 0:
 		# close, attack
 		print('switch to attack')
 		Transitioned.emit(self, "Attack")
