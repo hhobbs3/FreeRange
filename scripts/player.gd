@@ -4,9 +4,6 @@ class_name Player
 signal health_changed
 
 const SPEED = 130.0
-const JUMP_VELOCITY = -400.0
-
-
 
 
 
@@ -25,12 +22,14 @@ var fall_gravity = gravity * 1.5
 
 @export var knockback_power: int = 400
 
+@export var jump_velocity : float = -400.0
+var max_flaps: int = 10
+var flap_velocity: float = jump_velocity / 2
+var flap_count: int = 0
+
 var is_hurt: bool = false
 var is_attacking: bool = false
 
-var max_flaps: int = 10
-var flap_force: float = JUMP_VELOCITY / 2
-var flap_count: int = 0
 var head = 'idle'
 var has_collided_with_player = true;
 
@@ -56,18 +55,6 @@ func _physics_process(delta):
 	else:
 		player_collision_horizontal_attack.disabled = true
 		player_sprite_attack_box.visible = false
-
-	# Handle jump / flap
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
-			flap_count = 0
-			velocity.y = JUMP_VELOCITY
-		elif flap_count < max_flaps:
-			velocity.y = flap_force
-			flap_count += 1
-	
-	if Input.is_action_just_released('jump') and velocity.y < 0:
-		velocity.y = JUMP_VELOCITY / 4
 
 	
 	# Handle head state
@@ -124,15 +111,7 @@ func update_facing_direction(direction):
 	elif direction.x < 0:
 		sprite.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
-
-func jump():
-	velocity.y = JUMP_VELOCITY
-	# animation_locked = true
-	
-func double_jump():
-	velocity.y = flap_force
-	# animation_locked = true
-	
+		
 func land():
 	pass
 	# animation_locked = true

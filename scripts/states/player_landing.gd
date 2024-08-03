@@ -1,11 +1,17 @@
 extends StatePlayer
 class_name PlayerLanding
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+@export var landing_animation_name : String = "landing"
+func Enter():
 	pass
+	
+func Update(_delta: float):
+	pass
+
+func Physics_Update(_delta: float):
+	if player.current_health <= 0:
+			Transitioned.emit(self, "Die")
+	
+	
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == landing_animation_name:
+		Transitioned.emit(self, 'Ground')

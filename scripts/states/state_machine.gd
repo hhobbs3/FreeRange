@@ -2,6 +2,7 @@ extends Node
 class_name StateMachine
 
 @export var initial_state : State
+@export var animation_tree : AnimationTree
 
 var current_state: State
 var states: Dictionary = {}
@@ -12,7 +13,10 @@ func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
+			if animation_tree:
+				child.playback = animation_tree["parameters/playback"]
 			child.Transitioned.connect(on_child_transition)
+			
 	# set up initial state
 	if initial_state:
 		current_state = initial_state

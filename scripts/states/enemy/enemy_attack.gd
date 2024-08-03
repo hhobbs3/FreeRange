@@ -15,16 +15,12 @@ func Physics_Update(_delta: float):
 		var direction = Vector2(0,0)
 		#enemy.velocity.y = -100
 		enemy.velocity = direction.normalized()
-		print('attack')
 		timer.start(1)
 		enemy.animated_sprite_2d.play("attack")
 
 func _on_timer_timeout():
-	print('end attack')
-	print('switch to follow')
 	enemy.animated_sprite_2d.play('attack')
 	# Handle attack
-	print('horizontal_attack player')
 	enemy.enemy_collision_horizontal_attack.disabled = false
 	sprite_attack_box.visible = true
 	

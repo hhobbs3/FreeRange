@@ -28,7 +28,6 @@ func Physics_Update(_delta: float):
 	#	Transitioned.emit(self, "Die")
 	# falling
 	if not enemy.is_on_floor():
-		print('not on floor')
 		Transitioned.emit(self, "Fall")
 	if enemy:
 		enemy.velocity = move_direction * move_speed 

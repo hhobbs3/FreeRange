@@ -15,7 +15,6 @@ func Physics_Update(_delta: float):
 	
 	# too far, idle
 	if direction.length() > 120:
-		print('switch to idle')
 		Transitioned.emit(self, "Idle")
 		
 	# near, follow
@@ -24,7 +23,6 @@ func Physics_Update(_delta: float):
 		enemy.animated_sprite_2d.play("run")
 	elif enemy.health > 0:
 		# close, attack
-		print('switch to attack')
 		Transitioned.emit(self, "Attack")
 		
 func _on_hitbox_area_entered(area):

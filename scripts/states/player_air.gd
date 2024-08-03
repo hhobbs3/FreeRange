@@ -1,11 +1,30 @@
 extends StatePlayer
 class_name PlayerAir
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+@export var flap_animation : String = "flap"
+@export var landing_animation : String = "landing"
+func Enter():
 	pass
+	
+func Exit():
+	playback.travel(landing_animation)
+	
+func Update(_delta: float):
+	pass
+
+func Physics_Update(_delta: float):
+	if player.current_health <= 0:
+			Transitioned.emit(self, "Die")
+	
+	if Input.is_action_just_released('jump') and player.velocity.y < 0:
+		player.velocity.y = player.jump_velocity / 4
+			
+	if player.is_on_floor():
+		Transitioned.emit(self, 'Landing')
+	if Input.is_action_just_pressed("jump"):
+		flap()
+		
+func flap():
+	if player.flap_count < player.max_flaps:
+		player.velocity.y = player.flap_velocity
+		playback.travel(flap_animation)
+		player.flap_count += 1
