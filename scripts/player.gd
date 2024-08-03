@@ -13,9 +13,10 @@ const JUMP_VELOCITY = -400.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_gravity = gravity * 1.5
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var sprite : Sprite2D = $Sprite2D
 @onready var player_collision_horizontal_attack = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
 @onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
+@onready var state_machine : StateMachine = $StateMachine
 
 
 @onready var hurt_timer = Timer
@@ -35,6 +36,11 @@ var has_collided_with_player = true;
 
 signal facing_direction_changed(facing_right : bool)
 
+# animation player stuff
+@onready var animation_tree : AnimationTree = $AnimationTree
+
+func _ready():
+	animation_tree.active = true
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -72,19 +78,17 @@ func _physics_process(delta):
 	if Input.is_action_just_released('look_up') or Input.is_action_just_released('look_down'):
 		head = 'idle'
 
-	# Get the input direction: -1, 0, 1
-	var direction = Input.get_axis("move_left", "move_right")
-	
-	# Flip the Sprite
-	if direction > 0:
-		animated_sprite_2d.flip_h = false
-		player_collision_horizontal_attack.position.x = 15
-	elif direction < 0:
-		animated_sprite_2d.flip_h = true
-		player_collision_horizontal_attack.position.x = -15
-
-	emit_signal("facing_direction_changed", !animated_sprite_2d.flip_h)
+	# Get the input direction
+	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
 	# Play animations
+	update_animation(direction)
+	# Flip the Sprite
+	update_facing_direction(direction)
+
+	emit_signal("facing_direction_changed", !sprite.flip_h)
+	# Play animations
+	
+	'''
 	if is_on_floor():
 		if direction == 0:
 			if head == "look_up":
@@ -99,15 +103,41 @@ func _physics_process(delta):
 		animated_sprite_2d.play("jump")
 	else:
 		animated_sprite_2d.play("flap")
-	
+	'''
 		
 	# Apply movement
-	if direction:
-		velocity.x = direction * SPEED
+	if direction.x && state_machine.check_if_can_move():
+		velocity.x = direction.x * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func update_animation(direction):
+	animation_tree.set('parameters/Move/blend_position', direction.x)
+
+func update_facing_direction(direction):
+	# Flip the Sprite
+	if direction.x > 0:
+		sprite.flip_h = false
+		player_collision_horizontal_attack.position.x = 15
+	elif direction.x < 0:
+		sprite.flip_h = true
+		player_collision_horizontal_attack.position.x = -15
+
+func jump():
+	velocity.y = JUMP_VELOCITY
+	# animation_locked = true
+	
+func double_jump():
+	velocity.y = flap_force
+	# animation_locked = true
+	
+func land():
+	pass
+	# animation_locked = true
+	
+# func _on_animated_sprite_2d_animation_finished():
 
 func hurtByEnemy(area):
 	current_health -= 10
@@ -118,10 +148,10 @@ func hurtByEnemy(area):
 	health_changed.emit()
 	
 	knockback(area.get_parent().velocity)
-	animated_sprite_2d.play("hurt")
+	sprite.play("hurt")
 	# hurt_timer.start()
 	# await hurt_timer.timeout
-	animated_sprite_2d.play('reset')
+	sprite.play('reset')
 	is_hurt = false
 	
 func knockback(enemy_velocity: Vector2):

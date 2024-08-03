@@ -1,7 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bqvqel6mifc72"]
+[gd_scene load_steps=12 format=3 uid="uid://bqvqel6mifc72"]
 
 [ext_resource type="Texture2D" uid="uid://ddjb5beoevy5f" path="res://assets/sprites/test_chicken2.png" id="1_kmf31"]
 [ext_resource type="Texture2D" uid="uid://jqix1ywhqvsp" path="res://assets/sprites/test_chicken1.png" id="2_vkkk4"]
+[ext_resource type="Texture2D" uid="uid://dimnxu6s100ed" path="res://assets/sprites/chicken_parts_leg_l.png" id="3_5rwgc"]
+[ext_resource type="Texture2D" uid="uid://j84ixbk2ewly" path="res://assets/sprites/chicken_parts_body.png" id="4_688bf"]
+[ext_resource type="Texture2D" uid="uid://de535psr4w36x" path="res://assets/sprites/chicken_parts_tail.png" id="5_5xtlv"]
+[ext_resource type="Texture2D" uid="uid://dgmbdg240vwy8" path="res://assets/sprites/chicken_parts_leg_r.png" id="6_hvc1p"]
+[ext_resource type="Texture2D" uid="uid://cnaf4ywigx32r" path="res://assets/sprites/chicken_parts_wing.png" id="7_5pfpu"]
+[ext_resource type="Texture2D" uid="uid://bc5vsy621rdnb" path="res://assets/sprites/chicken_parts_head.png" id="8_w7ba0"]
 
 [sub_resource type="Animation" id="Animation_qimyw"]
 resource_name = "idle_test"
@@ -32,8 +38,86 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_wvwo7"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Head:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wing:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("LegR:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Tail:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Body:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("LegL:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kd03n"]
 _data = {
+"idle": SubResource("Animation_wvwo7"),
 "idle_test": SubResource("Animation_qimyw")
 }
 
@@ -45,13 +129,45 @@ libraries = {
 }
 
 [node name="SpriteLegs" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("1_kmf31")
 hframes = 8
 vframes = 8
 
 [node name="SpriteBody2" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("2_vkkk4")
+hframes = 8
+vframes = 8
+
+[node name="LegL" type="Sprite2D" parent="."]
+texture = ExtResource("3_5rwgc")
+hframes = 8
+vframes = 8
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("4_688bf")
+hframes = 8
+vframes = 8
+
+[node name="Tail" type="Sprite2D" parent="."]
+texture = ExtResource("5_5xtlv")
+hframes = 8
+vframes = 8
+
+[node name="LegR" type="Sprite2D" parent="."]
+texture = ExtResource("6_hvc1p")
+hframes = 8
+vframes = 8
+
+[node name="Wing" type="Sprite2D" parent="."]
+texture = ExtResource("7_5pfpu")
+hframes = 8
+vframes = 8
+
+[node name="Head" type="Sprite2D" parent="."]
+texture = ExtResource("8_w7ba0")
 hframes = 8
 vframes = 8
