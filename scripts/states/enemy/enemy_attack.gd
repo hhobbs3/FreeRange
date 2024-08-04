@@ -6,7 +6,7 @@ class_name EnemyAttack
 @onready var sprite_attack_box = $"../../EnemyAreaHorizontalAttack/EnemyCollisionHorizontalAttack/SpriteAttackBox"
 
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
+	pass
 
 func Physics_Update(_delta: float):
 	if timer.time_left <= 0:

@@ -3,7 +3,7 @@ class_name CharacterNPC
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var player = $"../../Player"
+@onready var player : Player = get_tree().get_first_node_in_group("Player")
 
 @export var speed : float
 @export var jump_velocity : float

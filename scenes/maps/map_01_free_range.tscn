@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dxgtnbeodk0v5"]
+[gd_scene load_steps=13 format=3 uid="uid://dxgtnbeodk0v5"]
 
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_i3ram"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player.tscn" id="2_2jlt0"]
 [ext_resource type="Texture2D" uid="uid://2tv70g7kqy3q" path="res://assets/sprites/sky.png" id="3_1gqsk"]
 [ext_resource type="Texture2D" uid="uid://cc65b7q4w8hf3" path="res://assets/sprites/bg_grass3.png" id="4_ycb7l"]
 [ext_resource type="Texture2D" uid="uid://byybsnopi6kys" path="res://assets/sprites/bg_grass2.png" id="5_y56l2"]
+[ext_resource type="Texture2D" uid="uid://dkuaclxvkyx7g" path="res://assets/sprites/folliage/trees_01.png" id="6_4kklf"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="6_oymlj"]
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange.gd" id="7_0o4ht"]
 [ext_resource type="PackedScene" uid="uid://bm1neekvm2v0f" path="res://scenes/characters/character_snake.tscn" id="8_hiunb"]
@@ -605,190 +606,6 @@ texture = ExtResource("6_oymlj")
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_wuoqo")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1bp0b"]
-texture = ExtResource("6_oymlj")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-8:0/0 = 0
-10:0/0 = 0
-11:0/0 = 0
-12:0/0 = 0
-13:0/0 = 0
-0:1/0 = 0
-1:1/0 = 0
-2:1/0 = 0
-3:1/0 = 0
-4:1/0 = 0
-5:1/0 = 0
-6:1/0 = 0
-7:1/0 = 0
-8:1/0 = 0
-0:2/0 = 0
-1:2/0 = 0
-2:2/0 = 0
-3:2/0 = 0
-4:2/0 = 0
-5:2/0 = 0
-6:2/0 = 0
-7:2/0 = 0
-8:2/0 = 0
-10:2/0 = 0
-11:2/0 = 0
-12:2/0 = 0
-13:2/0 = 0
-0:3/0 = 0
-1:3/0 = 0
-2:3/0 = 0
-3:3/0 = 0
-4:3/0 = 0
-5:3/0 = 0
-6:3/0 = 0
-7:3/0 = 0
-8:3/0 = 0
-11:3/0 = 0
-13:3/0 = 0
-0:4/0 = 0
-1:4/0 = 0
-2:4/0 = 0
-3:4/0 = 0
-4:4/0 = 0
-5:4/0 = 0
-6:4/0 = 0
-7:4/0 = 0
-8:4/0 = 0
-10:4/0 = 0
-11:4/0 = 0
-12:4/0 = 0
-13:4/0 = 0
-0:5/0 = 0
-1:5/0 = 0
-2:5/0 = 0
-3:5/0 = 0
-4:5/0 = 0
-5:5/0 = 0
-6:5/0 = 0
-7:5/0 = 0
-8:5/0 = 0
-0:6/0 = 0
-1:6/0 = 0
-2:6/0 = 0
-3:6/0 = 0
-4:6/0 = 0
-5:6/0 = 0
-6:6/0 = 0
-7:6/0 = 0
-8:6/0 = 0
-10:6/0 = 0
-11:6/0 = 0
-12:6/0 = 0
-13:6/0 = 0
-0:7/0 = 0
-1:7/0 = 0
-2:7/0 = 0
-3:7/0 = 0
-4:7/0 = 0
-5:7/0 = 0
-6:7/0 = 0
-7:7/0 = 0
-8:7/0 = 0
-0:8/0 = 0
-1:8/0 = 0
-2:8/0 = 0
-3:8/0 = 0
-4:8/0 = 0
-5:8/0 = 0
-6:8/0 = 0
-7:8/0 = 0
-8:8/0 = 0
-10:8/0 = 0
-11:8/0 = 0
-12:8/0 = 0
-13:8/0 = 0
-0:9/0 = 0
-1:9/0 = 0
-2:9/0 = 0
-3:9/0 = 0
-4:9/0 = 0
-5:9/0 = 0
-6:9/0 = 0
-7:9/0 = 0
-8:9/0 = 0
-0:10/0 = 0
-1:10/0 = 0
-2:10/0 = 0
-3:10/0 = 0
-4:10/0 = 0
-5:10/0 = 0
-6:10/0 = 0
-7:10/0 = 0
-8:10/0 = 0
-10:10/0 = 0
-11:10/0 = 0
-12:10/0 = 0
-13:10/0 = 0
-0:11/0 = 0
-1:11/0 = 0
-2:11/0 = 0
-3:11/0 = 0
-4:11/0 = 0
-5:11/0 = 0
-6:11/0 = 0
-7:11/0 = 0
-8:11/0 = 0
-0:12/0 = 0
-1:12/0 = 0
-2:12/0 = 0
-3:12/0 = 0
-4:12/0 = 0
-5:12/0 = 0
-6:12/0 = 0
-7:12/0 = 0
-8:12/0 = 0
-10:12/0 = 0
-11:12/0 = 0
-12:12/0 = 0
-13:12/0 = 0
-0:13/0 = 0
-1:13/0 = 0
-2:13/0 = 0
-3:13/0 = 0
-4:13/0 = 0
-5:13/0 = 0
-6:13/0 = 0
-7:13/0 = 0
-8:13/0 = 0
-0:14/0 = 0
-1:14/0 = 0
-2:14/0 = 0
-3:14/0 = 0
-4:14/0 = 0
-5:14/0 = 0
-6:14/0 = 0
-7:14/0 = 0
-8:14/0 = 0
-10:14/0 = 0
-11:14/0 = 0
-12:14/0 = 0
-13:14/0 = 0
-0:15/0 = 0
-1:15/0 = 0
-2:15/0 = 0
-3:15/0 = 0
-4:15/0 = 0
-5:15/0 = 0
-6:15/0 = 0
-7:15/0 = 0
-8:15/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_62q0j"]
-sources/0 = SubResource("TileSetAtlasSource_1bp0b")
-
 [node name="Map01FreeRange" type="Node2D"]
 script = ExtResource("1_i3ram")
 
@@ -812,7 +629,7 @@ texture_filter = 1
 motion_scale = Vector2(0, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
-position = Vector2(0, -160)
+position = Vector2(1, -157)
 texture = ExtResource("3_1gqsk")
 centered = false
 
@@ -821,7 +638,7 @@ motion_scale = Vector2(0.33, 0.33)
 motion_mirroring = Vector2(640, 0)
 
 [node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/bg_grass-3"]
-position = Vector2(320, 22)
+position = Vector2(319, 35)
 texture = ExtResource("4_ycb7l")
 
 [node name="bg_grass-2" type="ParallaxLayer" parent="ParallaxBackground"]
@@ -830,46 +647,17 @@ motion_scale = Vector2(0.66, 0.66)
 motion_mirroring = Vector2(640, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/bg_grass-2"]
-position = Vector2(305, 66)
+position = Vector2(308, 95)
 texture = ExtResource("5_y56l2")
 
-[node name="-3" type="CanvasLayer" parent="."]
-layer = -3
-visible = false
-follow_viewport_enabled = true
-follow_viewport_scale = 0.0
+[node name="bg_grass-4" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(15, -70)
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(640, 0)
 
-[node name="TileMap" type="TileMap" parent="-3"]
-modulate = Color(0.5, 1, 0.5, 1)
-z_index = 6
-tile_set = SubResource("TileSet_vp0dt")
-format = 2
-script = ExtResource("7_0o4ht")
-
-[node name="-2" type="CanvasLayer" parent="."]
-layer = -2
-visible = false
-follow_viewport_enabled = true
-follow_viewport_scale = 0.33
-
-[node name="TileMap" type="TileMap" parent="-2"]
-modulate = Color(0.75, 1, 1, 1)
-z_index = 6
-tile_set = SubResource("TileSet_vp0dt")
-format = 2
-script = ExtResource("7_0o4ht")
-
-[node name="-1" type="CanvasLayer" parent="."]
-layer = -1
-follow_viewport_enabled = true
-follow_viewport_scale = 0.66
-
-[node name="TileMap" type="TileMap" parent="-1"]
-modulate = Color(0.75, 1, 0.75, 1)
-z_index = 6
-tile_set = SubResource("TileSet_vp0dt")
-format = 2
-script = ExtResource("7_0o4ht")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/bg_grass-4"]
+position = Vector2(305, -13)
+texture = ExtResource("6_4kklf")
 
 [node name="0" type="CanvasLayer" parent="."]
 layer = 0
@@ -883,35 +671,28 @@ format = 2
 script = ExtResource("7_0o4ht")
 
 [node name="1" type="CanvasLayer" parent="."]
+layer = 0
 follow_viewport_enabled = true
-follow_viewport_scale = 1.33
 
 [node name="TileMap" type="TileMap" parent="1"]
-modulate = Color(0.5, 1, 0.5, 1)
-tile_set = SubResource("TileSet_62q0j")
+modulate = Color(0.75, 1, 0.75, 1)
+z_index = 6
+tile_set = SubResource("TileSet_vp0dt")
 format = 2
+layer_0/modulate = Color(0.873298, 0.873298, 0.873298, 1)
 script = ExtResource("7_0o4ht")
 
 [node name="2" type="CanvasLayer" parent="."]
-layer = 2
+layer = 0
 follow_viewport_enabled = true
-follow_viewport_scale = 1.66
+follow_viewport_scale = 2.0
 
 [node name="TileMap" type="TileMap" parent="2"]
-modulate = Color(0.25098, 0.784314, 0.25098, 1)
-tile_set = SubResource("TileSet_62q0j")
+modulate = Color(0.75, 1, 0.75, 1)
+z_index = 6
+tile_set = SubResource("TileSet_vp0dt")
 format = 2
-script = ExtResource("7_0o4ht")
-
-[node name="3" type="CanvasLayer" parent="."]
-layer = 2
-follow_viewport_enabled = true
-follow_viewport_scale = 3.0
-
-[node name="TileMap" type="TileMap" parent="3"]
-modulate = Color(0, 0.588235, 0, 1)
-tile_set = SubResource("TileSet_62q0j")
-format = 2
+layer_0/modulate = Color(0.762404, 0.762404, 0.762404, 1)
 script = ExtResource("7_0o4ht")
 
 [node name="Enemies" type="Node" parent="."]

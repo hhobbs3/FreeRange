@@ -4,7 +4,7 @@ class_name EnemyFall
 @export var move_speed := 80.0
 
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
+	pass
 
 func Physics_Update(delta: float):
 	if enemy:

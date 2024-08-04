@@ -12,7 +12,6 @@ func stop_moving():
 	enemy.velocity = move_direction
 	
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
 	enemy.health = 0
 	enemy.enemy_collision_horizontal_attack.disabled = true
 	stop_moving()

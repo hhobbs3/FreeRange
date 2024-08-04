@@ -12,12 +12,11 @@ func stop_moving():
 	enemy.velocity = move_direction
 	
 func Enter():
-	player = get_tree().get_first_node_in_group("Player")
 	var direction = Vector2(-(player.global_position.x - enemy.global_position.x),-(player.global_position.y - enemy.global_position.y))
 	enemy.enemy_collision_horizontal_attack.disabled = true
 	enemy.velocity = direction
 	enemy.animated_sprite_2d.play("damage")
-	timer.start(0.3)
+	timer.start(0.)
 
 func Physics_Update(_delta: float):
 	pass
