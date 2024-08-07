@@ -10,7 +10,11 @@ const SPEED = 130.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var fall_gravity = gravity * 1.5
-@onready var sprite : Sprite2D = $Sprite2D
+
+
+@onready var sprite_chicken : Sprite2D = $SpriteChicken
+@onready var sprite_gun : Sprite2D = $SpriteGun
+
 @onready var player_collision_horizontal_attack = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
 @onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
 @onready var state_machine : StateMachine = $StateMachine
@@ -72,26 +76,8 @@ func _physics_process(delta):
 	# Flip the Sprite
 	update_facing_direction(direction)
 
-	emit_signal("facing_direction_changed", !sprite.flip_h)
-	# Play animations
-	
-	'''
-	if is_on_floor():
-		if direction == 0:
-			if head == "look_up":
-				animated_sprite_2d.play('look_up')
-			elif head == "look_down":
-				animated_sprite_2d.play("look_down")
-			else:
-				animated_sprite_2d.play('idle')
-		else:
-			animated_sprite_2d.play("run")
-	elif flap_count == 0:
-		animated_sprite_2d.play("jump")
-	else:
-		animated_sprite_2d.play("flap")
-	'''
-		
+	emit_signal("facing_direction_changed", !sprite_chicken.flip_h)
+
 	# Apply movement
 	if direction.x && state_machine.check_if_can_move():
 		velocity.x = direction.x * SPEED
@@ -106,10 +92,10 @@ func update_animation(direction):
 func update_facing_direction(direction):
 	# Flip the Sprite
 	if direction.x > 0:
-		sprite.flip_h = false
+		sprite_chicken.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
 	elif direction.x < 0:
-		sprite.flip_h = true
+		sprite_chicken.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
 		
 func land():
@@ -127,10 +113,10 @@ func hurtByEnemy(area):
 	health_changed.emit()
 	
 	knockback(area.get_parent().velocity)
-	sprite.play("hurt")
+	sprite_chicken.play("hurt")
 	# hurt_timer.start()
 	# await hurt_timer.timeout
-	sprite.play('reset')
+	sprite_chicken.play('reset')
 	is_hurt = false
 	
 func knockback(enemy_velocity: Vector2):

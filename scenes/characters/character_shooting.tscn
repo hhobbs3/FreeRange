@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://jmbo6hgt10ch"]
+
+[node name="CharacterShooting" type="Node2D"]

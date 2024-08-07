@@ -19,7 +19,7 @@ func Physics_Update(_delta: float):
 		player.velocity.y = player.jump_velocity / 4
 			
 	if player.is_on_floor():
-		Transitioned.emit(self, 'Landing')
+		Transitioned.emit(self, 'Ground')
 	if Input.is_action_just_pressed("jump"):
 		flap()
 		

@@ -10,7 +10,6 @@ func _ready():
 func Enter():
 	if player.current_health <= 0:
 		Engine.time_scale = 0.5
-		# player.animated_sprite_2d.play("die")
 		player.velocity.y -= 100
 		var player_collision = player.get_node("CollisionShape2D")
 		if player_collision:

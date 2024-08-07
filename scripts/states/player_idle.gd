@@ -28,5 +28,5 @@ func Physics_Update(_delta: float):
 	# Attack
 	
 	# Idle
-	# player.animated_sprite_2d.play('idle')
+
 

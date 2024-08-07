@@ -279,6 +279,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="LabelCharacterDebug" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -49.0
 offset_top = -55.0
 offset_right = 56.0
