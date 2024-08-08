@@ -13,7 +13,7 @@ var fall_gravity = gravity * 1.5
 
 
 @onready var sprite_chicken : Sprite2D = $SpriteChicken
-@onready var sprite_gun : Sprite2D = $SpriteGun
+@onready var sprite_gun : Sprite2D = $WeaponsMarker/SpriteGun
 
 @onready var player_collision_horizontal_attack = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
 @onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
@@ -93,9 +93,11 @@ func update_facing_direction(direction):
 	# Flip the Sprite
 	if direction.x > 0:
 		sprite_chicken.flip_h = false
+		sprite_gun.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
 	elif direction.x < 0:
 		sprite_chicken.flip_h = true
+		sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
 		
 func land():

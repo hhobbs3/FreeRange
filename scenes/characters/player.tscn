@@ -214,9 +214,11 @@ position = Vector2(0, -13)
 texture = ExtResource("3_qi6yx")
 hframes = 8
 vframes = 8
-frame = 2
+frame = 1
 
-[node name="SpriteGun" type="Sprite2D" parent="."]
+[node name="WeaponsMarker" type="Marker2D" parent="."]
+
+[node name="SpriteGun" type="Sprite2D" parent="WeaponsMarker"]
 visible = false
 position = Vector2(-1, -14)
 texture = ExtResource("5_f1dqg")
