@@ -93,11 +93,11 @@ func update_facing_direction(direction):
 	# Flip the Sprite
 	if direction.x > 0:
 		sprite_chicken.flip_h = false
-		sprite_gun.flip_h = false
+		# sprite_gun.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
 	elif direction.x < 0:
 		sprite_chicken.flip_h = true
-		sprite_gun.flip_h = true
+		# sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
 		
 func land():

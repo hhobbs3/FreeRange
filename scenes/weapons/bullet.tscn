@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dg1f7hjyufaif" path="res://assets/sprites/weapons/guns.png" id="1_qeqbt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d51t2"]
-size = Vector2(3, 4)
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0yxt"]
+radius = 2.5
 
 [node name="Bullet" type="RigidBody2D"]
 
@@ -13,5 +13,4 @@ hframes = 8
 vframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
-shape = SubResource("RectangleShape2D_d51t2")
+shape = SubResource("CircleShape2D_q0yxt")
