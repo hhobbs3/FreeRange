@@ -184,19 +184,21 @@ script = ExtResource("1_eyslv")
 
 [node name="Gun" parent="." instance=ExtResource("2_w2tjb")]
 z_index = 1
-position = Vector2(1, -7)
+position = Vector2(0, -10)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l11gq")
 
 [node name="Area2DChickenHitbox" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DChickenHitbox"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l11gq")
 
 [node name="PlayerHorizontalAttack" type="Area2D" parent="." groups=["attack", "horizontal_attack", "player_attack"]]
+visible = false
 
 [node name="PlayerCollisionHorizontalAttack" type="CollisionShape2D" parent="PlayerHorizontalAttack" groups=["player_attack"]]
 position = Vector2(13.4807, -8)
@@ -219,7 +221,7 @@ position = Vector2(0, -13)
 texture = ExtResource("3_qi6yx")
 hframes = 8
 vframes = 8
-frame = 3
+frame = 2
 
 [node name="WeaponsMarker" type="Marker2D" parent="."]
 
