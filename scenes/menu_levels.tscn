@@ -45,7 +45,16 @@ offset_bottom = 200.0
 text = "N/A
 "
 
+[node name="Gun" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 218.0
+offset_right = 247.0
+offset_bottom = 259.0
+text = "Gun"
+
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]
 [connection signal="pressed" from="ButtonManager/Procedural Map" to="." method="_on_procedural_map_pressed"]
+[connection signal="pressed" from="ButtonManager/Gun" to="." method="_on_gun_pressed"]

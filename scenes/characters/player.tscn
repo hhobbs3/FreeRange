@@ -1,7 +1,6 @@
-[gd_scene load_steps=39 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=38 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_eyslv"]
-[ext_resource type="PackedScene" uid="uid://2108b2euk86x" path="res://scenes/weapons/gun.tscn" id="2_w2tjb"]
 [ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="3_qi6yx"]
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="4_k3s3i"]
 [ext_resource type="Texture2D" uid="uid://dg1f7hjyufaif" path="res://assets/sprites/weapons/guns.png" id="5_f1dqg"]
@@ -182,10 +181,6 @@ z_index = 1
 collision_layer = 2
 script = ExtResource("1_eyslv")
 
-[node name="Gun" parent="." instance=ExtResource("2_w2tjb")]
-z_index = 1
-position = Vector2(1, -7)
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l11gq")
@@ -219,7 +214,7 @@ position = Vector2(0, -13)
 texture = ExtResource("3_qi6yx")
 hframes = 8
 vframes = 8
-frame = 1
+frame = 3
 
 [node name="WeaponsMarker" type="Marker2D" parent="."]
 

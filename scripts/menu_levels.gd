@@ -21,3 +21,7 @@ func _on_free_range_pressed():
 
 func _on_procedural_map_pressed():
 	get_tree().change_scene_to_file("res://scenes/maps/map_procedural_terrain.tscn")
+
+
+func _on_gun_pressed():
+		get_tree().change_scene_to_file("res://scenes/weapons/gun.tscn")
