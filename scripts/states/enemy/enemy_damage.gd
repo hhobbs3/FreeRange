@@ -12,6 +12,7 @@ func stop_moving():
 	enemy.velocity = move_direction
 	
 func Enter():
+	enemy.hit = false
 	var direction = Vector2(-(player.global_position.x - enemy.global_position.x),-(player.global_position.y - enemy.global_position.y))
 	enemy.enemy_collision_horizontal_attack.disabled = true
 	enemy.velocity = direction

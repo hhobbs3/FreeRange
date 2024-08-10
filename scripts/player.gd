@@ -52,10 +52,8 @@ func _physics_process(delta):
 
 	# Handle attack
 	if Input.is_action_just_pressed("horizontal_attack"):
-		print('horizontal_attack player')
 		player_collision_horizontal_attack.disabled = false
 		player_sprite_attack_box.visible = true
-		# attack animation
 	else:
 		player_collision_horizontal_attack.disabled = true
 		player_sprite_attack_box.visible = false

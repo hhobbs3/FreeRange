@@ -13,3 +13,12 @@ func _physics_process(delta):
 	elif velocity.x < 0:
 		animated_sprite_2d.flip_h = true
 		enemy_collision_horizontal_attack.position.x = -15
+
+
+func _on_hitbox_area_entered(area):
+	take_damage(area, 1)
+
+func take_damage(area, damage):
+	if area.is_in_group('player_attack'):
+		health -= damage
+		hit = true

@@ -9,6 +9,9 @@ func Enter():
 	pass
 
 func Physics_Update(_delta: float):
+	# hit
+	if enemy.hit:
+		Transitioned.emit(self, "Damage")
 	if timer.time_left <= 0:
 		enemy.enemy_collision_horizontal_attack.disabled = true
 		sprite_attack_box.visible = false
@@ -25,8 +28,3 @@ func _on_timer_timeout():
 	sprite_attack_box.visible = true
 	
 	Transitioned.emit(self, "Follow")
-	
-func _on_hitbox_area_entered(area):
-	var took_damage = StateNpcEnemyHelperFunctions.take_damage(area, enemy, 1)
-	if took_damage:
-		Transitioned.emit(self, "Damage")

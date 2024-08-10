@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcw68t4ar2o2q"]
 
-[ext_resource type="Texture2D" uid="uid://dg1f7hjyufaif" path="res://assets/sprites/weapons/guns.png" id="1_qeqbt"]
+[ext_resource type="Texture2D" uid="uid://dg1f7hjyufaif" path="res://assets/sprites/weapons/guns.png" id="1_xfkt7"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_q0yxt"]
 radius = 2.5
@@ -8,7 +8,7 @@ radius = 2.5
 [node name="Bullet" type="RigidBody2D"]
 
 [node name="BulletSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_qeqbt")
+texture = ExtResource("1_xfkt7")
 hframes = 8
 vframes = 8
 

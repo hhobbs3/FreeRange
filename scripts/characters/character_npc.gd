@@ -9,9 +9,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @export var jump_velocity : float
 @export var max_flaps: int
 @export var flap_force: float = 100.0
-
 @export var health = 1
 
+var hit = false
 var head = 'idle'
 var has_collided_with_player = false;
 var flap_count = 0 

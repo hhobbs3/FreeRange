@@ -24,7 +24,9 @@ func Update(delta: float):
 		randomize_wander()
 
 func Physics_Update(_delta: float):
-	#	Transitioned.emit(self, "Die")
+	# hit
+	if enemy.hit:
+		Transitioned.emit(self, "Damage")
 	# falling
 	if not enemy.is_on_floor():
 		Transitioned.emit(self, "Fall")
@@ -39,8 +41,3 @@ func Physics_Update(_delta: float):
 		enemy.animated_sprite_2d.play("run")
 	if enemy.velocity.length() == 0:
 		enemy.animated_sprite_2d.play("idle")
-		
-func _on_hitbox_area_entered(area):
-	var took_damage = StateNpcEnemyHelperFunctions.take_damage(area, enemy, 1)
-	if took_damage:
-		Transitioned.emit(self, "Damage")

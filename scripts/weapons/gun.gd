@@ -8,16 +8,16 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	update_facing_direction()
+func _process(_delta):
+	'''update_facing_direction()
 	if Input.is_action_just_pressed('horizontal_attack'):
 		var bullet_instance = bullet.instantiate()
 		bullet_instance.position = player.sprite_gun.position
 		bullet_instance.rotation_degrees = player.sprite_gun.rotation_degrees
 		bullet_instance.apply_impulse(Vector2(), Vector2(bullet_speed, 0).rotated(player.sprite_gun.rotation))
-		add_child(bullet_instance)
+		add_child(bullet_instance)'''
 func update_facing_direction():
-	var mouse_position = player.get_local_mouse_position()
+	var mouse_position = player.get_global_mouse_position() # player.get_local_mouse_position()
 	player.sprite_gun.look_at(mouse_position * Vector2(1, 10))
 	# Flip the Gun Sprite
 	if mouse_position.x > 0:
