@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://uum7x16ne1m7"]
+
+[ext_resource type="PackedScene" uid="uid://2108b2euk86x" path="res://scenes/weapons/gun.tscn" id="1_01yos"]
+
+[node name="Sandbox" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="Gun" parent="." instance=ExtResource("1_01yos")]
+position = Vector2(-52, -44)
+
+[node name="Gun2" parent="." instance=ExtResource("1_01yos")]
+
+[node name="Gun3" parent="." instance=ExtResource("1_01yos")]
+position = Vector2(-111, 22)
+
+[node name="Gun4" parent="." instance=ExtResource("1_01yos")]
+position = Vector2(111, -32)
+
+[node name="Gun5" parent="." instance=ExtResource("1_01yos")]
+position = Vector2(111, 63)
