@@ -177,7 +177,7 @@ states/landing/position = Vector2(482, -34)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_1oafc"), "jump", "flap", SubResource("AnimationNodeStateMachineTransition_kjibx"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_gbrmh"), "flap", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "landing", "Move", SubResource("AnimationNodeStateMachineTransition_uxlt8"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx")]
 graph_offset = Vector2(-168, -273)
 
-[node name="Player" type="CharacterBody2D" groups=["Player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_eyslv")
@@ -197,7 +197,7 @@ visible = false
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_l11gq")
 
-[node name="PlayerHorizontalAttack" type="Area2D" parent="." groups=["attack", "horizontal_attack", "player_attack"]]
+[node name="PlayerHorizontalAttack" type="Area2D" parent="." groups=["attack", "horizontal_attack", "player", "player_attack"]]
 visible = false
 
 [node name="PlayerCollisionHorizontalAttack" type="CollisionShape2D" parent="PlayerHorizontalAttack" groups=["player_attack"]]
@@ -221,7 +221,6 @@ position = Vector2(0, -13)
 texture = ExtResource("3_qi6yx")
 hframes = 8
 vframes = 8
-frame = 2
 
 [node name="WeaponsMarker" type="Marker2D" parent="."]
 

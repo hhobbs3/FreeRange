@@ -11,3 +11,10 @@ texture = ExtResource("1_23l5y")
 hframes = 8
 vframes = 8
 frame = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2(17, 0)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -2,6 +2,10 @@ extends Node2D
 var bullet = preload('res://scenes/weapons/bullet.tscn')
 @export var bullet_speed = 1000
 @onready var gun_sprite_2d = $GunSprite2D
+@export var can_fire = true
+@export var fire_rate = 1
+@onready var timer = $Timer
+@onready var bullet_point = $BulletPoint
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,7 +15,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	update_facing_direction()
-	if Input.is_action_just_pressed('horizontal_attack'):
+	if Input.is_action_just_pressed('horizontal_attack') and can_fire:
 		fire()
 		
 func update_facing_direction():
@@ -25,10 +29,12 @@ func update_facing_direction():
 
 func fire():
 	var bullet_instance = bullet.instantiate()
-	bullet_instance.position = position_offset() 
+	bullet_instance.position = bullet_point.position
 	bullet_instance.apply_impulse((Vector2(bullet_speed,0)).rotated(rotation))
 	add_child(bullet_instance)
+	can_fire = false
+	timer.start(fire_rate)
 
-func position_offset():
-	var offset = position + Vector2(20,0) #  + Vector2(20,0).rotated(rotation)
-	return offset
+# reload
+func _on_timer_timeout():
+	can_fire = true

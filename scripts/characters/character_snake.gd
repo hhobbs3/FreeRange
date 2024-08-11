@@ -22,3 +22,6 @@ func take_damage(area, damage):
 	if area.is_in_group('player_attack'):
 		health -= damage
 		hit = true
+	if area.is_in_group('bullet'):
+		health -= 5
+		hit = true
