@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://bm1neekvm2v0f"]
+[gd_scene load_steps=39 format=3 uid="uid://bm1neekvm2v0f"]
 
 [ext_resource type="Script" path="res://scripts/characters/character_snake.gd" id="1_kwj57"]
 [ext_resource type="Texture2D" uid="uid://d1bxp5i6s6p71" path="res://assets/sprites/snake.png" id="4_2u6jc"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/states/enemy/enemy_attack.gd" id="11_uub0b"]
 [ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="12_lv2xc"]
 [ext_resource type="Script" path="res://scripts/label_health_debug.gd" id="13_j4tbw"]
+[ext_resource type="AudioStream" uid="uid://drtdpiaxkcogj" path="res://assets/sounds/hiss3-103123.mp3" id="14_nw6p4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xswh7"]
 size = Vector2(25, 14)
@@ -298,7 +299,13 @@ text = "Health: "
 script = ExtResource("13_j4tbw")
 character = NodePath("..")
 
+[node name="SoundHiss" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_nw6p4")
+pitch_scale = 1.7
+bus = &"SFX"
+
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Damage/Timer" to="StateMachine/Damage" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

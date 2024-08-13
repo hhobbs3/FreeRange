@@ -4,6 +4,7 @@ class_name EnemyAttack
 @onready var timer = $Timer
 @onready var enemy_area_horizontal_attack = $"../../EnemyAreaHorizontalAttack"
 @onready var sprite_attack_box = $"../../EnemyAreaHorizontalAttack/EnemyCollisionHorizontalAttack/SpriteAttackBox"
+@onready var sound_hiss = $"../../SoundHiss"
 
 func Enter():
 	pass
@@ -18,7 +19,9 @@ func Physics_Update(_delta: float):
 		var direction = Vector2(0,0)
 		#enemy.velocity.y = -100
 		enemy.velocity = direction.normalized()
+		sound_hiss.play()
 		timer.start(1)
+		
 		enemy.animated_sprite_2d.play("attack")
 
 func _on_timer_timeout():

@@ -2,6 +2,7 @@ extends StatePlayer
 class_name PlayerGround
 
 @export var jump_animation : String = "jump"
+@onready var sound_chicken = $"../../SoundChicken"
 
 func Enter():
 	player.flap_count = 0
@@ -27,6 +28,8 @@ func Physics_Update(_delta: float):
 		Transitioned.emit(self, "Gun")
 		
 func jump():
+	if randi_range(0, 10) > 8:
+		sound_chicken.play()
 	player.velocity.y = player.jump_velocity
 	playback.travel(jump_animation)
 
