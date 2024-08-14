@@ -222,7 +222,7 @@ position = Vector2(0, -13)
 texture = ExtResource("3_qi6yx")
 hframes = 8
 vframes = 8
-frame = 1
+frame = 3
 
 [node name="WeaponsMarker" type="Marker2D" parent="."]
 

@@ -42,8 +42,7 @@ offset_left = 100.0
 offset_top = 160.0
 offset_right = 250.0
 offset_bottom = 200.0
-text = "N/A
-"
+text = "Procedureal Map"
 
 [node name="Gun" type="Button" parent="ButtonManager"]
 layout_mode = 0
@@ -53,8 +52,17 @@ offset_right = 247.0
 offset_bottom = 259.0
 text = "Gun"
 
+[node name="Terrain" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 274.0
+offset_right = 249.0
+offset_bottom = 315.0
+text = "Terrain"
+
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]
 [connection signal="pressed" from="ButtonManager/Procedural Map" to="." method="_on_procedural_map_pressed"]
 [connection signal="pressed" from="ButtonManager/Gun" to="." method="_on_gun_pressed"]
+[connection signal="pressed" from="ButtonManager/Terrain" to="." method="_on_terrain_pressed"]

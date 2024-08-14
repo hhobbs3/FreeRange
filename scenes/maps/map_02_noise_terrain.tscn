@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://rpmubw67y5h"]
+
+[ext_resource type="Script" path="res://scripts/maps/map_02_noise_terrain.gd" id="1_gwh11"]
+
+[sub_resource type="TileSet" id="TileSet_07o1n"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_j05pq"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tm6a4"]
+noise = SubResource("FastNoiseLite_j05pq")
+
+[node name="Map02NoiseTerrain" type="TileMap"]
+tile_set = SubResource("TileSet_07o1n")
+format = 2
+script = ExtResource("1_gwh11")
+
+[node name="Noise" type="Sprite2D" parent="."]
+texture = SubResource("NoiseTexture2D_tm6a4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
