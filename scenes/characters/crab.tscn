@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkma1ppvvs84"]
+
+[ext_resource type="Script" path="res://scripts/characters/character_npc.gd" id="1_7w1a8"]
+[ext_resource type="Texture2D" uid="uid://bv3tihnaihu7q" path="res://assets/sprites/animals/crab.png" id="2_6ihso"]
+
+[node name="Crab" type="CharacterBody2D"]
+script = ExtResource("1_7w1a8")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_6ihso")
+
+[node name="Polygons" type="Node" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Polygons"]
+position = Vector2(-34, -83)
+texture = ExtResource("2_6ihso")
+polygon = PackedVector2Array(2.92772, 98.1702, 18.1153, 110.979, 25.3431, 114.273, 41.3541, 113.907, 50.9607, 110.613, 60.9332, 101.921, 68.8015, 91.3998, 66.9716, 85.5444, 60.4758, 85.8188, 48.9479, 76.1208, 49.1308, 72.5526, 42.452, 71.3632, 40.8966, 74.0165, 25.892, 73.8335, 20.1281, 75.6633, 17.5663, 71.7292, 11.1619, 72.1866, 10.796, 79.6889, 4.48307, 83.1656, -0.640442, 82.6167, -1.0979, 91.5828, 2.56176, 93.9616, 29.5341, 91.5141)
+uv = PackedVector2Array(2.92772, 98.1702, 18.1153, 110.979, 25.3431, 114.273, 41.3541, 113.907, 50.9607, 110.613, 60.9332, 101.921, 68.8015, 91.3998, 66.9716, 85.5444, 60.4758, 85.8188, 48.9479, 76.1208, 49.1308, 72.5526, 42.452, 71.3632, 40.8966, 74.0165, 25.892, 73.8335, 20.1281, 75.6633, 17.5663, 71.7292, 11.1619, 72.1866, 10.796, 79.6889, 4.48307, 83.1656, -0.640442, 82.6167, -1.0979, 91.5828, 2.56176, 93.9616, 29.5341, 91.5141)
+polygons = [PackedInt32Array(13, 22, 12), PackedInt32Array(13, 14, 22), PackedInt32Array(12, 9, 22), PackedInt32Array(22, 14, 17), PackedInt32Array(22, 18, 17), PackedInt32Array(21, 18, 22), PackedInt32Array(21, 0, 22), PackedInt32Array(22, 1, 0), PackedInt32Array(22, 2, 1), PackedInt32Array(22, 2, 3), PackedInt32Array(22, 3, 4), PackedInt32Array(22, 4, 5), PackedInt32Array(22, 5, 8), PackedInt32Array(8, 9, 22), PackedInt32Array(8, 7, 6, 5), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(17, 16, 15, 14), PackedInt32Array(12, 11, 10, 9)]
+internal_vertex_count = 1
