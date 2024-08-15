@@ -1,12 +1,7 @@
-extends Node2D
-var bullet = preload('res://scenes/weapons/bullet.tscn')
-@export var bullet_speed = 1000
-@onready var gun_sprite_2d = $GunSprite2D
-@export var can_fire = true
-@export var fire_rate = 0.5
+extends Weapon2D
+class_name Gun2D
+
 @onready var timer = $Timer
-@onready var bullet_point = $BulletPoint
-@onready var sound_gunshot = $SoundGunshot
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -19,26 +14,17 @@ func _process(_delta):
 	if Input.is_action_just_pressed('horizontal_attack') and can_fire:
 		fire()
 		
-func update_facing_direction():
-	look_at(get_global_mouse_position())
-	var relative_mouse_position = get_global_mouse_position() - global_position
-	# Flip the Gun Sprite
-	if relative_mouse_position.x > 0:
-		gun_sprite_2d.flip_v = false
-	elif relative_mouse_position.x < 0:
-		gun_sprite_2d.flip_v = true
-
 func fire():
 	# gunshot sound
-	sound_gunshot.pitch_scale += randf_range(-0.05, 0.05)
-	if sound_gunshot.pitch_scale < -1.3 or sound_gunshot.pitch_scale > 1.3:
-		sound_gunshot.pitch_scale = 1
+	sound_weapon.pitch_scale += randf_range(-0.05, 0.05)
+	if sound_weapon.pitch_scale < -1.3 or sound_weapon.pitch_scale > 1.3:
+		sound_weapon.pitch_scale = 1
 	# bullet	
-	var bullet_instance = bullet.instantiate()
-	sound_gunshot.play()
-	bullet_instance.position = bullet_point.position
-	bullet_instance.apply_impulse((Vector2(bullet_speed,0)).rotated(rotation))
-	add_child(bullet_instance)
+	var projectile_instance = projectile.instantiate()
+	sound_weapon.play()
+	projectile_instance.position = projectile_point.position
+	projectile_instance.apply_impulse((Vector2(speed,0)).rotated(rotation))
+	add_child(projectile_instance)
 	can_fire = false
 	timer.start(fire_rate)
 

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://biv8866qp4vry"]
+
+[ext_resource type="Script" path="res://scripts/weapons/weapon.gd" id="1_6lucp"]
+[ext_resource type="PackedScene" uid="uid://dcw68t4ar2o2q" path="res://scenes/weapons/bullet.tscn" id="2_82a6m"]
+[ext_resource type="Texture2D" uid="uid://dg1f7hjyufaif" path="res://assets/sprites/weapons/guns.png" id="2_o8fdb"]
+[ext_resource type="AudioStream" uid="uid://cn66sk8ypxuww" path="res://assets/sounds/weapons/hit-by-a-wood-230542.mp3" id="3_7dtf3"]
+
+[node name="Weapon" type="Node2D" node_paths=PackedStringArray("sound_weapon", "projectile_point")]
+script = ExtResource("1_6lucp")
+sound_weapon = NodePath("SoundWeapon")
+projectile = ExtResource("2_82a6m")
+projectile_point = NodePath("BulletPoint")
+
+[node name="GunSprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_o8fdb")
+hframes = 8
+vframes = 8
+frame = 1
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2(17, 0)
+
+[node name="SoundWeapon" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7dtf3")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
