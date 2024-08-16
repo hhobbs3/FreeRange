@@ -11,7 +11,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	update_facing_direction()
-	if Input.is_action_just_pressed('horizontal_attack') and can_fire:
+	if Input.is_action_just_pressed('horizontal_attack') and can_attack:
 		fire()
 		
 func fire():
@@ -25,9 +25,9 @@ func fire():
 	projectile_instance.position = projectile_point.position
 	projectile_instance.apply_impulse((Vector2(speed,0)).rotated(rotation))
 	add_child(projectile_instance)
-	can_fire = false
-	timer.start(fire_rate)
+	can_attack = false
+	timer.start(attack_rate)
 
 # reload
 func _on_timer_timeout():
-	can_fire = true
+	can_attack = true

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce42h04jip05s"]
+
+[ext_resource type="Script" path="res://scripts/weapons/sword.gd" id="1_0m58x"]
+[ext_resource type="AudioStream" uid="uid://c56fjnjt35hbe" path="res://assets/sounds/weapons/hit-swing-sword-small-2-95566.mp3" id="2_86tgi"]
+[ext_resource type="Texture2D" uid="uid://dd2xah6wylr6n" path="res://assets/sprites/weapons/weapons.png" id="3_vrf07"]
+
+[node name="Sword" type="Node2D" node_paths=PackedStringArray("weapon_sprite", "sound_weapon")]
+z_index = 1
+script = ExtResource("1_0m58x")
+weapon_sprite = NodePath("Sprite2D")
+sound_weapon = NodePath("SwordSound1")
+
+[node name="SwordSound1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_86tgi")
+volume_db = 8.075
+bus = &"SFX"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_vrf07")
+hframes = 8
+vframes = 8
+frame = 6
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
