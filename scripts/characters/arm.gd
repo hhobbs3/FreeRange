@@ -1,9 +1,15 @@
 extends Node2D
 class_name Arm2D
 
-@export var arm_sprite : Sprite2D
-@export var weapon : Weapon2D
+# @export var arm_sprite : Sprite2D
+# @export var weapon : Weapon2D
 @export var button : String
+@onready var shoulder_point = $ShoulderPoint
+@onready var arm_sprite = $ShoulderPoint/ArmSprite
+@onready var weapons = $ShoulderPoint/ArmSprite/Weapons
+@onready var weapon : Weapon2D = $ShoulderPoint/ArmSprite/Gun
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -23,9 +29,7 @@ func hand_attack(weapon: Weapon2D, button_pressed: String):
 
 func update_facing_direction():
 	var mouse_pos = get_global_mouse_position()
-	look_at(mouse_pos)
-	arm_sprite.look_at(mouse_pos)
-	weapon.look_at(mouse_pos)
+	shoulder_point.look_at(mouse_pos)
 	var relative_mouse_position = mouse_pos - global_position
 	# Flip the Gun Sprite
 	flip_sprite(relative_mouse_position.x)
@@ -46,17 +50,21 @@ func update_guard_direction():
 
 	var guard_position = weapon_position + Vector2(x,y)
 		
-	look_at(guard_position)
-	arm_sprite.look_at(guard_position)
-	weapon.look_at(guard_position)
+	shoulder_point.look_at(guard_position)
+	# arm_sprite.look_at(guard_position)
+	# weapon.look_at(guard_position)
 	flip_sprite(relative_position.x * -1)
 
 		
 func flip_sprite(relative_position_x: int):
 		# Flip the Weapon Sprite
+
 	if relative_position_x > 0:
 		arm_sprite.flip_v = false
 		weapon.weapon_sprite.flip_v = false
+		# weapon.weapon_sprite.position.x = 0
 	elif relative_position_x < 0:
 		arm_sprite.flip_v = true
-		weapon.weapon_sprite.flip_v = false
+		weapon.weapon_sprite.flip_v = true
+		print(weapon.weapon_sprite.position)
+		# weapon.weapon_sprite.position.x = 0

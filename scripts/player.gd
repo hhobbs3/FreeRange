@@ -91,15 +91,18 @@ func update_animation(direction):
 	animation_tree.set('parameters/Move/blend_position', direction.x)
 
 func update_facing_direction(direction):
+	var mouse_pos = get_global_mouse_position()
+	var relative_position = global_position - get_global_mouse_position()
+	
 	# Flip the Sprite
-	if direction.x > 0:
-		sprite_chicken.flip_h = false
+	if relative_position.x > 0: # alt direction.x
+		sprite_chicken.flip_h = true
 		hand_main.z_index  = 2
 		hand_off.z_index = -1
 		# sprite_gun.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
-	elif direction.x < 0:
-		sprite_chicken.flip_h = true
+	elif relative_position.x < 0:
+		sprite_chicken.flip_h = false
 		hand_main.z_index  = -1
 		hand_off.z_index = 2
 		# sprite_gun.flip_h = true

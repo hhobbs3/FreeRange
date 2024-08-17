@@ -1,14 +1,10 @@
-[gd_scene load_steps=44 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=39 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ycpnw"]
-[ext_resource type="Script" path="res://scripts/characters/arm_main.gd" id="2_46wuv"]
 [ext_resource type="PackedScene" uid="uid://cv8ssjdqhu8sj" path="res://scenes/characters/player/arm_main.tscn" id="2_cdoq2"]
-[ext_resource type="PackedScene" uid="uid://2108b2euk86x" path="res://scenes/weapons/gun.tscn" id="4_t1lqe"]
 [ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="5_0dfy0"]
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="6_7dli1"]
-[ext_resource type="Texture2D" uid="uid://bo2a6vr2vaakq" path="res://assets/sprites/weapons/weapons02.png" id="7_ko4os"]
 [ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="7_wvqh6"]
-[ext_resource type="Texture2D" uid="uid://cnaf4ywigx32r" path="res://assets/sprites/chicken_parts_wing.png" id="8_jv4vq"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_ttx26"]
 [ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="10_14pml"]
 [ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="11_uqukh"]
@@ -18,7 +14,6 @@
 [ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="15_fy6u2"]
 [ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="16_4jjnf"]
 [ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="17_o12ag"]
-[ext_resource type="PackedScene" uid="uid://ce42h04jip05s" path="res://scenes/weapons/sword.tscn" id="18_2qc80"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
 radius = 6.32456
@@ -187,20 +182,13 @@ z_index = 1
 collision_layer = 2
 script = ExtResource("1_ycpnw")
 
-[node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("arm_sprite", "weapon")]
-script = ExtResource("2_46wuv")
-arm_sprite = NodePath("../SpriteArmL")
-weapon = NodePath("../Weapons/Sword")
-button = "hand_main"
+[node name="HandMain" parent="." instance=ExtResource("2_cdoq2")]
+z_index = 2
+position = Vector2(0, -8)
 
-[node name="HandMain" parent="." node_paths=PackedStringArray("arm_sprite", "weapon") instance=ExtResource("2_cdoq2")]
-arm_sprite = NodePath("../SpriteArmR")
-weapon = NodePath("../Weapons/Sword")
-button = "hand_main"
-
-[node name="HandOff" parent="." node_paths=PackedStringArray("arm_sprite", "weapon") instance=ExtResource("2_cdoq2")]
-arm_sprite = NodePath("../SpriteArmR")
-weapon = NodePath("../Weapons/Gun")
+[node name="HandOff" parent="." instance=ExtResource("2_cdoq2")]
+z_index = 1
+position = Vector2(0, -8)
 button = "hand_off"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -234,23 +222,12 @@ scale = Vector2(0.17056, 0.235832)
 texture = ExtResource("6_7dli1")
 
 [node name="SpriteChicken" type="Sprite2D" parent="."]
+z_as_relative = false
 position = Vector2(0, -13)
 texture = ExtResource("7_wvqh6")
 hframes = 8
 vframes = 8
 frame = 1
-
-[node name="SpriteArmR" type="Sprite2D" parent="."]
-position = Vector2(0, -9)
-texture = ExtResource("8_jv4vq")
-hframes = 8
-vframes = 8
-
-[node name="SpriteArmL" type="Sprite2D" parent="."]
-texture = ExtResource("7_ko4os")
-hframes = 8
-vframes = 8
-frame = 2
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animation_tree")]
 script = ExtResource("9_ttx26")
@@ -318,15 +295,9 @@ bus = &"SFX"
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[node name="Gun" parent="Weapons" instance=ExtResource("4_t1lqe")]
-position = Vector2(0, -9)
-
-[node name="Sword" parent="Weapons" instance=ExtResource("18_2qc80")]
-position = Vector2(10, -18)
-
 [connection signal="area_entered" from="Area2DChickenHitbox" to="." method="_on_area_2d_chicken_hitbox_area_entered"]
-[connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_player_horizontal_attack_area_entered"]
 [connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_player_horizontal_attack_area_entered"]
 [connection signal="body_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

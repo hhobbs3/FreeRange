@@ -1,6 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv8ssjdqhu8sj"]
+[gd_scene load_steps=4 format=3 uid="uid://cv8ssjdqhu8sj"]
 
 [ext_resource type="Script" path="res://scripts/characters/arm.gd" id="1_tpyq4"]
+[ext_resource type="Texture2D" uid="uid://cnaf4ywigx32r" path="res://assets/sprites/chicken_parts_wing.png" id="2_wpn43"]
+[ext_resource type="PackedScene" uid="uid://2108b2euk86x" path="res://scenes/weapons/gun.tscn" id="3_d7nng"]
 
 [node name="Arm2D" type="Node2D"]
 script = ExtResource("1_tpyq4")
+button = "hand_main"
+
+[node name="ShoulderPoint" type="Node2D" parent="."]
+
+[node name="ArmSprite" type="Sprite2D" parent="ShoulderPoint"]
+z_index = 2
+texture = ExtResource("2_wpn43")
+hframes = 8
+vframes = 8
+frame = 8
+
+[node name="Gun" parent="ShoulderPoint/ArmSprite" instance=ExtResource("3_d7nng")]
+z_index = 1
+position = Vector2(2, -1)
