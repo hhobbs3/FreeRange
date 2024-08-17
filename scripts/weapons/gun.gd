@@ -10,11 +10,12 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	update_facing_direction()
-	if Input.is_action_just_pressed('horizontal_attack') and can_attack:
-		fire()
+	pass
+	#update_facing_direction()
+	#if Input.is_action_just_pressed('horizontal_attack') and can_attack:
+	#	attack()
 		
-func fire():
+func attack():
 	# gunshot sound
 	sound_weapon.pitch_scale += randf_range(-0.05, 0.05)
 	if sound_weapon.pitch_scale < -1.3 or sound_weapon.pitch_scale > 1.3:
@@ -23,10 +24,13 @@ func fire():
 	var projectile_instance = projectile.instantiate()
 	sound_weapon.play()
 	projectile_instance.position = projectile_point.position
-	projectile_instance.apply_impulse((Vector2(speed,0)).rotated(rotation))
+	projectile_instance.apply_impulse((Vector2(speed,0)).rotated(global_rotation))
 	add_child(projectile_instance)
 	can_attack = false
 	timer.start(attack_rate)
+
+func attack_alt():
+	pass
 
 # reload
 func _on_timer_timeout():

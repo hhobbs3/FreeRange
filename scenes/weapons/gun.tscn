@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://cembeoo508uug" path="res://assets/sounds/musket-82280.mp3" id="3_kpcv1"]
 
 [node name="Gun" type="Node2D" node_paths=PackedStringArray("weapon_sprite", "sound_weapon", "projectile_point")]
-z_index = 2
+z_as_relative = false
 script = ExtResource("1_b0tld")
 weapon_sprite = NodePath("GunSprite2D")
 sound_weapon = NodePath("SoundGunshot")

@@ -1,34 +1,32 @@
 extends Node2D
-class_name Weapon2D
+class_name Arm2D
 
-@export var speed = 1000
-@export var weapon_sprite : Sprite2D
-@export var can_attack = true
-@export var attack_rate = 0.5
-@export var sound_weapon : AudioStreamPlayer2D
-@export var projectile : PackedScene
-@export var projectile_point : Node2D
-var guard_weapon = false
+@export var arm_sprite : Sprite2D
+@export var weapon : Weapon2D
+@export var button : String
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	update_facing_direction()
-	if Input.is_action_just_pressed('horizontal_attack'):
-		pass
-		
-func attack():
-	pass
-	
-func attack_alt():
-	pass
+	hand_attack(weapon, button)
+
+func hand_attack(weapon: Weapon2D, button_pressed: String):
+	if weapon:
+		if weapon.guard_weapon:
+			update_guard_direction()
+		else:
+			update_facing_direction()
+		if Input.is_action_just_pressed(button_pressed) and weapon.can_attack:
+			weapon.attack()
 
 func update_facing_direction():
-	look_at(get_global_mouse_position())
-	var relative_mouse_position = get_global_mouse_position() - global_position
+	var mouse_pos = get_global_mouse_position()
+	look_at(mouse_pos)
+	arm_sprite.look_at(mouse_pos)
+	weapon.look_at(mouse_pos)
+	var relative_mouse_position = mouse_pos - global_position
 	# Flip the Gun Sprite
 	flip_sprite(relative_mouse_position.x)
 	
@@ -49,12 +47,16 @@ func update_guard_direction():
 	var guard_position = weapon_position + Vector2(x,y)
 		
 	look_at(guard_position)
+	arm_sprite.look_at(guard_position)
+	weapon.look_at(guard_position)
 	flip_sprite(relative_position.x * -1)
 
 		
 func flip_sprite(relative_position_x: int):
 		# Flip the Weapon Sprite
 	if relative_position_x > 0:
-		weapon_sprite.flip_v = false
+		arm_sprite.flip_v = false
+		weapon.weapon_sprite.flip_v = false
 	elif relative_position_x < 0:
-		weapon_sprite.flip_v = true
+		arm_sprite.flip_v = true
+		weapon.weapon_sprite.flip_v = false

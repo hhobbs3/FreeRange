@@ -19,6 +19,9 @@ var fall_gravity = gravity * 1.5
 @onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
 @onready var state_machine : StateMachine = $StateMachine
 
+@onready var hand_main = $HandMain
+@onready var hand_off = $HandOff
+
 
 @onready var hurt_timer = Timer
 @export var max_health = 3
@@ -51,7 +54,7 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle attack
-	if Input.is_action_just_pressed("horizontal_attack"):
+	if Input.is_action_just_pressed("hand_main"):
 		player_collision_horizontal_attack.disabled = false
 		player_sprite_attack_box.visible = true
 	else:
@@ -91,10 +94,14 @@ func update_facing_direction(direction):
 	# Flip the Sprite
 	if direction.x > 0:
 		sprite_chicken.flip_h = false
+		hand_main.z_index  = 2
+		hand_off.z_index = -1
 		# sprite_gun.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
 	elif direction.x < 0:
 		sprite_chicken.flip_h = true
+		hand_main.z_index  = -1
+		hand_off.z_index = 2
 		# sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
 		
