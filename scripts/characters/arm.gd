@@ -1,18 +1,31 @@
 extends Node2D
 class_name Arm2D
 
-# @export var arm_sprite : Sprite2D
-# @export var weapon : Weapon2D
+var gun = preload("res://scenes/weapons/gun.tscn")
+var sword = preload("res://scenes/weapons/sword.tscn")
+
 @export var button : String
+@export var weapon_type : String
 @onready var shoulder_point = $ShoulderPoint
+@onready var hand_point = $ShoulderPoint/ArmSprite/HandPoint
 @onready var arm_sprite = $ShoulderPoint/ArmSprite
 @onready var weapons = $ShoulderPoint/ArmSprite/Weapons
-@onready var weapon : Weapon2D = $ShoulderPoint/ArmSprite/Gun
+@onready var weapon : Weapon2D
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	match weapon_type:
+		'sword':
+			weapon = sword.instantiate()
+			arm_sprite.frame = 18
+			hand_point.position = Vector2(6,5)
+		'gun':
+			weapon = gun.instantiate()
+			arm_sprite.frame = 17
+			hand_point.position = Vector2(12,-3)
+	weapon.position = hand_point.position
+	get_child(0).get_child(0).add_child(weapon)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -62,6 +75,7 @@ func flip_sprite(relative_position_x: int):
 	if relative_position_x > 0:
 		arm_sprite.flip_v = false
 		weapon.weapon_sprite.flip_v = false
+
 		# weapon.weapon_sprite.position.x = 0
 	elif relative_position_x < 0:
 		arm_sprite.flip_v = true

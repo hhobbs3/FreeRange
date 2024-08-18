@@ -16,6 +16,7 @@ volume_db = 8.075
 bus = &"SFX"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
 texture = ExtResource("3_r83hg")
 hframes = 8
 vframes = 8

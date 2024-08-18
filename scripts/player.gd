@@ -105,8 +105,11 @@ func update_facing_direction(direction):
 		sprite_chicken.flip_h = false
 		hand_main.z_index  = -1
 		hand_off.z_index = 2
+		
 		# sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
+	print(str(hand_main.z_index) + ' : ' + str(hand_off.z_index) + ' : ' + str(z_index))
+	
 		
 func land():
 	pass
