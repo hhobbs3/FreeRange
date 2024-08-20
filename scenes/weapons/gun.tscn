@@ -14,7 +14,8 @@ projectile = ExtResource("2_m0cb6")
 projectile_point = NodePath("BulletPoint")
 
 [node name="GunSprite2D" type="Sprite2D" parent="."]
-position = Vector2(-2, 0)
+z_index = -1
+position = Vector2(0, -3)
 texture = ExtResource("1_23l5y")
 hframes = 8
 vframes = 8

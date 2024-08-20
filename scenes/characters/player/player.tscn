@@ -182,16 +182,18 @@ z_index = 1
 collision_layer = 2
 script = ExtResource("1_ycpnw")
 
-[node name="HandMain" parent="." instance=ExtResource("2_cdoq2")]
+[node name="HandMain" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_cdoq2")]
 z_index = 2
 position = Vector2(0, -8)
 weapon_type = "gun"
+parent_body = NodePath("..")
 
-[node name="HandOff" parent="." instance=ExtResource("2_cdoq2")]
+[node name="HandOff" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_cdoq2")]
 z_index = -1
 position = Vector2(0, -8)
 button = "hand_off"
 weapon_type = "sword"
+parent_body = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -228,7 +230,7 @@ position = Vector2(0, -13)
 texture = ExtResource("7_wvqh6")
 hframes = 8
 vframes = 8
-frame = 3
+frame = 1
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animation_tree")]
 script = ExtResource("9_ttx26")
