@@ -8,13 +8,14 @@ var sword = preload("res://scenes/weapons/sword.tscn")
 @export var weapon_type : String
 @export var parent_body : CharacterBody2D
 @onready var shoulder_point = $ShoulderPoint
+@onready var hand_point = $ShoulderPoint/ArmSprite/HandPoint
 @onready var hand_point_sword = $ShoulderPoint/ArmSprite/HandPointSword
 @onready var hand_point_gun = $ShoulderPoint/ArmSprite/HandPointGun
 @onready var arm_sprite = $ShoulderPoint/ArmSprite
 @onready var weapons = $ShoulderPoint/ArmSprite/Weapons
 @onready var weapon : Weapon2D
-
-
+@onready var animation_player = $AnimationPlayer
+@onready var guard_position : Vector2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,14 +23,15 @@ func _ready():
 	match weapon_type:
 		'sword':
 			weapon = sword.instantiate()
-			arm_sprite.frame = 18
-			hand_point_position = hand_point_sword.position
+			arm_sprite.frame = 8
+			hand_point.position = hand_point_sword.position
+			hand_point.rotation = hand_point_sword.rotation
 		'gun':
 			weapon = gun.instantiate()
-			arm_sprite.frame = 17
-			hand_point_position = hand_point_gun.position
-	weapon.position = hand_point_position
-	get_child(0).get_child(0).add_child(weapon)
+			arm_sprite.frame = 1
+			hand_point.position = hand_point_gun.position
+			hand_point.rotation = hand_point_gun.rotation
+	hand_point.add_child(weapon)
 	
 	match button:
 		'hand_main':
@@ -40,7 +42,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print('weapon.position' + str(weapon.position))
 	hand_attack(weapon, button)
 
 func hand_attack(weapon: Weapon2D, button_pressed: String):
@@ -50,6 +51,8 @@ func hand_attack(weapon: Weapon2D, button_pressed: String):
 		else:
 			update_facing_direction()
 		if Input.is_action_just_pressed(button_pressed) and weapon.can_attack:
+			if weapon.guard_weapon:
+				animate_guard_position() 
 			weapon.attack()
 
 func update_facing_direction():
@@ -75,10 +78,11 @@ func update_guard_direction():
 	else:
 		y = 0
 
-	var guard_position = weapon_position + Vector2(x,y)
+	guard_position = Vector2(x,y)
+	var relative_guard_position = weapon_position + guard_position
 		
 	flip_sprite(relative_position.x * -1)
-	shoulder_point.look_at(guard_position)
+	shoulder_point.look_at(relative_guard_position)
 	flip_sprite(relative_position.x * -1)
 
 		
@@ -98,3 +102,9 @@ func flip_sprite(relative_position_x: int):
 		'hand_off':
 			z_index = parent_body.z_index + 10 * (-1 * int(relative_position_x > 0))
 	
+func animate_guard_position():
+	var animation = 'stab'
+	print(guard_position)
+	if abs(guard_position.y) > 0:
+		animation = 'slice'
+	animation_player.play(animation)

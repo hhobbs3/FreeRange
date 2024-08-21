@@ -30,8 +30,9 @@ frame = 6
 
 [node name="Area2DBlade" type="Area2D" parent="Timer"]
 
-[node name="CollisionShape2DBlade" type="CollisionShape2D" parent="Timer/Area2DBlade"]
+[node name="CollisionShape2DBlade" type="CollisionShape2D" parent="Timer/Area2DBlade" groups=["sword"]]
 position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_ec30b")
+disabled = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

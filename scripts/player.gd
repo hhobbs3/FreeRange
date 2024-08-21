@@ -108,7 +108,7 @@ func update_facing_direction(direction):
 		
 		# sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
-	print(str(hand_main.z_index) + ' : ' + str(hand_off.z_index) + ' : ' + str(z_index))
+	# print(str(hand_main.z_index) + ' : ' + str(hand_off.z_index) + ' : ' + str(z_index))
 	
 		
 func land():
@@ -139,15 +139,12 @@ func knockback(enemy_velocity: Vector2):
 
 
 func _on_area_2d_body_entered(body):
-	print('in player body entered ' + str(body))
 	if body.is_in_group('Hit'):
 		body.take_damage()
-		print('_on_area_2d_body_entered player area2d')
 	else:
 		pass
 		
 func _on_area_2d_chicken_hitbox_area_entered(area):
-	print('area')
 	if area.is_in_group('enemy_attack'):
 		take_damage(1)
 		

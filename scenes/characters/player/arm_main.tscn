@@ -1,7 +1,123 @@
-[gd_scene load_steps=3 format=3 uid="uid://cv8ssjdqhu8sj"]
+[gd_scene load_steps=7 format=3 uid="uid://cv8ssjdqhu8sj"]
 
 [ext_resource type="Script" path="res://scripts/characters/arm.gd" id="1_tpyq4"]
-[ext_resource type="Texture2D" uid="uid://cnaf4ywigx32r" path="res://assets/sprites/chicken_parts_wing.png" id="2_wpn43"]
+[ext_resource type="Texture2D" uid="uid://c7f6plkcpjixm" path="res://assets/sprites/body_parts/arm01.png" id="2_hxiur"]
+
+[sub_resource type="Animation" id="Animation_jrnb1"]
+resource_name = "stab"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShoulderPoint/ArmSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11, 8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShoulderPoint/ArmSprite/HandPoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 0), Vector2(9, -3), Vector2(12, -6), Vector2(17, 0), Vector2(6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShoulderPoint/ArmSprite/HandPoint:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.15, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.785398, 1.5708, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bo1ww"]
+resource_name = "point"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShoulderPoint/ArmSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShoulderPoint/ArmSprite/HandPointGun:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(12, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nv4pv"]
+resource_name = "slice"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShoulderPoint/ArmSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [16, 17, 18, 19, 20, 21, 22, 16]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ShoulderPoint/ArmSprite/HandPoint:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(6, 0), Vector2(3, -2), Vector2(9, -3), Vector2(12, -5), Vector2(9, -3), Vector2(9, 11), Vector2(6, 12), Vector2(6, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ShoulderPoint/ArmSprite/HandPoint:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.785398, 0.0, 0.0, 0.0, 1.5708, 1.5708, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l6bvj"]
+_data = {
+"point": SubResource("Animation_bo1ww"),
+"slice": SubResource("Animation_nv4pv"),
+"stab": SubResource("Animation_jrnb1")
+}
 
 [node name="Arm2D" type="Node2D"]
 script = ExtResource("1_tpyq4")
@@ -11,10 +127,13 @@ button = "hand_main"
 
 [node name="ArmSprite" type="Sprite2D" parent="ShoulderPoint"]
 z_index = 2
-texture = ExtResource("2_wpn43")
+texture = ExtResource("2_hxiur")
 hframes = 8
 vframes = 8
-frame = 18
+frame = 8
+
+[node name="HandPoint" type="Node2D" parent="ShoulderPoint/ArmSprite"]
+position = Vector2(6, 0)
 
 [node name="HandPointSword" type="Node2D" parent="ShoulderPoint/ArmSprite"]
 z_index = -1
@@ -23,3 +142,8 @@ position = Vector2(6, 0)
 [node name="HandPointGun" type="Node2D" parent="ShoulderPoint/ArmSprite"]
 z_index = -1
 position = Vector2(12, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_l6bvj")
+}
