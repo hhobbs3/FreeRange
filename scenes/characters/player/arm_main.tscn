@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv8ssjdqhu8sj"]
+[gd_scene load_steps=8 format=3 uid="uid://cv8ssjdqhu8sj"]
 
 [ext_resource type="Script" path="res://scripts/characters/arm.gd" id="1_tpyq4"]
 [ext_resource type="Texture2D" uid="uid://c7f6plkcpjixm" path="res://assets/sprites/body_parts/arm01.png" id="2_hxiur"]
+[ext_resource type="Script" path="res://scripts/characters/hand.gd" id="3_4gxbo"]
 
 [sub_resource type="Animation" id="Animation_jrnb1"]
 resource_name = "stab"
@@ -28,7 +29,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(6, 0), Vector2(9, -3), Vector2(12, -6), Vector2(17, 0), Vector2(6, 0)]
 }
 tracks/2/type = "value"
@@ -40,7 +41,7 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.15, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0.0, 0.785398, 1.5708, 0.0]
 }
 
@@ -85,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [16, 17, 18, 19, 20, 21, 22, 16]
+"values": [16, 17, 18, 19, 20, 21, 22, 22]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -96,7 +97,7 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Vector2(6, 0), Vector2(3, -2), Vector2(9, -3), Vector2(12, -5), Vector2(9, -3), Vector2(9, 11), Vector2(6, 12), Vector2(6, 0)]
 }
 tracks/2/type = "value"
@@ -108,8 +109,43 @@ tracks/2/loop_wrap = true
 tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
+"update": 1,
 "values": [0.0, -0.785398, 0.0, 0.0, 0.0, 1.5708, 1.5708, 0.0]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ShoulderPoint/ArmSprite/HandPoint")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}, {
+"args": [],
+"method": &"hand_flip"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_l6bvj"]
@@ -130,10 +166,11 @@ z_index = 2
 texture = ExtResource("2_hxiur")
 hframes = 8
 vframes = 8
-frame = 8
+frame = 16
 
 [node name="HandPoint" type="Node2D" parent="ShoulderPoint/ArmSprite"]
 position = Vector2(6, 0)
+script = ExtResource("3_4gxbo")
 
 [node name="HandPointSword" type="Node2D" parent="ShoulderPoint/ArmSprite"]
 z_index = -1

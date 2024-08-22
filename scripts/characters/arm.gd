@@ -81,7 +81,6 @@ func update_guard_direction():
 	guard_position = Vector2(x,y)
 	var relative_guard_position = weapon_position + guard_position
 		
-	flip_sprite(relative_position.x * -1)
 	shoulder_point.look_at(relative_guard_position)
 	flip_sprite(relative_position.x * -1)
 
