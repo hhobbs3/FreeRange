@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxgtnbeodk0v5"]
+[gd_scene load_steps=14 format=3 uid="uid://dxgtnbeodk0v5"]
 
 [ext_resource type="Script" path="res://scripts/map_01_free_range.gd" id="1_i3ram"]
 [ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player/player.tscn" id="2_2jlt0"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/TileMapFreeRange.gd" id="7_0o4ht"]
 [ext_resource type="PackedScene" uid="uid://bm1neekvm2v0f" path="res://scenes/characters/character_snake.tscn" id="8_hiunb"]
 [ext_resource type="Script" path="res://scripts/bar_health.gd" id="10_hueky"]
+[ext_resource type="PackedScene" uid="uid://du05g31kgt8lx" path="res://scenes/characters/player/cowboy.tscn" id="11_bwp37"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wuoqo"]
 texture = ExtResource("6_oymlj")
@@ -718,5 +719,8 @@ value = 4.0
 script = ExtResource("10_hueky")
 player = NodePath("../../Player")
 metadata/_edit_use_anchors_ = true
+
+[node name="Player2" parent="." instance=ExtResource("11_bwp37")]
+position = Vector2(-80, -23)
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

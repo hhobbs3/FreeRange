@@ -1,19 +1,19 @@
-[gd_scene load_steps=39 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=39 format=3 uid="uid://du05g31kgt8lx"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ycpnw"]
-[ext_resource type="PackedScene" uid="uid://cv8ssjdqhu8sj" path="res://scenes/characters/player/arm_main.tscn" id="2_cdoq2"]
-[ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="5_0dfy0"]
-[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="6_7dli1"]
-[ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="7_wvqh6"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_ttx26"]
-[ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="10_14pml"]
-[ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="11_uqukh"]
-[ext_resource type="Script" path="res://scripts/states/player_air.gd" id="12_riolk"]
-[ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="13_7638h"]
-[ext_resource type="Script" path="res://scripts/states/player_die.gd" id="14_0wbdr"]
-[ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="15_fy6u2"]
-[ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="16_4jjnf"]
-[ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="17_o12ag"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_n4rp0"]
+[ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="3_xy0q2"]
+[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="4_jrrka"]
+[ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="5_nv0py"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_oqi2r"]
+[ext_resource type="Texture2D" uid="uid://uh46hlm2wf4j" path="res://assets/sprites/animals/man_cow_test.png" id="6_qkqlb"]
+[ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="7_o8g8n"]
+[ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="8_6wqu4"]
+[ext_resource type="Script" path="res://scripts/states/player_air.gd" id="9_tc0xh"]
+[ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="10_66w28"]
+[ext_resource type="Script" path="res://scripts/states/player_die.gd" id="11_hfuje"]
+[ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="12_tejtc"]
+[ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="13_moj5b"]
+[ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="14_3l3vv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
 radius = 6.32456
@@ -63,14 +63,14 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("SpriteChicken:frame")
+tracks/0/path = NodePath("SpriteCowboy:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3]
+"values": [0]
 }
 
 [sub_resource type="Animation" id="Animation_8bcew"]
@@ -177,23 +177,10 @@ states/landing/position = Vector2(482, -34)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_1oafc"), "jump", "flap", SubResource("AnimationNodeStateMachineTransition_kjibx"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_gbrmh"), "flap", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "landing", "Move", SubResource("AnimationNodeStateMachineTransition_uxlt8"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx")]
 graph_offset = Vector2(-168, -273)
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="PlayerHuman" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
-script = ExtResource("1_ycpnw")
-
-[node name="HandMain" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_cdoq2")]
-z_index = 2
-position = Vector2(0, -8)
-weapon_type = "gun"
-parent_body = NodePath("..")
-
-[node name="HandOff" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_cdoq2")]
-z_index = -1
-position = Vector2(0, -8)
-button = "hand_off"
-weapon_type = "sword"
-parent_body = NodePath("..")
+script = ExtResource("1_n4rp0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
@@ -214,7 +201,7 @@ position = Vector2(13.4807, -8)
 scale = Vector2(1.8322, 1.3251)
 shape = SubResource("RectangleShape2D_4lu10")
 disabled = true
-script = ExtResource("5_0dfy0")
+script = ExtResource("3_xy0q2")
 facing_left_position = Vector2(-15, -10)
 facing_right_position = Vector2(15, -10)
 
@@ -223,38 +210,43 @@ visible = false
 modulate = Color(1, 1, 1, 0.211765)
 position = Vector2(-3.27826e-07, -2.98023e-08)
 scale = Vector2(0.17056, 0.235832)
-texture = ExtResource("6_7dli1")
+texture = ExtResource("4_jrrka")
 
 [node name="SpriteChicken" type="Sprite2D" parent="."]
 position = Vector2(0, -13)
-texture = ExtResource("7_wvqh6")
+texture = ExtResource("5_nv0py")
 hframes = 8
 vframes = 8
-frame = 3
+frame = 1
+
+[node name="SpriteCowboy" type="Sprite2D" parent="."]
+texture = ExtResource("6_qkqlb")
+hframes = 5
+vframes = 5
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animation_tree")]
-script = ExtResource("9_ttx26")
+script = ExtResource("6_oqi2r")
 initial_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("10_14pml")
+script = ExtResource("7_o8g8n")
 player = NodePath("../..")
 
 [node name="Gun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("11_uqukh")
+script = ExtResource("8_6wqu4")
 player = NodePath("../..")
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("12_riolk")
+script = ExtResource("9_tc0xh")
 player = NodePath("../..")
 
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("13_7638h")
+script = ExtResource("10_66w28")
 player = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("14_0wbdr")
+script = ExtResource("11_hfuje")
 player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]
@@ -262,7 +254,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("15_fy6u2")
+script = ExtResource("12_tejtc")
 player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
@@ -287,11 +279,11 @@ offset_top = -59.0
 offset_right = 63.0
 offset_bottom = -36.0
 text = "State:"
-script = ExtResource("16_4jjnf")
+script = ExtResource("13_moj5b")
 state_machine = NodePath("../StateMachine")
 
 [node name="SoundChicken" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_o12ag")
+stream = ExtResource("14_3l3vv")
 pitch_scale = 1.23
 attenuation = 0.217638
 bus = &"SFX"

@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Player
+class_name PlayerHuman
 
 signal health_changed
 
@@ -97,16 +97,14 @@ func update_facing_direction(direction):
 	# Flip the Sprite
 	if relative_position.x > 0: # alt direction.x
 		sprite_chicken.flip_h = true
-		if hand_main:
-			hand_main.z_index  = 2
-			hand_off.z_index = -1
+		# hand_main.z_index  = 2
+		# hand_off.z_index = -1
 		# sprite_gun.flip_h = false
 		player_collision_horizontal_attack.position.x = 15
 	elif relative_position.x < 0:
 		sprite_chicken.flip_h = false
-		if hand_main:
-			hand_main.z_index  = -1
-			hand_off.z_index = 2
+		# hand_main.z_index  = -1
+		# hand_off.z_index = 2
 		
 		# sprite_gun.flip_h = true
 		player_collision_horizontal_attack.position.x = -15
@@ -158,6 +156,3 @@ func take_damage(damage):
 		print('switch to die')
 		print('die')
 		# Transitioned.emit(self, "Die")
-
-
-
