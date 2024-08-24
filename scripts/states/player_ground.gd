@@ -5,7 +5,7 @@ class_name PlayerGround
 @onready var sound_chicken = $"../../SoundChicken"
 
 func Enter():
-	player.flap_count = 0
+	player.extra_jumps_count = 0
 	
 func Update(_delta: float):
 	pass

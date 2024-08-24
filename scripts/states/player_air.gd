@@ -21,10 +21,10 @@ func Physics_Update(_delta: float):
 	if player.is_on_floor():
 		Transitioned.emit(self, 'Ground')
 	if Input.is_action_just_pressed("jump"):
-		flap()
+		extra_jump()
 		
-func flap():
-	if player.flap_count < player.max_flaps:
-		player.velocity.y = player.flap_velocity
+func extra_jump():
+	if player.extra_jumps_count < player.max_jumps:
+		player.velocity.y = player.extra_jumps_velocity
 		playback.travel(flap_animation)
-		player.flap_count += 1
+		player.extra_jumps_count += 1

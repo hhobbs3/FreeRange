@@ -177,11 +177,10 @@ states/landing/position = Vector2(482, -34)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_1oafc"), "jump", "flap", SubResource("AnimationNodeStateMachineTransition_kjibx"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_gbrmh"), "flap", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "landing", "Move", SubResource("AnimationNodeStateMachineTransition_uxlt8"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx")]
 graph_offset = Vector2(-168, -273)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite_player") groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_ycpnw")
-sprite_player = NodePath("SpriteChicken")
 
 [node name="HandMain" parent="." node_paths=PackedStringArray("parent_body") instance=ExtResource("2_cdoq2")]
 z_index = 2
@@ -231,6 +230,7 @@ position = Vector2(0, -13)
 texture = ExtResource("7_wvqh6")
 hframes = 8
 vframes = 8
+frame = 2
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animation_tree")]
 script = ExtResource("9_ttx26")
