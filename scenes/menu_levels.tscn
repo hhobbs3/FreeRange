@@ -60,9 +60,18 @@ offset_right = 249.0
 offset_bottom = 315.0
 text = "Terrain"
 
+[node name="Simple" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 333.0
+offset_right = 249.0
+offset_bottom = 374.0
+text = "Simple"
+
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]
 [connection signal="pressed" from="ButtonManager/Procedural Map" to="." method="_on_procedural_map_pressed"]
 [connection signal="pressed" from="ButtonManager/Gun" to="." method="_on_gun_pressed"]
 [connection signal="pressed" from="ButtonManager/Terrain" to="." method="_on_terrain_pressed"]
+[connection signal="pressed" from="ButtonManager/Simple" to="." method="_on_simple_pressed"]

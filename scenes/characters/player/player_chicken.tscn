@@ -1,21 +1,21 @@
-[gd_scene load_steps=38 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=38 format=3 uid="uid://ym4cqyq6jwp"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_ycpnw"]
-[ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="5_0dfy0"]
-[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="6_7dli1"]
-[ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="7_wvqh6"]
-[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_ttx26"]
-[ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="10_14pml"]
-[ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="11_uqukh"]
-[ext_resource type="Script" path="res://scripts/states/player_air.gd" id="12_riolk"]
-[ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="13_7638h"]
-[ext_resource type="Script" path="res://scripts/states/player_die.gd" id="14_0wbdr"]
-[ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="15_fy6u2"]
-[ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="16_4jjnf"]
-[ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="17_o12ag"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_5iih4"]
+[ext_resource type="Script" path="res://scripts/facing_horizontal_attack_collision_shape.gd" id="3_heh1k"]
+[ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="4_axa3u"]
+[ext_resource type="Texture2D" uid="uid://1ktxrqy08m76" path="res://assets/sprites/chicken.png" id="5_4vcff"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="6_f5fqb"]
+[ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="7_38snc"]
+[ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="8_1wrcg"]
+[ext_resource type="Script" path="res://scripts/states/player_air.gd" id="9_nf1qu"]
+[ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="10_epiv6"]
+[ext_resource type="Script" path="res://scripts/states/player_die.gd" id="11_61yft"]
+[ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="12_q8y1x"]
+[ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="13_xke3u"]
+[ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="14_g3ago"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rj8fv"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_l11gq"]
+radius = 6.32456
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4lu10"]
 size = Vector2(14.7574, 14)
@@ -179,36 +179,32 @@ graph_offset = Vector2(-168, -273)
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite_player") groups=["player"]]
 z_index = 1
 collision_layer = 2
-script = ExtResource("1_ycpnw")
+script = ExtResource("1_5iih4")
 sprite_player = NodePath("SpriteChicken")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-top_level = true
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_rj8fv")
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_l11gq")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Area2DChickenHitbox" type="Area2D" parent="."]
 visible = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-visible = false
-top_level = true
-position = Vector2(0, -15)
-shape = SubResource("CapsuleShape2D_rj8fv")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DChickenHitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_l11gq")
 
 [node name="PlayerHorizontalAttack" type="Area2D" parent="." groups=["attack", "horizontal_attack", "player", "player_attack"]]
 visible = false
 
 [node name="PlayerCollisionHorizontalAttack" type="CollisionShape2D" parent="PlayerHorizontalAttack" groups=["player_attack"]]
-visible = false
 position = Vector2(13.4807, -8)
 scale = Vector2(1.8322, 1.3251)
 shape = SubResource("RectangleShape2D_4lu10")
 disabled = true
-script = ExtResource("5_0dfy0")
+script = ExtResource("3_heh1k")
 facing_left_position = Vector2(-15, -10)
 facing_right_position = Vector2(15, -10)
 
@@ -217,37 +213,38 @@ visible = false
 modulate = Color(1, 1, 1, 0.211765)
 position = Vector2(-3.27826e-07, -2.98023e-08)
 scale = Vector2(0.17056, 0.235832)
-texture = ExtResource("6_7dli1")
+texture = ExtResource("4_axa3u")
 
 [node name="SpriteChicken" type="Sprite2D" parent="."]
 position = Vector2(0, -13)
-texture = ExtResource("7_wvqh6")
+texture = ExtResource("5_4vcff")
 hframes = 8
 vframes = 8
+frame = 3
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "animation_tree")]
-script = ExtResource("9_ttx26")
+script = ExtResource("6_f5fqb")
 initial_state = NodePath("Ground")
 animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("10_14pml")
+script = ExtResource("7_38snc")
 player = NodePath("../..")
 
 [node name="Gun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("11_uqukh")
+script = ExtResource("8_1wrcg")
 player = NodePath("../..")
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("12_riolk")
+script = ExtResource("9_nf1qu")
 player = NodePath("../..")
 
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("13_7638h")
+script = ExtResource("10_epiv6")
 player = NodePath("../..")
 
 [node name="Die" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("14_0wbdr")
+script = ExtResource("11_61yft")
 player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Die"]
@@ -255,7 +252,7 @@ wait_time = 3.0
 one_shot = true
 
 [node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("15_fy6u2")
+script = ExtResource("12_q8y1x")
 player = NodePath("../..")
 
 [node name="Timer" type="Timer" parent="StateMachine/Attack"]
@@ -280,18 +277,18 @@ offset_top = -59.0
 offset_right = 63.0
 offset_bottom = -36.0
 text = "State:"
-script = ExtResource("16_4jjnf")
+script = ExtResource("13_xke3u")
 state_machine = NodePath("../StateMachine")
 
 [node name="SoundChicken" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("17_o12ag")
+stream = ExtResource("14_g3ago")
 pitch_scale = 1.23
 attenuation = 0.217638
 bus = &"SFX"
 
 [node name="Weapons" type="Node2D" parent="."]
 
-[connection signal="area_entered" from="Hitbox" to="." method="_on_area_2d_chicken_hitbox_area_entered"]
+[connection signal="area_entered" from="Area2DChickenHitbox" to="." method="_on_area_2d_chicken_hitbox_area_entered"]
 [connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_player_horizontal_attack_area_entered"]
 [connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_body_entered"]
