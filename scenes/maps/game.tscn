@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cbpaewbjnpu3k" path="res://scenes/killzone.tscn" id="3_rqpr2"]
 [ext_resource type="Texture2D" uid="uid://bedndwil8ulfo" path="res://assets/sprites/world_tileset.png" id="4_x4k8g"]
 [ext_resource type="Texture2D" uid="uid://6h5dxx3eq6fk" path="res://assets/sprites/grass_tileset.png" id="5_pbvl1"]
-[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player/player.tscn" id="6_ydaqx"]
+[ext_resource type="PackedScene" uid="uid://ym4cqyq6jwp" path="res://scenes/characters/player/player_chicken.tscn" id="6_j1vbn"]
 [ext_resource type="PackedScene" uid="uid://c4n6x3e7fw70i" path="res://scenes/platform.tscn" id="7_s0hpf"]
 [ext_resource type="PackedScene" uid="uid://dk4e0c4mhufd0" path="res://scenes/slime.tscn" id="8_g65kh"]
 [ext_resource type="PackedScene" uid="uid://ds17db2ns3fxe" path="res://scenes/coin.tscn" id="9_lybtv"]
@@ -832,12 +832,10 @@ layer_0/tile_data = PackedInt32Array(131079, 262145, 4, 131078, 196609, 4, 13107
 [node name="0" type="CanvasLayer" parent="Visuals"]
 follow_viewport_enabled = true
 
-[node name="Player" parent="Visuals/0" instance=ExtResource("6_ydaqx")]
-z_index = 5
-position = Vector2(1, -2)
+[node name="Player" parent="Visuals/0" instance=ExtResource("6_j1vbn")]
 
-[node name="Camera2D" type="Camera2D" parent="Visuals/0/Player"]
-position = Vector2(0, -7)
+[node name="Camera2D2" type="Camera2D" parent="Visuals/0/Player"]
+position = Vector2(1, -9)
 zoom = Vector2(4, 4)
 limit_bottom = 80
 position_smoothing_enabled = true

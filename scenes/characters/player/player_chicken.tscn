@@ -121,21 +121,21 @@ _data = {
 "run": SubResource("Animation_2m34t")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qvuip"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7vaa"]
 animation = &"idle"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4nf60"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jaq4g"]
 animation = &"run"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vbi0g"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qm4gf"]
 animation = &"run"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_3738t"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_qvuip")
+blend_point_0/node = SubResource("AnimationNodeAnimation_l7vaa")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_4nf60")
+blend_point_1/node = SubResource("AnimationNodeAnimation_jaq4g")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_vbi0g")
+blend_point_2/node = SubResource("AnimationNodeAnimation_qm4gf")
 blend_point_2/pos = -1.0
 blend_mode = 1
 
@@ -158,7 +158,6 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6bgjm"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uxlt8"]
-switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvvpx"]

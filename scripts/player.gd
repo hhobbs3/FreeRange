@@ -3,7 +3,11 @@ class_name Player
 
 signal health_changed
 
-const SPEED = 130.0
+# DASH
+var can_dash : bool = true
+const BASE_SPEED : float = 150.0
+const SPEED_INCREMENT : float = 50.0
+var speed : float = BASE_SPEED
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -12,6 +16,10 @@ var fall_gravity = gravity * 1.5
 
 # SPRITE
 @export var sprite_player : Sprite2D
+
+# collision
+@onready var collision_shape : CollisionShape2D = $CollisionShape
+@onready var collision_shape_hitbox : CollisionShape2D = $Hitbox/CollisionShapeHitbox
 
 
 @onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
@@ -23,6 +31,8 @@ var fall_gravity = gravity * 1.5
 
 
 @export var knockback_power: int = 400
+
+
 
 # JUMP
 @export var jump_velocity : float = -400.0
@@ -65,9 +75,9 @@ func _physics_process(delta):
 
 	# Apply movement
 	if direction.x && state_machine.check_if_can_move():
-		velocity.x = direction.x * SPEED
+		velocity.x = direction.x * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 
 	move_and_slide()
 
@@ -77,9 +87,10 @@ func update_animation(direction):
 func update_facing_direction(direction):
 	var mouse_pos = get_global_mouse_position()
 	var relative_position = global_position - get_global_mouse_position()
-	
+	print(relative_position)
 	# Flip the Sprite
 	if relative_position.x > 0: # alt direction.x
+		print('x>0')
 		sprite_player.flip_h = true
 		if hand_main:
 			hand_main.z_index  = 2
@@ -87,6 +98,7 @@ func update_facing_direction(direction):
 
 		player_collision_horizontal_attack.position.x = 15
 	elif relative_position.x < 0:
+		print('x<0')
 		sprite_player.flip_h = false
 		if hand_main:
 			hand_main.z_index  = -1
@@ -138,4 +150,17 @@ func take_damage(damage):
 		# Transitioned.emit(self, "Die")
 
 
-
+func update_collision_shape(r: float, h: float, r_deg: float, pos_y: int):
+	# rotation, height, rotation degrees
+	# standing = 7, 40, 0, -20
+	# crouching = 9, 20, 0, -10
+	# prone = 7, 38, 90, -7
+	collision_shape.shape.radius = r
+	collision_shape_hitbox.shape.radius = r
+	collision_shape.shape.height = h
+	collision_shape_hitbox.shape.height = h
+	collision_shape.rotation_degrees = r_deg
+	collision_shape_hitbox.rotation_degrees = r_deg
+	collision_shape.position = Vector2(0, pos_y)
+	collision_shape_hitbox.position = Vector2(0, pos_y)
+	pass

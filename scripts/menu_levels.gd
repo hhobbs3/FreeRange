@@ -29,3 +29,7 @@ func _on_gun_pressed():
 
 func _on_terrain_pressed():
 	get_tree().change_scene_to_file("res://scenes/maps/map_02_noise_terrain.tscn")
+
+
+func _on_simple_pressed():
+	get_tree().change_scene_to_file("res://scenes/maps/map_03_simplified.tscn")
