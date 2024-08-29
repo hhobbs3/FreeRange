@@ -39,6 +39,9 @@ var fall_gravity = gravity * 1.5
 var max_jumps: int = 10
 var extra_jumps_velocity: float = jump_velocity / 2
 var extra_jumps_count: int = 0
+var on_ground : bool = true
+var dive_velocity : float = 400
+var wall_jump_velocity : float = 100
 
 # HEALTH
 @onready var hurt_timer = Timer
@@ -61,8 +64,8 @@ func _ready():
 
 func _physics_process(delta):
 	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+	# if not is_on_floor():
+	# 	velocity.y += gravity * delta
 
 	# Get the input direction
 	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")

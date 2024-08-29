@@ -31,9 +31,9 @@ func Physics_Update(_delta: float):
 		slide()
 	
 	# Jump
-	if !player.is_on_floor(): 
+	if !player.is_on_floor() and player.on_ground == true:
 		# jump buffer
-		
+		player.on_ground = false
 		timer_jump_buffer.start(jump_buffer_time)
 		
 	if Input.is_action_just_pressed("jump"):

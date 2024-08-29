@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=44 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ycpnw"]
 [ext_resource type="Texture2D" uid="uid://dc8kyj1t8fbpl" path="res://assets/sprites/characters/simple.png" id="2_6ao02"]
@@ -6,7 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://dns4y6l1g08o0" path="res://assets/sprites/simple_terrain.png" id="6_7dli1"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="9_ttx26"]
 [ext_resource type="Script" path="res://scripts/states/player_ground.gd" id="10_14pml"]
-[ext_resource type="Script" path="res://scripts/states/player_gun.gd" id="11_uqukh"]
 [ext_resource type="Script" path="res://scripts/states/player_air.gd" id="12_riolk"]
 [ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="13_7638h"]
 [ext_resource type="Script" path="res://scripts/states/player_die.gd" id="14_0wbdr"]
@@ -383,10 +382,6 @@ player = NodePath("../..")
 [node name="Timer" type="Timer" parent="StateMachine/Ground"]
 
 [node name="TimerJumpBuffer" type="Timer" parent="StateMachine/Ground"]
-
-[node name="Gun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
-script = ExtResource("11_uqukh")
-player = NodePath("../..")
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("12_riolk")
