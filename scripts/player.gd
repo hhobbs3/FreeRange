@@ -41,7 +41,7 @@ var extra_jumps_velocity: float = jump_velocity / 2
 var extra_jumps_count: int = 0
 var on_ground : bool = true
 var dive_velocity : float = 400
-var wall_jump_velocity : float = 100
+var wall_jump_velocity : float = 10000
 
 # HEALTH
 @onready var hurt_timer = Timer

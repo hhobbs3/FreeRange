@@ -387,6 +387,10 @@ player = NodePath("../..")
 script = ExtResource("12_riolk")
 player = NodePath("../..")
 
+[node name="TimerWallJump" type="Timer" parent="StateMachine/Air"]
+wait_time = 0.4
+one_shot = true
+
 [node name="Landing" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("13_7638h")
 player = NodePath("../..")
@@ -442,5 +446,6 @@ parameters/Move/blend_position = 0
 [connection signal="body_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Ground/Timer" to="StateMachine/Ground" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Ground/TimerJumpBuffer" to="StateMachine/Ground" method="_on_timer_jump_buffer_timeout"]
+[connection signal="timeout" from="StateMachine/Air/TimerWallJump" to="StateMachine/Air" method="_on_timer_wall_jump_timeout"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]
