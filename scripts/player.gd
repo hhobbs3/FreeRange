@@ -63,9 +63,6 @@ func _ready():
 	animation_tree.active = true
 
 func _physics_process(delta):
-	# Add the gravity.
-	# if not is_on_floor():
-	# 	velocity.y += gravity * delta
 
 	# Get the input direction
 	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
@@ -75,14 +72,6 @@ func _physics_process(delta):
 	update_facing_direction(direction)
 
 	emit_signal("facing_direction_changed", !sprite_player.flip_h)
-
-	# Apply movement
-	if direction.x && state_machine.check_if_can_move():
-		velocity.x = direction.x * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	move_and_slide()
 
 func update_animation(direction):
 	animation_tree.set('parameters/Move/blend_position', direction.x)
@@ -108,11 +97,6 @@ func update_facing_direction(direction):
 			hand_off.z_index = 2
 		
 		player_collision_horizontal_attack.position.x = -15
-
-	
-		
-func land():
-	pass
 
 func hurtByEnemy(area):
 	current_health -= 10

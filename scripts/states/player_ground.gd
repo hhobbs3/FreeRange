@@ -5,6 +5,7 @@ class_name PlayerGround
 @onready var sound_jump = $"../../SoundJump"
 @onready var timer = $Timer
 @onready var timer_jump_buffer = $TimerJumpBuffer
+@onready var state_machine = $".."
 
 var jump_buffer : bool = false
 @export var jump_buffer_time : float = 0.1
@@ -19,6 +20,13 @@ func Physics_Update(_delta: float):
 	if player.current_health <= 0:
 			Transitioned.emit(self, "Die")
 	
+	# APPLY MOVEMENT
+	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
+	if direction.x && state_machine.check_if_can_move():
+		player.velocity.x = direction.x * player.speed
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
+
 	# Lost momentum
 	if player.velocity.length() == 0:
 		timer.start(1)
@@ -47,6 +55,8 @@ func Physics_Update(_delta: float):
 	
 	if Input.is_action_just_pressed("gun"):
 		Transitioned.emit(self, "Gun")
+	# APPLY MOVEMENT
+	player.move_and_slide()
 		
 func jump()-> void:
 	if randi_range(0, 10) > 8:

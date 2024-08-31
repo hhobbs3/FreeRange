@@ -8,7 +8,7 @@ var wall_slide_gravity : float = gravity / 2
 var is_wall_sliding : bool = false
 var do_wall_jump : bool = false
 
-@onready var timer_wall_jump = $TimerWallJump
+@onready var timer_wall_jump : Timer = $TimerWallJump
 
 
 
@@ -23,7 +23,7 @@ func Update(_delta: float) -> void:
 	pass
 
 func Physics_Update(delta: float) -> void:
-	var direction = Input.get_axis('move_left', 'move_right')
+	var direction : float = Input.get_axis('move_left', 'move_right')
 	
 	# DOWNWARD VELOCITY
 	if player.is_on_wall_only() and (Input.is_action_pressed('move_left') or Input.is_action_pressed('move_right')):
@@ -74,5 +74,5 @@ func air_dive(direction: float) -> void:
 	playback.travel("dive")
 
 
-func _on_timer_wall_jump_timeout():
+func _on_timer_wall_jump_timeout() -> void:
 	do_wall_jump = false
