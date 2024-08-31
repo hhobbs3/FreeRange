@@ -8,9 +8,9 @@ var current_state: State
 var states: Dictionary = {}
 
 # sets up the initial states, runs once
-func _ready():
+func _ready() -> void:
 	# hook up states from children nodes
-	for child in get_children():
+	for child : Node in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
 			if animation_tree:
@@ -23,21 +23,21 @@ func _ready():
 		initial_state.Enter()
 		
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if current_state:
 		current_state.Update(delta)
 	
-func _physics_process(delta):
+func _physics_process(delta: float) -> void:
 	if current_state:
 		current_state.Physics_Update(delta)
 		
-func on_child_transition(state, new_state_name):
+func on_child_transition(state, new_state_name) -> void:
 	# if the passed in state doesn't match the current state, return
 	if state != current_state:
 		return
 	
 	# set new state, return if it doesn't work
-	var new_state = states.get(new_state_name.to_lower())
+	var new_state : State = states.get(new_state_name.to_lower())
 	if !new_state:
 		return
 	
@@ -48,5 +48,5 @@ func on_child_transition(state, new_state_name):
 	new_state.Enter()
 	current_state = new_state
 
-func check_if_can_move():
+func check_if_can_move() -> bool:
 	return current_state.can_move

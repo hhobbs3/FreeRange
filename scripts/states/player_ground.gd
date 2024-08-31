@@ -12,14 +12,14 @@ var is_sliding : bool = false
 var jump_buffer : bool = false
 @export var jump_buffer_time : float = 0.1
 
-func Enter():
+func Enter() -> void:
 	player.extra_jumps_count = 0
 	is_sliding = false
 	
-func Update(_delta: float):
+func Update(_delta: float) -> void:
 	pass
 
-func Physics_Update(delta: float):
+func Physics_Update(delta: float) -> void:
 	# DIE
 	if player.current_health <= 0:
 			Transitioned.emit(self, "Die")
@@ -56,15 +56,15 @@ func Physics_Update(delta: float):
 			player.velocity.x = direction.x * player.speed
 		else:
 			player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
-
 		# Dash
 		if Input.is_action_just_pressed("dash") and player.can_dash:
 			dash()
 		# Slide
 		if Input.is_action_just_pressed("slide"):
 			slide()
-		if abs(player.velocity.x) > 200 and Input.is_action_just_pressed('move_down'):
+		if abs(player.velocity.x) > 100 and Input.is_action_just_pressed('move_down'):
 			slide()
+			
 	# APPLY MOVEMENT
 	player.move_and_slide()
 		
@@ -74,22 +74,22 @@ func jump()-> void:
 	player.velocity.y = player.jump_velocity
 	playback.travel(jump_animation)
 	
-func dash():
+func dash() -> void:
 	player.speed += player.SPEED_INCREMENT
 	player.can_dash = false
 	timer.start(2)
 	playback.travel("dash")
 	
-func slide():
+func slide() -> void:
 	playback.travel("slide")
 	player.can_dash = true
 	timer.stop() # cancle decelleration 
 	is_sliding = true
 
-func _on_timer_timeout():
+func _on_timer_timeout() -> void:
 	player.speed = player.BASE_SPEED
 	player.can_dash = true
 
-func _on_timer_jump_buffer_timeout():
+func _on_timer_jump_buffer_timeout() -> void:
 	if !player.is_on_floor():
 		Transitioned.emit(self, 'Air')

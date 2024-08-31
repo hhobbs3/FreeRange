@@ -14,8 +14,8 @@ var speed : float = BASE_SPEED
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var fall_gravity = gravity * 1.5
+var gravity : float = ProjectSettings.get_setting("physics/2d/default_gravity")
+var fall_gravity : float = gravity * 1.5
 
 # SPRITE
 @export var sprite_player : Sprite2D
@@ -25,12 +25,12 @@ var fall_gravity = gravity * 1.5
 @onready var collision_shape_hitbox : CollisionShape2D = $Hitbox/CollisionShapeHitbox
 
 
-@onready var player_sprite_attack_box = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
+@onready var player_sprite_attack_box : Sprite2D = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack/PlayerSpriteAttackBox
 @onready var state_machine : StateMachine = $StateMachine
 
 # APENDAGES
-@onready var hand_main = $HandMain
-@onready var hand_off = $HandOff
+@onready var hand_main : Arm2D = $HandMain
+@onready var hand_off : Arm2D = $HandOff
 
 
 @export var knockback_power: int = 400
@@ -47,13 +47,13 @@ var dive_velocity : float = 400
 var wall_jump_velocity : float = 10000
 
 # HEALTH
-@onready var hurt_timer = Timer
-@export var max_health = 3
+@onready var hurt_timer: Timer = $Timer
+@export var max_health : int = 3
 @onready var current_health: int = max_health
 var is_hurt: bool = false
 
 # ATTACK
-@onready var player_collision_horizontal_attack = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
+@onready var player_collision_horizontal_attack : CollisionShape2D = $PlayerHorizontalAttack/PlayerCollisionHorizontalAttack
 var is_attacking: bool = false
 
 
@@ -62,13 +62,13 @@ signal facing_direction_changed(facing_right : bool)
 # animation player stuff
 @onready var animation_tree : AnimationTree = $AnimationTree
 
-func _ready():
+func _ready() -> void:
 	animation_tree.active = true
 
-func _physics_process(delta):
+func _physics_process(_delta : float) -> void:
 
 	# Get the input direction
-	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
+	var direction : Vector2 = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	# Play animations
 	update_animation(direction)
 	# Flip the Sprite
@@ -76,12 +76,11 @@ func _physics_process(delta):
 
 	emit_signal("facing_direction_changed", !sprite_player.flip_h)
 
-func update_animation(direction):
+func update_animation(direction : Vector2) -> void:
 	animation_tree.set('parameters/Move/blend_position', direction.x)
 
-func update_facing_direction(direction):
-	var mouse_pos = get_global_mouse_position()
-	var relative_position = global_position - get_global_mouse_position()
+func update_facing_direction(_direction : Vector2) -> void:
+	var relative_position : Vector2 = global_position - get_global_mouse_position()
 	print(relative_position)
 	# Flip the Sprite
 	if relative_position.x > 0: # alt direction.x
@@ -100,8 +99,9 @@ func update_facing_direction(direction):
 			hand_off.z_index = 2
 		
 		player_collision_horizontal_attack.position.x = -15
-
-func hurtByEnemy(area):
+	
+# don't remember if needed...
+func hurtByEnemy(area) -> void:
 	current_health -= 10
 	if current_health < 0:
 		current_health = max_health
@@ -114,23 +114,23 @@ func hurtByEnemy(area):
 	sprite_player.play('reset')
 	is_hurt = false
 	
-func knockback(enemy_velocity: Vector2):
+func knockback(enemy_velocity: Vector2) -> void:
 	var knockback_direction = (enemy_velocity - velocity).normalized() * knockback_power
 	velocity = knockback_direction
 	move_and_slide()
 
 
-func _on_area_2d_body_entered(body):
+func _on_area_2d_body_entered(body) -> void:
 	if body.is_in_group('Hit'):
 		body.take_damage()
 	else:
 		pass
 		
-func _on_area_2d_chicken_hitbox_area_entered(area):
+func _on_area_2d_chicken_hitbox_area_entered(area) -> void:
 	if area.is_in_group('enemy_attack'):
 		take_damage(1)
 		
-func take_damage(damage):
+func take_damage(damage) -> void:
 	current_health -= damage
 	velocity.y -= 100
 	if current_health <= 0:
@@ -140,7 +140,7 @@ func take_damage(damage):
 		# Transitioned.emit(self, "Die")
 
 
-func update_collision_shape(r: float, h: float, r_deg: float, pos_y: int):
+func update_collision_shape(r: float, h: float, r_deg: float, pos_y: int) -> void:
 	# rotation, height, rotation degrees
 	# standing = 7, 40, 0, -20
 	# crouching = 9, 20, 0, -10

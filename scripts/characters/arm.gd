@@ -7,18 +7,17 @@ var sword = preload("res://scenes/weapons/sword.tscn")
 @export var button : String
 @export var weapon_type : String
 @export var parent_body : CharacterBody2D
-@onready var shoulder_point = $ShoulderPoint
-@onready var hand_point = $ShoulderPoint/ArmSprite/HandPoint
-@onready var hand_point_sword = $ShoulderPoint/ArmSprite/HandPointSword
-@onready var hand_point_gun = $ShoulderPoint/ArmSprite/HandPointGun
-@onready var arm_sprite = $ShoulderPoint/ArmSprite
-@onready var weapons = $ShoulderPoint/ArmSprite/Weapons
+@onready var shoulder_point : Node2D = $ShoulderPoint
+@onready var hand_point : Node2D = $ShoulderPoint/ArmSprite/HandPoint
+@onready var hand_point_sword : Node2D = $ShoulderPoint/ArmSprite/HandPointSword
+@onready var hand_point_gun : Node2D = $ShoulderPoint/ArmSprite/HandPointGun
+@onready var arm_sprite : Sprite2D = $ShoulderPoint/ArmSprite
 @onready var weapon : Weapon2D
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player : AnimationPlayer = $AnimationPlayer
 @onready var guard_position : Vector2
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	var hand_point_position = Vector2.ZERO
 	match weapon_type:
 		'sword':
@@ -41,10 +40,10 @@ func _ready():
 			shoulder_point.position += Vector2(2,2)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(delta : float) -> void:
 	hand_attack(weapon, button)
 
-func hand_attack(weapon: Weapon2D, button_pressed: String):
+func hand_attack(weapon: Weapon2D, button_pressed: String) -> void:
 	if weapon:
 		if weapon.guard_weapon:
 			update_guard_direction()
@@ -55,7 +54,7 @@ func hand_attack(weapon: Weapon2D, button_pressed: String):
 				animate_guard_position() 
 			weapon.attack()
 
-func update_facing_direction():
+func update_facing_direction() -> void:
 	var mouse_pos = get_global_mouse_position()
 	var relative_mouse_position = mouse_pos - global_position
 	# Flip the sprite
@@ -63,7 +62,7 @@ func update_facing_direction():
 
 	shoulder_point.look_at(mouse_pos)
 	
-func update_guard_direction():
+func update_guard_direction() -> void:
 	var weapon_position = global_position
 	var relative_position = weapon_position - get_global_mouse_position()
 	var x = 0
@@ -85,7 +84,7 @@ func update_guard_direction():
 	flip_sprite(relative_position.x * -1)
 
 		
-func flip_sprite(relative_position_x: int):
+func flip_sprite(relative_position_x: int) -> void:
 	# Flip the arm sprite
 	if relative_position_x > 0:
 		arm_sprite.flip_v = false
@@ -101,7 +100,7 @@ func flip_sprite(relative_position_x: int):
 		'hand_off':
 			z_index = parent_body.z_index + 10 * (-1 * int(relative_position_x > 0))
 	
-func animate_guard_position():
+func animate_guard_position() -> void:
 	var animation = 'stab'
 	print(guard_position)
 	if abs(guard_position.y) > 0:

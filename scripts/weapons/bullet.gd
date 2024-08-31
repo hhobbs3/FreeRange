@@ -1,7 +1,7 @@
 extends RigidBody2D
 var explosion = preload('res://scenes/weapons/explosion.tscn')
 
-func _on_body_entered(body):
+func _on_body_entered(body) -> void:
 	# print(body)
 	if !body.is_in_group("player"):
 		# explosion isn't working well for me right now, maybe shift
