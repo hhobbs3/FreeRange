@@ -1,7 +1,9 @@
 extends StatePlayer
 class_name PlayerAir
+# CONTROLS
+@export var c_dive : String = "shift"
+
 @export var air_jump : String = "air_jump"
-@export var dive : String = "slide"
 @export var landing_animation : String = "landing"
 
 var wall_slide_gravity : float = gravity / 2
@@ -59,7 +61,7 @@ func Physics_Update(delta: float) -> void:
 		player.velocity.y = player.jump_velocity / 4
 
 	# DIVE
-	if Input.is_action_just_pressed(dive):
+	if Input.is_action_just_pressed(c_dive):
 		air_dive(direction.x)
 		
 	player.move_and_slide()
