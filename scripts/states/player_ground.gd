@@ -7,38 +7,28 @@ class_name PlayerGround
 @onready var timer_jump_buffer = $TimerJumpBuffer
 @onready var state_machine = $".."
 
+var is_sliding : bool = false
+
 var jump_buffer : bool = false
 @export var jump_buffer_time : float = 0.1
 
 func Enter():
 	player.extra_jumps_count = 0
+	is_sliding = false
 	
 func Update(_delta: float):
 	pass
 
-func Physics_Update(_delta: float):
+func Physics_Update(delta: float):
+	# DIE
 	if player.current_health <= 0:
 			Transitioned.emit(self, "Die")
 	
-	# APPLY MOVEMENT
-	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
-	if direction.x && state_machine.check_if_can_move():
-		player.velocity.x = direction.x * player.speed
-	else:
-		player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
-
-	# Lost momentum
+	# LOST MOMENTUM
 	if player.velocity.length() == 0:
 		timer.start(1)
-
-	# Dash
-	if Input.is_action_just_pressed("dash") and player.can_dash:
-		dash()
-	# Slide
-	if Input.is_action_just_pressed("slide"):
-		slide()
-	
-	# Jump
+		
+	#JUMP
 	if !player.is_on_floor() and player.on_ground == true:
 		# jump buffer
 		player.on_ground = false
@@ -51,10 +41,30 @@ func Physics_Update(_delta: float):
 	if Input.is_action_just_released('jump') and player.velocity.y < 0:
 		# jump cutting
 		player.velocity.y = player.jump_velocity / 4
-		Transitioned.emit(self, "Air")
+		Transitioned.emit(self, "Air")# 
 	
-	if Input.is_action_just_pressed("gun"):
-		Transitioned.emit(self, "Gun")
+	if is_sliding:
+		if abs(player.velocity.x) < 10:
+			is_sliding = false
+		player.velocity.x += -player.velocity.x / 50
+	else:
+		print('not sliding')
+	
+		# APPLY MOVEMENT
+		var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+		if direction.x && state_machine.check_if_can_move():
+			player.velocity.x = direction.x * player.speed
+		else:
+			player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
+
+		# Dash
+		if Input.is_action_just_pressed("dash") and player.can_dash:
+			dash()
+		# Slide
+		if Input.is_action_just_pressed("slide"):
+			slide()
+		if abs(player.velocity.x) > 200 and Input.is_action_just_pressed('move_down'):
+			slide()
 	# APPLY MOVEMENT
 	player.move_and_slide()
 		
@@ -74,6 +84,7 @@ func slide():
 	playback.travel("slide")
 	player.can_dash = true
 	timer.stop() # cancle decelleration 
+	is_sliding = true
 
 func _on_timer_timeout():
 	player.speed = player.BASE_SPEED
@@ -82,4 +93,3 @@ func _on_timer_timeout():
 func _on_timer_jump_buffer_timeout():
 	if !player.is_on_floor():
 		Transitioned.emit(self, 'Air')
-	
