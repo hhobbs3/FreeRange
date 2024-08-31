@@ -8,12 +8,14 @@ var wall_slide_gravity : float = gravity / 2
 var is_wall_sliding : bool = false
 var do_wall_jump : bool = false
 
-@onready var timer_wall_jump : Timer = $TimerWallJump
+var can_dive : bool = true
 
+@onready var timer_wall_jump : Timer = $TimerWallJump
+@onready var state_machine: StateMachine = $".."
 
 
 func Enter() -> void:
-	pass
+	can_dive = true
 	
 func Exit() -> void:
 	if playback:
@@ -22,8 +24,13 @@ func Exit() -> void:
 func Update(_delta: float) -> void:
 	pass
 
-func Physics_Update(delta: float) -> void:
-	var direction : float = Input.get_axis('move_left', 'move_right')
+func Physics_Update(delta: float) -> void:	
+	# GENERAL MOVEMENT
+	var direction = Input.get_vector("move_left", "move_right", "look_up", "look_down")
+	if direction.x && state_machine.check_if_can_move():
+		player.velocity.x = direction.x * player.speed
+	else:
+		player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
 	
 	# DOWNWARD VELOCITY
 	if player.is_on_wall_only() and (Input.is_action_pressed('move_left') or Input.is_action_pressed('move_right')):
@@ -43,11 +50,11 @@ func Physics_Update(delta: float) -> void:
 	# WALL JUMP
 	if Input.is_action_just_pressed("jump") and player.is_on_wall_only():
 		jump()
-		player.velocity.x = -direction * player.BASE_SPEED
+		player.velocity.x += -direction.x * player.BASE_SPEED * 10
 		do_wall_jump = true
 		timer_wall_jump.start()
 
-	if direction and not do_wall_jump: player.velocity.x = direction * player.BASE_SPEED
+	if direction and not do_wall_jump: player.velocity.x = direction.x * player.BASE_SPEED
 	elif not do_wall_jump: player.velocity.x = move_toward(player.velocity.x, 0, player.BASE_SPEED)
 	
 	if Input.is_action_just_released('jump') and player.velocity.y < 0:
@@ -56,8 +63,9 @@ func Physics_Update(delta: float) -> void:
 
 	# DIVE
 	if Input.is_action_just_pressed(dive):
-		air_dive(direction)
+		air_dive(direction.x)
 		
+	player.move_and_slide()
 func jump()-> void:
 	player.velocity.y = player.jump_velocity
 	playback.travel('jump')
@@ -69,9 +77,10 @@ func extra_jump() -> void:
 		player.extra_jumps_count += 1
 
 func air_dive(direction: float) -> void:
-	# it animates but doesn't actually affect velocity
-	player.velocity.x += player.dive_velocity * direction * 10000
-	playback.travel("dive")
+	if can_dive:
+		player.velocity.x += player.dive_velocity * direction * 10
+		playback.travel("dive")
+		can_dive = false
 
 
 func _on_timer_wall_jump_timeout() -> void:

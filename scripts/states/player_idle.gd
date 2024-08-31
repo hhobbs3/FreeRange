@@ -28,5 +28,3 @@ func Physics_Update(_delta: float):
 	# Attack
 	
 	# Idle
-
-

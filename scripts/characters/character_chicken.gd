@@ -79,4 +79,3 @@ func ai_controll(_delta):
 	else:
 		animated_sprite_2d.flip_h = true
 		
-

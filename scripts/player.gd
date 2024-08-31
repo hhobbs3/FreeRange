@@ -5,7 +5,7 @@ signal health_changed
 
 # DASH
 var can_dash : bool = true
-const BASE_SPEED : float = 150.0
+const BASE_SPEED : float = 200.0
 const SPEED_INCREMENT : float = 50.0
 var speed : float = BASE_SPEED
 

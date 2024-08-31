@@ -17,4 +17,3 @@ func _on_timer_timeout():
 	var enemy2 = enemy_test.instantiate()
 	enemy2.position = Vector2(randi_range(0, 20), -100)
 	add_child(enemy2)
-

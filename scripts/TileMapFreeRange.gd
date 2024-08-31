@@ -29,5 +29,3 @@ func generate_chunk(player_position):
 		set_cell(0, Vector2i(tile_pos.x-width/2.0 + x, 0), 0, Vector2(round(g+2), 6))
 		for y in range(height):
 			set_cell(0, Vector2i(tile_pos.x-width/2.0 + x, 1 + y), 0, Vector2(0, 7))
-
-
