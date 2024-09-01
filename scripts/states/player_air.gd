@@ -9,6 +9,8 @@ class_name PlayerAir
 var wall_slide_gravity : float = gravity / 2
 var is_wall_sliding : bool = false
 var do_wall_jump : bool = false
+var lock_left : bool = false
+var lock_right: bool = false
 
 var can_dive : bool = true
 
@@ -30,7 +32,8 @@ func Physics_Update(delta: float) -> void:
 	# GENERAL MOVEMENT
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	if direction.x && state_machine.check_if_can_move():
-		player.velocity.x = direction.x * player.speed
+		if (direction.x > 0 and !lock_left) or (direction.x < 0 and !lock_right):
+			player.velocity.x = direction.x * player.speed / 2
 	else:
 		player.velocity.x = move_toward(player.velocity.x, 0, player.speed)
 	
@@ -86,9 +89,15 @@ func air_dive(horizontal_direction: float) -> void:
 
 func wall_jump(horizontal_direction: float) -> void: 
 	jump()
-	player.velocity.x += -horizontal_direction * player.BASE_SPEED * 10
+	player.velocity.x += -horizontal_direction * player.BASE_SPEED
 	do_wall_jump = true
-	timer_wall_jump.start()
+	timer_wall_jump.start(1)
+	if horizontal_direction > 0:
+		lock_left = true
+	if horizontal_direction < 0:
+		lock_right = true
 
 func _on_timer_wall_jump_timeout() -> void:
 	do_wall_jump = false
+	lock_left = false
+	lock_right = false
