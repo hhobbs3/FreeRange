@@ -14,8 +14,8 @@ gradient = SubResource("Gradient_yjo1e")
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[sub_resource type="Animation" id="Animation_ew3es"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_ioodb"]
+length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -29,8 +29,8 @@ tracks/0/keys = {
 "values": [3]
 }
 
-[sub_resource type="Animation" id="Animation_ioodb"]
-length = 0.001
+[sub_resource type="Animation" id="Animation_ew3es"]
+resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
