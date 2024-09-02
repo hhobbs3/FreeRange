@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=4 uid="uid://dyjyni2mxq5tf"]
+
+[ext_resource type="PackedScene" uid="uid://dijaqt2anlow7" path="res://scenes/characters/player/player.tscn" id="1_vu4ym"]
+[ext_resource type="Texture2D" uid="uid://6wmwu7a8li1d" path="res://assets/sprites/tile_maps/simple_tiles.png" id="2_etc8m"]
+[ext_resource type="Texture2D" uid="uid://dbq3jb6ywkef6" path="res://assets/sprites/characters/normal_map_test.png" id="2_mrksi"]
+[ext_resource type="Texture2D" uid="uid://dixbec2lk2857" path="res://assets/sprites/characters/normal_map_test2.png" id="3_r1c1u"]
+
+[sub_resource type="Gradient" id="Gradient_yjo1e"]
+offsets = PackedFloat32Array(0, 0.651399)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gfp8t"]
+gradient = SubResource("Gradient_yjo1e")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="Animation" id="Animation_ew3es"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayerCustom/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_ioodb"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimationPlayerCustom/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n6uh8"]
+_data = {
+"RESET": SubResource("Animation_ioodb"),
+"idle": SubResource("Animation_ew3es")
+}
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yl1jr"]
+diffuse_texture = ExtResource("2_mrksi")
+normal_texture = ExtResource("3_r1c1u")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2u4q1"]
+texture = ExtResource("2_etc8m")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+0:3/0 = 0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_x071a"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_2u4q1")
+
+[node name="Map04Visual" type="Node2D"]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(105, -57)
+scale = Vector2(41.75, 31.25)
+color = Color(0.829255, 0.812184, 0.163689, 1)
+energy = 3.0
+texture = SubResource("GradientTexture2D_gfp8t")
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(23, -34)
+scale = Vector2(41.75, 31.25)
+color = Color(0.298669, 0.000564285, 0.797375, 1)
+texture = SubResource("GradientTexture2D_gfp8t")
+
+[node name="Player" parent="." instance=ExtResource("1_vu4ym")]
+
+[node name="AnimationPlayerCustom" type="AnimationPlayer" parent="Player"]
+libraries = {
+"": SubResource("AnimationLibrary_n6uh8")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/AnimationPlayerCustom"]
+position = Vector2(51, -8)
+texture = SubResource("CanvasTexture_yl1jr")
+hframes = 8
+vframes = 8
+frame = 3
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAD2/wEAAAAAAAMAAAD3/wEAAAAAAAMAAAD4/wEAAAAAAAMAAAD5/wEAAAAAAAMAAAD6/wEAAAAAAAMAAAD7/wEAAAAAAAMAAAD8/wEAAAAAAAMAAAD9/wEAAAAAAAMAAAD+/wEAAAAAAAMAAAD//wEAAAAAAAMAAAAAAAEAAAAAAAMAAAABAAEAAAAAAAMAAAACAAEAAAAAAAMAAAADAAEAAAAAAAMAAAAEAAEAAAAAAAMAAAAFAAEAAAAAAAMAAAAGAAEAAAAAAAMAAAAHAAEAAAAAAAMAAAAIAAEAAAAAAAMAAAAJAAEAAAAAAAMAAAAKAAEAAAAAAAMAAAALAAEAAAAAAAMAAAAMAAEAAAAAAAMAAAANAAEAAAAAAAMAAAAOAAEAAAAAAAMAAAAPAAEAAAAAAAMAAAAQAAEAAAAAAAMAAAA=")
+tile_set = SubResource("TileSet_x071a")
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+position = Vector2(14, -90)
+color = Color(0.137042, 0.0921514, 0, 1)
+energy = 4.95
+blend_mode = 1
+height = 0.65

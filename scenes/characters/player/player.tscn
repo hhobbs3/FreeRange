@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dijaqt2anlow7"]
+[gd_scene load_steps=58 format=3 uid="uid://dijaqt2anlow7"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_ycpnw"]
 [ext_resource type="Texture2D" uid="uid://dc8kyj1t8fbpl" path="res://assets/sprites/characters/simple.png" id="2_6ao02"]
@@ -10,9 +10,15 @@
 [ext_resource type="Script" path="res://scripts/states/player_air.gd" id="12_riolk"]
 [ext_resource type="Script" path="res://scripts/states/player_landing.gd" id="13_7638h"]
 [ext_resource type="Script" path="res://scripts/states/player_die.gd" id="14_0wbdr"]
+[ext_resource type="Texture2D" uid="uid://dbq3jb6ywkef6" path="res://assets/sprites/characters/normal_map_test.png" id="14_masty"]
 [ext_resource type="Script" path="res://scripts/states/player_attack.gd" id="15_fy6u2"]
+[ext_resource type="Texture2D" uid="uid://dixbec2lk2857" path="res://assets/sprites/characters/normal_map_test2.png" id="15_uiqyt"]
 [ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="16_4jjnf"]
 [ext_resource type="AudioStream" uid="uid://b56gkk1frjf" path="res://assets/sounds/chicken-noise-228106.mp3" id="17_o12ag"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_885ko"]
+diffuse_texture = ExtResource("14_masty")
+normal_texture = ExtResource("15_uiqyt")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rj8fv"]
 radius = 9.0
@@ -95,7 +101,7 @@ tracks/1/keys = {
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
-tracks/0/enabled = true
+tracks/0/enabled = false
 tracks/0/path = NodePath("SpriteCapsule:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
@@ -118,6 +124,18 @@ tracks/1/keys = {
 "args": [7, 40, 0, -20],
 "method": &"update_collision_shape"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SpriteKnight:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
 }
 
 [sub_resource type="Animation" id="Animation_or228"]
@@ -294,8 +312,24 @@ tracks/1/keys = {
 }]
 }
 
+[sub_resource type="Animation" id="Animation_xklhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpriteKnight:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xr5fy"]
 _data = {
+"RESET": SubResource("Animation_xklhg"),
 "crouch": SubResource("Animation_4xvml"),
 "dash": SubResource("Animation_0f77n"),
 "dive": SubResource("Animation_wu1oo"),
@@ -390,7 +424,7 @@ states/run/position = Vector2(601, 278.175)
 states/slide/node = SubResource("AnimationNodeAnimation_xtcuv")
 states/slide/position = Vector2(601, 100)
 transitions = ["jump", "air_jump", SubResource("AnimationNodeStateMachineTransition_kjibx"), "air_jump", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx"), "jump", "dive", SubResource("AnimationNodeStateMachineTransition_3e75c"), "dive", "landing", SubResource("AnimationNodeStateMachineTransition_51r53"), "air_jump", "dive", SubResource("AnimationNodeStateMachineTransition_n0qq2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_3ylf4"), "landing", "idle", SubResource("AnimationNodeStateMachineTransition_ubktn"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_e3iy8"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_ipgyi"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_pw0e5"), "idle", "crouch", SubResource("AnimationNodeStateMachineTransition_jja4p"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_gdm4c"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_r01ih"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_hlgf2"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_8tlox"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_le6bk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_5tnnh"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_da1iu")]
-graph_offset = Vector2(-170, 22.175)
+graph_offset = Vector2(-84, -226.382)
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite_player") groups=["player"]]
 z_index = 1
@@ -398,7 +432,15 @@ collision_layer = 2
 script = ExtResource("1_ycpnw")
 sprite_player = NodePath("SpriteCapsule")
 
+[node name="SpriteKnight" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = SubResource("CanvasTexture_885ko")
+hframes = 8
+vframes = 8
+frame = 3
+
 [node name="SpriteCapsule" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(0, -24)
 texture = ExtResource("2_6ao02")
 hframes = 8

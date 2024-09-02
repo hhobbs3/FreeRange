@@ -33,3 +33,7 @@ func _on_terrain_pressed() -> void:
 
 func _on_simple_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/maps/map_03_simplified.tscn")
+
+
+func _on_visual_test_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/maps/map_04_visual.tscn")

@@ -68,6 +68,14 @@ offset_right = 249.0
 offset_bottom = 374.0
 text = "Simple"
 
+[node name="VisualTest" type="Button" parent="ButtonManager"]
+layout_mode = 0
+offset_left = 105.0
+offset_top = 387.0
+offset_right = 248.0
+offset_bottom = 428.0
+text = "Visual Test"
+
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="ButtonManager/Demo" to="." method="_on_demo_pressed"]
 [connection signal="pressed" from="ButtonManager/Free Range" to="." method="_on_free_range_pressed"]
@@ -75,3 +83,4 @@ text = "Simple"
 [connection signal="pressed" from="ButtonManager/Gun" to="." method="_on_gun_pressed"]
 [connection signal="pressed" from="ButtonManager/Terrain" to="." method="_on_terrain_pressed"]
 [connection signal="pressed" from="ButtonManager/Simple" to="." method="_on_simple_pressed"]
+[connection signal="pressed" from="ButtonManager/VisualTest" to="." method="_on_visual_test_pressed"]

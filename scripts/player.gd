@@ -19,6 +19,7 @@ var fall_gravity : float = gravity * 1.5
 
 # SPRITE
 @export var sprite_player : Sprite2D
+@onready var animation_player_custom: AnimationPlayer = $AnimationPlayerCustom
 
 # collision
 @onready var collision_shape : CollisionShape2D = $CollisionShape
@@ -64,6 +65,7 @@ signal facing_direction_changed(facing_right : bool)
 
 func _ready() -> void:
 	animation_tree.active = true
+	
 
 func _physics_process(_delta : float) -> void:
 
