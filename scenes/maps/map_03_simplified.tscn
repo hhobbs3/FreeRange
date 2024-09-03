@@ -29,8 +29,7 @@ sources/0 = SubResource("TileSetAtlasSource_gfitv")
 
 [node name="Map03Simplified" type="Node2D"]
 
-[node name="Player" parent="." node_paths=PackedStringArray("sprite_player") instance=ExtResource("1_nguvr")]
-sprite_player = NodePath("../SpriteSimple")
+[node name="Player" parent="." instance=ExtResource("1_nguvr")]
 
 [node name="0" type="CanvasLayer" parent="."]
 layer = 0

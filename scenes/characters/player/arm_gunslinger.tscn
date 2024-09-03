@@ -166,7 +166,7 @@ z_index = 2
 texture = ExtResource("2_lsv5l")
 hframes = 8
 vframes = 8
-frame = 1
+frame = 16
 
 [node name="HandPoint" type="Node2D" parent="ShoulderPoint/ArmSprite"]
 position = Vector2(6, 0)

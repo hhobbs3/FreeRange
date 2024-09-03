@@ -175,11 +175,10 @@ states/landing/position = Vector2(482, -34)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_1oafc"), "jump", "flap", SubResource("AnimationNodeStateMachineTransition_kjibx"), "Move", "jump", SubResource("AnimationNodeStateMachineTransition_gbrmh"), "flap", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "landing", "Move", SubResource("AnimationNodeStateMachineTransition_uxlt8"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx")]
 graph_offset = Vector2(-168, -273)
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprite_player") groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_index = 1
 collision_layer = 2
 script = ExtResource("1_5iih4")
-sprite_player = NodePath("SpriteChicken")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
