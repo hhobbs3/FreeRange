@@ -19,13 +19,15 @@ var fall_gravity : float = gravity * 1.5
 
 # SPRITE
 @onready var animation_player_custom: AnimationPlayer = $AnimationPlayerCustom
-@onready var sprite_torso: Sprite2D = $Sprites/SpriteTorso
-@onready var head_point: Node2D = $Sprites/HeadPoint
-@onready var sprite_heads: Sprite2D = $Sprites/HeadPoint/SpriteHeads
+@onready var sprite_torso: Sprite2D = $Sprites/PointTorso/SpriteTorso
+@onready var point_arm_far: Node2D = $Sprites/PointArmFar
+@onready var point_head: Node2D = $Sprites/PointHead
+@onready var point_arm_near: Node2D = $Sprites/PointArmNear
+@onready var point_legs: Node2D = $Sprites/PointLegs
+@onready var sprite_heads: Sprite2D = $Sprites/PointHead/SpriteHeads
+
 const sprite_head_pos: Array[int] = [2, -100]
-@onready var sprite_arm_far: Sprite2D = $Sprites/SpriteArmFar
-@onready var sprite_arm_near: Sprite2D = $Sprites/SpriteArmNear
-@onready var sprite_legs: Sprite2D = $Sprites/SpriteLegs
+
 @onready var sprites: Node2D = $Sprites
 
 
@@ -95,10 +97,16 @@ func update_facing_direction(_direction : Vector2) -> void:
 	# Flip the Sprite
 	if relative_position.x > 0: # alt direction.x
 		print('x>0')
+		sprites.scale.x = -1
+		'''
 		sprite_torso.flip_h = true
 		# sprite_heads.flip_h = true
-		head_point.scale.x = -1
+		point_head.scale.x = -1
+		point_arm_far.scale.x = -1
+		point_arm_near.scale.x = -1
+		point_legs.scale.x = -1
 		sprite_heads.position.x = sprite_head_pos[1]
+		'''
 		if hand_main:
 			hand_main.z_index  = 2
 			hand_off.z_index = -1
@@ -106,10 +114,16 @@ func update_facing_direction(_direction : Vector2) -> void:
 		player_collision_horizontal_attack.position.x = 15
 	elif relative_position.x < 0:
 		print('x<0')
+		sprites.scale.x = 1
+		'''
 		sprite_torso.flip_h = false
 		# sprite_heads.flip_h = false
-		head_point.scale.x = 1
+		point_head.scale.x = 1
+		point_arm_far.scale.x = 1
+		point_arm_near.scale.x = 1
+		point_legs.scale.x = 1
 		sprite_heads.position.x = sprite_head_pos[0]
+		'''
 		if hand_main:
 			hand_main.z_index  = -1
 			hand_off.z_index = 2
