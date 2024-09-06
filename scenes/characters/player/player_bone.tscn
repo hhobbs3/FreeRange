@@ -1,0 +1,224 @@
+[gd_scene load_steps=10 format=3 uid="uid://d1ti8ceoax5l8"]
+
+[ext_resource type="Texture2D" uid="uid://cgj2sf0lgvrxo" path="res://assets/sprites/characters/knight_doll.png" id="1_u1wlo"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0c23w"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pgvng"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_f48lj"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_oi0pe"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_if45n"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vy0lk"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_klqn1"]
+diffuse_texture = ExtResource("1_u1wlo")
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_uvhni"]
+
+[node name="PlayerBone" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_u1wlo")
+
+[node name="Polygons" type="Node2D" parent="."]
+
+[node name="ArmL" type="Polygon2D" parent="Polygons"]
+position = Vector2(-91, -32)
+texture = SubResource("CanvasTexture_0c23w")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(91.9779, 26.3248, 91.7032, 30.0796, 96.3738, 35.7118, 100.999, 35.9866, 103.059, 34.0634, 102.83, 30.8123, 97.3812, 25.0885, 93.7638, 24.8595, 95.0001, 28.1106, 99.396, 32.9186)
+uv = PackedVector2Array(91.9779, 26.3248, 91.7032, 30.0796, 96.3738, 35.7118, 100.999, 35.9866, 103.059, 34.0634, 102.83, 30.8123, 97.3812, 25.0885, 93.7638, 24.8595, 95.0001, 28.1106, 99.396, 32.9186)
+polygons = [PackedInt32Array(8, 0, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(8, 1, 0), PackedInt32Array(8, 9, 2, 1), PackedInt32Array(8, 6, 5, 9), PackedInt32Array(9, 5, 4), PackedInt32Array(9, 3, 4), PackedInt32Array(9, 2, 3)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR/WeaponR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso/ArmL/HandL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL/HandL/WeaponL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 2
+
+[node name="HandL" type="Polygon2D" parent="Polygons"]
+position = Vector2(-81, -35)
+texture = SubResource("CanvasTexture_pgvng")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(86.8693, 37.0861, 86.911, 44.5374, 87.9933, 45.9111, 91.6565, 45.703, 92.9053, 44.2044, 92.5307, 36.7947, 90.9905, 35.2961, 88.1598, 35.3378, 89.7833, 37.211, 89.7416, 43.7049)
+uv = PackedVector2Array(86.8693, 37.0861, 86.911, 44.5374, 87.9933, 45.9111, 91.6565, 45.703, 92.9053, 44.2044, 92.5307, 36.7947, 90.9905, 35.2961, 88.1598, 35.3378, 89.7833, 37.211, 89.7416, 43.7049)
+polygons = [PackedInt32Array(8, 0, 7), PackedInt32Array(8, 6, 7), PackedInt32Array(8, 6, 5), PackedInt32Array(8, 9, 4, 5), PackedInt32Array(8, 0, 1, 9), PackedInt32Array(9, 2, 1), PackedInt32Array(9, 3, 2), PackedInt32Array(9, 4, 3)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR/WeaponR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL/HandL", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso/ArmL/HandL/WeaponL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 2
+
+[node name="Pelvis" type="Polygon2D" parent="Polygons"]
+position = Vector2(-80, -37)
+texture = SubResource("CanvasTexture_f48lj")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(76.4911, 40.3832, 84.4037, 40.4144, 85.8737, 41.6967, 85.905, 47.639, 84.5289, 49.9534, 76.6162, 49.5156, 74.0829, 46.4819, 74.0516, 41.384, 81.7141, 42.8852, 81.589, 46.7321)
+uv = PackedVector2Array(76.4911, 40.3832, 84.4037, 40.4144, 85.8737, 41.6967, 85.905, 47.639, 84.5289, 49.9534, 76.6162, 49.5156, 74.0829, 46.4819, 74.0516, 41.384, 81.7141, 42.8852, 81.589, 46.7321)
+polygons = [PackedInt32Array(8, 1, 2), PackedInt32Array(8, 9, 3, 2), PackedInt32Array(9, 4, 3), PackedInt32Array(9, 5, 4), PackedInt32Array(9, 5, 6), PackedInt32Array(9, 8, 7, 6), PackedInt32Array(8, 0, 1), PackedInt32Array(8, 0, 7)]
+bones = ["Pelvis", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 2
+
+[node name="Torso" type="Polygon2D" parent="Polygons"]
+position = Vector2(-80, -34)
+texture = SubResource("CanvasTexture_oi0pe")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(71.1832, 27.2551, 74.8007, 24.4161, 82.8597, 24.4161, 88.8125, 29.1783, 86.4314, 31.8799, 86.3856, 38.199, 85.5156, 40.6716, 76.037, 40.2137, 74.1596, 37.97, 74.3427, 31.6052, 71.1374, 28.7662, 80.6315, 31.8254, 80.8753, 35.6041)
+uv = PackedVector2Array(71.1832, 27.2551, 74.8007, 24.4161, 82.8597, 24.4161, 88.8125, 29.1783, 86.4314, 31.8799, 86.3856, 38.199, 85.5156, 40.6716, 76.037, 40.2137, 74.1596, 37.97, 74.3427, 31.6052, 71.1374, 28.7662, 80.6315, 31.8254, 80.8753, 35.6041)
+polygons = [PackedInt32Array(12, 5, 6), PackedInt32Array(12, 6, 7), PackedInt32Array(12, 8, 7), PackedInt32Array(12, 9, 8), PackedInt32Array(12, 4, 5), PackedInt32Array(12, 11, 4), PackedInt32Array(12, 9, 11), PackedInt32Array(11, 3, 4), PackedInt32Array(11, 2, 3), PackedInt32Array(11, 1, 2), PackedInt32Array(9, 1, 11), PackedInt32Array(0, 9, 10), PackedInt32Array(0, 1, 9)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 2
+
+[node name="Head" type="Polygon2D" parent="Polygons"]
+position = Vector2(-87, -30)
+texture = SubResource("CanvasTexture_if45n")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(82.2076, 15.0678, 82.1522, 20.9963, 87.0834, 25.7612, 92.347, 25.872, 94.7848, 23.0463, 94.9511, 13.9043, 92.7902, 12.3529, 85.255, 12.1867, 90.5186, 16.2313, 90.2415, 22.3814)
+uv = PackedVector2Array(82.2076, 15.0678, 82.1522, 20.9963, 87.0834, 25.7612, 92.347, 25.872, 94.7848, 23.0463, 94.9511, 13.9043, 92.7902, 12.3529, 85.255, 12.1867, 90.5186, 16.2313, 90.2415, 22.3814)
+polygons = [PackedInt32Array(8, 6, 5), PackedInt32Array(9, 8, 5, 4), PackedInt32Array(9, 3, 4), PackedInt32Array(9, 2, 3), PackedInt32Array(9, 1, 2), PackedInt32Array(9, 1, 0, 8), PackedInt32Array(8, 7, 0), PackedInt32Array(8, 7, 6)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)]
+internal_vertex_count = 2
+
+[node name="HandR" type="Polygon2D" parent="Polygons"]
+position = Vector2(-80, -34)
+texture = SubResource("CanvasTexture_vy0lk")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(66.1241, 36.612, 67.6566, 34.454, 70.5027, 34.4853, 71.6286, 36.612, 71.8475, 43.2111, 70.9405, 44.681, 67.594, 44.7749, 66.343, 43.1485, 68.9389, 36.7684, 69.0327, 42.8045)
+uv = PackedVector2Array(66.1241, 36.612, 67.6566, 34.454, 70.5027, 34.4853, 71.6286, 36.612, 71.8475, 43.2111, 70.9405, 44.681, 67.594, 44.7749, 66.343, 43.1485, 68.9389, 36.7684, 69.0327, 42.8045)
+polygons = [PackedInt32Array(8, 1, 0), PackedInt32Array(8, 1, 2), PackedInt32Array(8, 3, 2), PackedInt32Array(8, 9, 4, 3), PackedInt32Array(8, 0, 7, 9), PackedInt32Array(9, 6, 7), PackedInt32Array(9, 6, 5), PackedInt32Array(9, 5, 4)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso/ArmR/HandR/WeaponR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL/HandL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmL/HandL/WeaponL", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 2
+
+[node name="ArmR" type="Polygon2D" parent="Polygons"]
+position = Vector2(-73, -30)
+texture = SubResource("CanvasTexture_klqn1")
+skeleton = NodePath("../../Skeleton2D")
+polygon = PackedVector2Array(59.0879, 29.8933, 63.0218, 25.5162, 64.1853, 22.8013, 68.4516, 22.6905, 70.2246, 23.9094, 70.557, 27.7324, 69.2273, 29.1176, 64.684, 33.7163, 60.9717, 33.8825, 58.9217, 31.9433, 67.2731, 24.8879, 65.6561, 26.4705, 61.6654, 30.8052)
+uv = PackedVector2Array(59.0879, 29.8933, 63.0218, 25.5162, 64.1853, 22.8013, 68.4516, 22.6905, 70.2246, 23.9094, 70.557, 27.7324, 69.2273, 29.1176, 64.684, 33.7163, 60.9717, 33.8825, 58.9217, 31.9433, 67.2731, 24.8879, 65.6561, 26.4705, 61.6654, 30.8052)
+polygons = [PackedInt32Array(10, 3, 4), PackedInt32Array(10, 4, 5), PackedInt32Array(10, 2, 3), PackedInt32Array(10, 2, 1, 11), PackedInt32Array(10, 5, 6, 11), PackedInt32Array(11, 1, 0, 12), PackedInt32Array(11, 6, 7, 12), PackedInt32Array(12, 8, 7), PackedInt32Array(12, 8, 9), PackedInt32Array(12, 0, 9)]
+bones = ["Pelvis", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/Head", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR", PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1), "Pelvis/Torso/ArmR/HandR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0), "Pelvis/Torso/ArmR/HandR/WeaponR", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)]
+internal_vertex_count = 3
+
+[node name="ShinL" type="Polygon2D" parent="Polygons"]
+position = Vector2(-72.8708, -31.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(73.7408, 50.9424, 74.6109, 49.2024, 77.2667, 49.3855, 78.5488, 51.0798, 78.3199, 61.0163, 76.763, 62.8479, 74.0156, 62.7105, 72.8708, 61.1536, 76.0304, 51.3545, 75.4809, 60.8331)
+uv = PackedVector2Array(73.7408, 50.9424, 74.6109, 49.2024, 77.2667, 49.3855, 78.5488, 51.0798, 78.3199, 61.0163, 76.763, 62.8479, 74.0156, 62.7105, 72.8708, 61.1536, 76.0304, 51.3545, 75.4809, 60.8331)
+polygons = [PackedInt32Array(8, 0, 1), PackedInt32Array(8, 1, 2), PackedInt32Array(8, 3, 2), PackedInt32Array(7, 9, 6), PackedInt32Array(9, 5, 6), PackedInt32Array(9, 4, 5), PackedInt32Array(9, 8, 3, 4), PackedInt32Array(9, 7, 0, 8)]
+internal_vertex_count = 2
+
+[node name="ThighL" type="Polygon2D" parent="Polygons"]
+position = Vector2(-66.8708, -36.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(67.1089, 47.3879, 67.2751, 54.369, 68.9927, 57.5272, 72.3725, 57.638, 73.8684, 55.9758, 73.9792, 46.7784, 72.0954, 44.6176, 69.4913, 44.6176, 70.5995, 47.6649, 70.7657, 54.2028)
+uv = PackedVector2Array(67.1089, 47.3879, 67.2751, 54.369, 68.9927, 57.5272, 72.3725, 57.638, 73.8684, 55.9758, 73.9792, 46.7784, 72.0954, 44.6176, 69.4913, 44.6176, 70.5995, 47.6649, 70.7657, 54.2028)
+polygons = [PackedInt32Array(7, 8, 0), PackedInt32Array(7, 6, 8), PackedInt32Array(6, 5, 8), PackedInt32Array(8, 9, 1, 0), PackedInt32Array(8, 5, 4, 9), PackedInt32Array(9, 2, 1), PackedInt32Array(9, 3, 2), PackedInt32Array(9, 4, 3)]
+internal_vertex_count = 2
+
+[node name="FootL" type="Polygon2D" parent="Polygons"]
+position = Vector2(-66.8708, -35.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(66.9752, 62.2885, 67.0255, 66.5195, 72.818, 66.5195, 72.8684, 62.2381, 69.8966, 64.404)
+uv = PackedVector2Array(66.9752, 62.2885, 67.0255, 66.5195, 72.818, 66.5195, 72.8684, 62.2381, 69.8966, 64.404)
+polygons = [PackedInt32Array(4, 0, 3), PackedInt32Array(4, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(4, 0, 1)]
+internal_vertex_count = 1
+
+[node name="ShinR" type="Polygon2D" parent="Polygons"]
+position = Vector2(-79.8708, -31.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(73.7408, 50.9424, 74.6109, 49.2024, 77.2667, 49.3855, 78.5488, 51.0798, 78.3199, 61.0163, 76.763, 62.8479, 74.0156, 62.7105, 72.8708, 61.1536, 76.0304, 51.3545, 75.4809, 60.8331)
+uv = PackedVector2Array(73.7408, 50.9424, 74.6109, 49.2024, 77.2667, 49.3855, 78.5488, 51.0798, 78.3199, 61.0163, 76.763, 62.8479, 74.0156, 62.7105, 72.8708, 61.1536, 76.0304, 51.3545, 75.4809, 60.8331)
+polygons = [PackedInt32Array(8, 0, 1), PackedInt32Array(8, 1, 2), PackedInt32Array(8, 3, 2), PackedInt32Array(7, 9, 6), PackedInt32Array(9, 5, 6), PackedInt32Array(9, 4, 5), PackedInt32Array(9, 8, 3, 4), PackedInt32Array(9, 7, 0, 8)]
+internal_vertex_count = 2
+
+[node name="ThighR" type="Polygon2D" parent="Polygons"]
+position = Vector2(-73.8708, -36.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(67.1089, 47.3879, 67.2751, 54.369, 68.9927, 57.5272, 72.3725, 57.638, 73.8684, 55.9758, 73.9792, 46.7784, 72.0954, 44.6176, 69.4913, 44.6176, 70.5995, 47.6649, 70.7657, 54.2028)
+uv = PackedVector2Array(67.1089, 47.3879, 67.2751, 54.369, 68.9927, 57.5272, 72.3725, 57.638, 73.8684, 55.9758, 73.9792, 46.7784, 72.0954, 44.6176, 69.4913, 44.6176, 70.5995, 47.6649, 70.7657, 54.2028)
+polygons = [PackedInt32Array(7, 8, 0), PackedInt32Array(7, 6, 8), PackedInt32Array(6, 5, 8), PackedInt32Array(8, 9, 1, 0), PackedInt32Array(8, 5, 4, 9), PackedInt32Array(9, 2, 1), PackedInt32Array(9, 3, 2), PackedInt32Array(9, 4, 3)]
+internal_vertex_count = 2
+
+[node name="FootR" type="Polygon2D" parent="Polygons"]
+position = Vector2(-73.8708, -35.6176)
+texture = SubResource("CanvasTexture_pgvng")
+polygon = PackedVector2Array(66.9752, 62.2885, 67.0255, 66.5195, 72.818, 66.5195, 72.8684, 62.2381, 69.8966, 64.404)
+uv = PackedVector2Array(66.9752, 62.2885, 67.0255, 66.5195, 72.818, 66.5195, 72.8684, 62.2381, 69.8966, 64.404)
+polygons = [PackedInt32Array(4, 0, 3), PackedInt32Array(4, 2, 3), PackedInt32Array(4, 2, 1), PackedInt32Array(4, 0, 1)]
+internal_vertex_count = 1
+
+[node name="HandL5" type="Polygon2D" parent="Polygons"]
+texture = SubResource("CanvasTexture_pgvng")
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+modification_stack = SubResource("SkeletonModificationStack2D_uvhni")
+
+[node name="Pelvis" type="Bone2D" parent="Skeleton2D"]
+position = Vector2(1.27329e-11, 11)
+rotation = -1.54999
+rest = Transform2D(0.0208064, -0.999784, 0.999784, 0.0208064, 1.27329e-11, 11)
+
+[node name="Torso" type="Bone2D" parent="Skeleton2D/Pelvis"]
+position = Vector2(5.01972, 0.895751)
+rest = Transform2D(1, 0, 0, 1, 5.01972, 0.895751)
+
+[node name="Head" type="Bone2D" parent="Skeleton2D/Pelvis/Torso"]
+position = Vector2(12.0182, 0.750106)
+rest = Transform2D(1, 0, 0, 1, 12.0182, 0.750106)
+
+[node name="ArmR" type="Bone2D" parent="Skeleton2D/Pelvis/Torso"]
+position = Vector2(12.8723, -6.26918)
+rest = Transform2D(1, 0, 0, 1, 12.8723, -6.26918)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -137.739
+
+[node name="HandR" type="Bone2D" parent="Skeleton2D/Pelvis/Torso/ArmR"]
+position = Vector2(-9.12289, -5.81144)
+rest = Transform2D(1, 0, 0, 1, -9.12289, -5.81144)
+auto_calculate_length_and_angle = false
+length = 6.75
+bone_angle = -184.186
+
+[node name="WeaponR" type="Bone2D" parent="Skeleton2D/Pelvis/Torso/ArmR/HandR"]
+position = Vector2(-6.99848, 0.145645)
+rest = Transform2D(1, 0, 0, 1, -6.99848, 0.145645)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -253.565
+
+[node name="ArmL" type="Bone2D" parent="Skeleton2D/Pelvis/Torso"]
+position = Vector2(10.1019, 4.79085)
+rest = Transform2D(1, 0, 0, 1, 10.1019, 4.79085)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -137.739
+
+[node name="HandL" type="Bone2D" parent="Skeleton2D/Pelvis/Torso/ArmL"]
+position = Vector2(-6.91526, 4.14478)
+rest = Transform2D(1, 0, 0, 1, -6.91526, 4.14478)
+auto_calculate_length_and_angle = false
+length = 6.75
+bone_angle = -184.186
+
+[node name="WeaponL" type="Bone2D" parent="Skeleton2D/Pelvis/Torso/ArmL/HandL"]
+position = Vector2(-6.99848, 0.145645)
+rest = Transform2D(1, 0, 0, 1, -6.99848, 0.145645)
+auto_calculate_length_and_angle = false
+length = 16.0
+bone_angle = -253.565
+
+[node name="ThighR" type="Bone2D" parent="Skeleton2D/Pelvis"]
+position = Vector2(-8.06069, -2.8329)
+rest = Transform2D(1, 0, 0, 1, -8.06069, -2.8329)
+
+[node name="ShinR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR"]
+position = Vector2(-9.01886, -0.812526)
+rest = Transform2D(1, 0, 0, 1, -9.01886, -0.812526)
+
+[node name="FootR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR/ShinR"]
+position = Vector2(0.0624193, 2.99935)
+rest = Transform2D(1, 0, 0, 1, 0.0624193, 2.99935)
