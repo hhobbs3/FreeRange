@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d1ti8ceoax5l8"]
+[gd_scene load_steps=14 format=3 uid="uid://d1ti8ceoax5l8"]
 
 [ext_resource type="Texture2D" uid="uid://cgj2sf0lgvrxo" path="res://assets/sprites/characters/knight_doll.png" id="1_u1wlo"]
 
@@ -23,7 +23,39 @@ diffuse_texture = ExtResource("1_u1wlo")
 [sub_resource type="CanvasTexture" id="CanvasTexture_klqn1"]
 diffuse_texture = ExtResource("1_u1wlo")
 
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_pfx64"]
+target_nodepath = NodePath("../IK Targets/TargetFootR")
+tip_nodepath = NodePath("Pelvis/ThighR/ShinR/FootR")
+ccdik_data_chain_length = 2
+joint_data/0/bone_index = 9
+joint_data/0/bone2d_node = NodePath("Pelvis/ThighR")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = -90.655
+joint_data/0/constraint_angle_max = 99.13
+joint_data/0/constraint_angle_invert = true
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 10
+joint_data/1/bone2d_node = NodePath("Pelvis/ThighR/ShinR")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = true
+joint_data/1/constraint_angle_min = 0.001
+joint_data/1/constraint_angle_max = 195.462
+joint_data/1/constraint_angle_invert = false
+joint_data/1/constraint_in_localspace = true
+joint_data/1/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModification2DLookAt" id="SkeletonModification2DLookAt_x15o3"]
+bone_index = 11
+bone2d_node = NodePath("Pelvis/ThighR/ShinR/FootR")
+target_nodepath = NodePath("../IK Targets/TargetFootR/LookAtFootR")
+
 [sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_uvhni"]
+enabled = true
+modification_count = 2
+modifications/0 = SubResource("SkeletonModification2DCCDIK_pfx64")
+modifications/1 = SubResource("SkeletonModification2DLookAt_x15o3")
 
 [sub_resource type="Animation" id="Animation_cwnxv"]
 resource_name = "idle"
@@ -237,10 +269,12 @@ bone_angle = -253.565
 [node name="ThighR" type="Bone2D" parent="Skeleton2D/Pelvis"]
 position = Vector2(-0.0624189, -2.99935)
 rest = Transform2D(1, 0, 0, 1, -0.0624189, -2.99935)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="ShinR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR"]
 position = Vector2(-8.99805, 0.187258)
 rest = Transform2D(1, 0, 0, 1, -8.99805, 0.187258)
+metadata/_local_pose_override_enabled_ = true
 
 [node name="FootR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR/ShinR"]
 position = Vector2(-9.03966, -1.81231)
@@ -248,6 +282,7 @@ rest = Transform2D(1, 0, 0, 1, -9.03966, -1.81231)
 auto_calculate_length_and_angle = false
 length = 3.715
 bone_angle = 95.36
+metadata/_local_pose_override_enabled_ = true
 
 [node name="ThighL" type="Bone2D" parent="Skeleton2D/Pelvis"]
 position = Vector2(0.0832261, 3.99913)
@@ -272,7 +307,10 @@ libraries = {
 [node name="IK Targets" type="Node2D" parent="."]
 
 [node name="TargetFootR" type="Node2D" parent="IK Targets"]
-position = Vector2(-5, 29)
+position = Vector2(13, 21)
+
+[node name="LookAtFootR" type="Node2D" parent="IK Targets/TargetFootR"]
+position = Vector2(5, 0)
 
 [node name="TargetFootL" type="Node2D" parent="IK Targets"]
 position = Vector2(2, 29)
