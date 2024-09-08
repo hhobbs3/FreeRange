@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1ti8ceoax5l8"]
+[gd_scene load_steps=15 format=3 uid="uid://d1ti8ceoax5l8"]
 
 [ext_resource type="Texture2D" uid="uid://cgj2sf0lgvrxo" path="res://assets/sprites/characters/knight_doll.png" id="1_u1wlo"]
 
@@ -59,12 +59,64 @@ modifications/1 = SubResource("SkeletonModification2DLookAt_x15o3")
 
 [sub_resource type="Animation" id="Animation_cwnxv"]
 resource_name = "idle"
-length = 2.52
+length = 0.7
 loop_mode = 1
 step = 0.03
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IK Targets/TargetFootR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.09, 0.21, 0.3, 0.42, 0.51, 0.6, 0.69),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-5, 30), Vector2(-1, 30), Vector2(-11, 31), Vector2(-2, 24), Vector2(17, 15), Vector2(-6, 30), Vector2(-13, 21), Vector2(-5, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IK Targets/TargetFootR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_anlig"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IK Targets/TargetFootR:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(3, 21)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IK Targets/TargetFootR:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ttkh0"]
 _data = {
+"RESET": SubResource("Animation_anlig"),
 "idle": SubResource("Animation_cwnxv")
 }
 
@@ -209,6 +261,7 @@ internal_vertex_count = 1
 texture = SubResource("CanvasTexture_pgvng")
 
 [node name="Skeleton2D" type="Skeleton2D" parent="."]
+visible = false
 modification_stack = SubResource("SkeletonModificationStack2D_uvhni")
 
 [node name="Pelvis" type="Bone2D" parent="Skeleton2D"]
@@ -267,17 +320,23 @@ length = 16.0
 bone_angle = -253.565
 
 [node name="ThighR" type="Bone2D" parent="Skeleton2D/Pelvis"]
-position = Vector2(-0.0624189, -2.99935)
+position = Vector2(-0.0624218, -2.99963)
+rotation = -1.12288
+scale = Vector2(0.999997, 0.999997)
 rest = Transform2D(1, 0, 0, 1, -0.0624189, -2.99935)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="ShinR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR"]
-position = Vector2(-8.99805, 0.187258)
+position = Vector2(-8.99789, 0.18695)
+rotation = 1.74533e-05
+scale = Vector2(0.999903, 0.999903)
 rest = Transform2D(1, 0, 0, 1, -8.99805, 0.187258)
 metadata/_local_pose_override_enabled_ = true
 
 [node name="FootR" type="Bone2D" parent="Skeleton2D/Pelvis/ThighR/ShinR"]
-position = Vector2(-9.03966, -1.81231)
+position = Vector2(-9.03968, -1.8123)
+rotation = 1.07962
+scale = Vector2(0.999968, 0.999968)
 rest = Transform2D(1, 0, 0, 1, -9.03966, -1.81231)
 auto_calculate_length_and_angle = false
 length = 3.715
@@ -307,10 +366,10 @@ libraries = {
 [node name="IK Targets" type="Node2D" parent="."]
 
 [node name="TargetFootR" type="Node2D" parent="IK Targets"]
-position = Vector2(13, 21)
+position = Vector2(3, 21)
 
 [node name="LookAtFootR" type="Node2D" parent="IK Targets/TargetFootR"]
-position = Vector2(5, 0)
+position = Vector2(6, 0)
 
 [node name="TargetFootL" type="Node2D" parent="IK Targets"]
 position = Vector2(2, 29)
