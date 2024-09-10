@@ -33,6 +33,18 @@ environment = SubResource("Environment_hmf8t")
 transform = Transform3D(32.117, 0, 0, 0, 1, 0, 0, 0, 28.7009, 0, 0, 0)
 use_collision = true
 
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 7.16608, -6.50953, 1.42833, 0)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 3.74001, 1.0666, -0.0319264, -4.4956)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 3.74001, 1.0666, 0.779506, -8.21991)
+use_collision = true
+
 [node name="CharacterBody3D" type="CharacterBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70865, 0)
 script = ExtResource("1_jdcwb")
@@ -46,5 +58,5 @@ shape = SubResource("ConvexPolygonShape3D_wpe41")
 [node name="Head" type="Node3D" parent="CharacterBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.710275, 0)
 
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D/Head"]
+[node name="Camera" type="Camera3D" parent="CharacterBody3D/Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
