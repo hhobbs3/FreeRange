@@ -287,8 +287,8 @@ bus = &"SFX"
 [node name="Weapons" type="Node2D" parent="."]
 
 [connection signal="area_entered" from="Area2DChickenHitbox" to="." method="_on_area_2d_chicken_hitbox_area_entered"]
-[connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_player_horizontal_attack_area_entered"]
 [connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="PlayerHorizontalAttack" to="." method="_on_player_horizontal_attack_area_entered"]
 [connection signal="body_entered" from="PlayerHorizontalAttack" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="StateMachine/Die/Timer" to="StateMachine/Die" method="_on_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Attack/Timer" to="StateMachine/Attack" method="_on_timer_timeout"]

@@ -37,3 +37,7 @@ func _on_simple_pressed() -> void:
 
 func _on_visual_test_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/maps/map_04_visual.tscn")
+
+
+func _on_fps_test_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/maps/map_fps_test.tscn")
