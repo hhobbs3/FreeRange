@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://qn0kcpjn0ea3"]
+[gd_scene load_steps=6 format=3 uid="uid://qn0kcpjn0ea3"]
 
 [ext_resource type="PackedScene" uid="uid://c6bfwkxxgeaks" path="res://scenes/3d/characters/player/player_fps.tscn" id="1_aejcg"]
+[ext_resource type="PackedScene" uid="uid://6htctp2ta1mo" path="res://scenes/3d/buildings/cottage.tscn" id="2_ye8b3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_l4mfh"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -41,3 +42,6 @@ transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 3.74001, 1.0666, 0.7
 use_collision = true
 
 [node name="PlayerFps" parent="." instance=ExtResource("1_aejcg")]
+
+[node name="cottage" parent="." instance=ExtResource("2_ye8b3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.01089, -4.24224, 8.24289)

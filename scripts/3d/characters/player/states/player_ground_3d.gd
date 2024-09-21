@@ -1,5 +1,5 @@
 extends StateEgo
-class_name PlayerGround
+class_name PlayerGround3D
 
 @export var jump_animation : String = "jump"
 @onready var sound_jump: AudioStreamPlayer3D = $SoundJump
@@ -23,6 +23,7 @@ func Update(_delta: float) -> void:
 	pass
 
 func Physics_Update(delta: float) -> void:
+	'''
 	# DIE
 	if ego.current_health <= 0:
 		pass #	Transitioned.emit(self, "Die")
@@ -74,9 +75,10 @@ func Physics_Update(delta: float) -> void:
 			else:
 				# Crouch
 				crouch()
-			
+
 	# APPLY MOVEMENT
 	ego.move_and_slide()
+	'''
 		
 func jump()-> void:
 	if randi_range(0, 10) > 0:
