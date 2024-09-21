@@ -1,0 +1,226 @@
+[gd_scene load_steps=46 format=3 uid="uid://c6bfwkxxgeaks"]
+
+[ext_resource type="Script" path="res://scripts/3d/characters/player/player_fps.gd" id="1_fmtug"]
+[ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="2_ruduf"]
+[ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_v8fn0"]
+[ext_resource type="Script" path="res://scripts/3d/characters/player/states/player_ground_3d.gd" id="4_m8e6j"]
+[ext_resource type="AudioStream" uid="uid://tujlca78em3t" path="res://assets/sounds/jump-15984.mp3" id="5_srvvl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_vwfd3"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sf0ff"]
+points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_act4k"]
+animation = &"flap"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ltgl4"]
+animation = &"crouch"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vq1s6"]
+animation = &"dive"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7m31l"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_x71by"]
+animation = &"jump"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_n180e"]
+animation = &"landing"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tlyh6"]
+animation = &"run"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xtcuv"]
+animation = &"slide"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_kjibx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6bgjm"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tvvpx"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3e75c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_51r53"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0qq2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3ylf4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ubktn"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e3iy8"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ipgyi"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pw0e5"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jja4p"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gdm4c"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_r01ih"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_hlgf2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8tlox"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_le6bk"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5tnnh"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_da1iu"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4xfxw"]
+states/Start/position = Vector2(109, 100)
+states/air_jump/node = SubResource("AnimationNodeAnimation_act4k")
+states/air_jump/position = Vector2(386, -131)
+states/crouch/node = SubResource("AnimationNodeAnimation_ltgl4")
+states/crouch/position = Vector2(386, 278.175)
+states/dive/node = SubResource("AnimationNodeAnimation_vq1s6")
+states/dive/position = Vector2(386, -223.825)
+states/idle/node = SubResource("AnimationNodeAnimation_7m31l")
+states/idle/position = Vector2(386, 100)
+states/jump/node = SubResource("AnimationNodeAnimation_x71by")
+states/jump/position = Vector2(291, -34)
+states/landing/node = SubResource("AnimationNodeAnimation_n180e")
+states/landing/position = Vector2(484, -34)
+states/run/node = SubResource("AnimationNodeAnimation_tlyh6")
+states/run/position = Vector2(601, 278.175)
+states/slide/node = SubResource("AnimationNodeAnimation_xtcuv")
+states/slide/position = Vector2(601, 100)
+transitions = ["jump", "air_jump", SubResource("AnimationNodeStateMachineTransition_kjibx"), "air_jump", "landing", SubResource("AnimationNodeStateMachineTransition_6bgjm"), "jump", "landing", SubResource("AnimationNodeStateMachineTransition_tvvpx"), "jump", "dive", SubResource("AnimationNodeStateMachineTransition_3e75c"), "dive", "landing", SubResource("AnimationNodeStateMachineTransition_51r53"), "air_jump", "dive", SubResource("AnimationNodeStateMachineTransition_n0qq2"), "idle", "jump", SubResource("AnimationNodeStateMachineTransition_3ylf4"), "landing", "idle", SubResource("AnimationNodeStateMachineTransition_ubktn"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_e3iy8"), "idle", "slide", SubResource("AnimationNodeStateMachineTransition_ipgyi"), "slide", "idle", SubResource("AnimationNodeStateMachineTransition_pw0e5"), "idle", "crouch", SubResource("AnimationNodeStateMachineTransition_jja4p"), "crouch", "idle", SubResource("AnimationNodeStateMachineTransition_gdm4c"), "crouch", "run", SubResource("AnimationNodeStateMachineTransition_r01ih"), "run", "crouch", SubResource("AnimationNodeStateMachineTransition_hlgf2"), "run", "slide", SubResource("AnimationNodeStateMachineTransition_8tlox"), "slide", "run", SubResource("AnimationNodeStateMachineTransition_le6bk"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_5tnnh"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_da1iu")]
+graph_offset = Vector2(-84, -226.382)
+
+[sub_resource type="Animation" id="Animation_elajf"]
+resource_name = "crouch"
+
+[sub_resource type="Animation" id="Animation_bsswt"]
+resource_name = "dash"
+
+[sub_resource type="Animation" id="Animation_af43n"]
+resource_name = "dive"
+
+[sub_resource type="Animation" id="Animation_iyrdu"]
+resource_name = "idle"
+
+[sub_resource type="Animation" id="Animation_ioaba"]
+resource_name = "jump"
+
+[sub_resource type="Animation" id="Animation_mskl4"]
+resource_name = "landing"
+
+[sub_resource type="Animation" id="Animation_emfha"]
+resource_name = "prone"
+
+[sub_resource type="Animation" id="Animation_cp46p"]
+resource_name = "run"
+
+[sub_resource type="Animation" id="Animation_8cft4"]
+resource_name = "slide"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r7nog"]
+_data = {
+"crouch": SubResource("Animation_elajf"),
+"dash": SubResource("Animation_bsswt"),
+"dive": SubResource("Animation_af43n"),
+"idle": SubResource("Animation_iyrdu"),
+"jump": SubResource("Animation_ioaba"),
+"landing": SubResource("Animation_mskl4"),
+"prone": SubResource("Animation_emfha"),
+"run": SubResource("Animation_cp46p"),
+"slide": SubResource("Animation_8cft4")
+}
+
+[node name="PlayerFps" type="CharacterBody3D"]
+script = ExtResource("1_fmtug")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70865, 0)
+mesh = SubResource("CapsuleMesh_vwfd3")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.70865, 0)
+shape = SubResource("ConvexPolygonShape3D_sf0ff")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.41893, 0)
+
+[node name="Camera" type="Camera3D" parent="Head"]
+current = true
+
+[node name="LabelStateDebug" type="Label" parent="Head/Camera" node_paths=PackedStringArray("state_machine")]
+offset_left = -49.0
+offset_top = -59.0
+offset_right = 63.0
+offset_bottom = -36.0
+text = "State:"
+script = ExtResource("2_ruduf")
+state_machine = NodePath("../../../StateMachine")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_v8fn0")
+initial_state = NodePath("Ground")
+
+[node name="UnusedStatesTempFolder" type="Node" parent="StateMachine"]
+
+[node name="Air" type="Node" parent="StateMachine/UnusedStatesTempFolder"]
+
+[node name="TimerWallJump" type="Timer" parent="StateMachine/UnusedStatesTempFolder/Air"]
+wait_time = 0.4
+one_shot = true
+
+[node name="Crouch" type="Node" parent="StateMachine/UnusedStatesTempFolder"]
+
+[node name="Timer" type="Timer" parent="StateMachine/UnusedStatesTempFolder/Crouch"]
+
+[node name="TimerJumpBuffer" type="Timer" parent="StateMachine/UnusedStatesTempFolder/Crouch"]
+
+[node name="Landing" type="Node" parent="StateMachine/UnusedStatesTempFolder"]
+
+[node name="Die" type="Node" parent="StateMachine/UnusedStatesTempFolder"]
+
+[node name="Timer" type="Timer" parent="StateMachine/UnusedStatesTempFolder/Die"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Attack" type="Node" parent="StateMachine/UnusedStatesTempFolder"]
+
+[node name="Timer" type="Timer" parent="StateMachine/UnusedStatesTempFolder/Attack"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("ego")]
+script = ExtResource("4_m8e6j")
+ego = NodePath("../..")
+
+[node name="Timer" type="Timer" parent="StateMachine/Ground"]
+
+[node name="TimerJumpBuffer" type="Timer" parent="StateMachine/Ground"]
+
+[node name="SoundJump" type="AudioStreamPlayer3D" parent="StateMachine/Ground"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+stream = ExtResource("5_srvvl")
+pitch_scale = 1.23
+bus = &"SFX"
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_4xfxw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_r7nog")
+}
+
+[connection signal="timeout" from="StateMachine/UnusedStatesTempFolder/Air/TimerWallJump" to="StateMachine/UnusedStatesTempFolder/Air" method="_on_timer_wall_jump_timeout"]
+[connection signal="timeout" from="StateMachine/UnusedStatesTempFolder/Crouch/Timer" to="StateMachine/UnusedStatesTempFolder/Crouch" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/UnusedStatesTempFolder/Crouch/TimerJumpBuffer" to="StateMachine/UnusedStatesTempFolder/Crouch" method="_on_timer_jump_buffer_timeout"]
+[connection signal="timeout" from="StateMachine/UnusedStatesTempFolder/Die/Timer" to="StateMachine/UnusedStatesTempFolder/Die" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/UnusedStatesTempFolder/Attack/Timer" to="StateMachine/UnusedStatesTempFolder/Attack" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Ground/Timer" to="StateMachine/Ground" method="_on_timer_timeout"]
+[connection signal="timeout" from="StateMachine/Ground/TimerJumpBuffer" to="StateMachine/Ground" method="_on_timer_jump_buffer_timeout"]

@@ -860,7 +860,11 @@ animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("10_14pml")
+jump_animation = null
+jump_buffer_time = null
+c_dash = null
 player = NodePath("../..")
+can_move = null
 
 [node name="Timer" type="Timer" parent="StateMachine/Ground"]
 

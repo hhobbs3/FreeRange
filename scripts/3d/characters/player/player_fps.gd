@@ -1,6 +1,7 @@
-extends CharacterBody3D
+extends CharacterBase
+class_name CharacterPlayer3D
 
-var speed: float
+
 const WALK_SPEED : float = 5.0
 const SPRINT_SPEED : float = 8.0
 const JUMP_VELOCITY : float = 4.5

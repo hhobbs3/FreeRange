@@ -227,7 +227,11 @@ animation_tree = NodePath("../AnimationTree")
 
 [node name="Ground" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("7_38snc")
+jump_animation = null
+jump_buffer_time = null
+c_dash = null
 player = NodePath("../..")
+can_move = null
 
 [node name="Gun" type="Node" parent="StateMachine" node_paths=PackedStringArray("player")]
 script = ExtResource("8_1wrcg")
