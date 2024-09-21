@@ -40,4 +40,4 @@ func _on_visual_test_pressed() -> void:
 
 
 func _on_fps_test_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/maps/map_fps_test.tscn")
+	get_tree().change_scene_to_file("res://scenes/3d/maps/map_fps_test.tscn")

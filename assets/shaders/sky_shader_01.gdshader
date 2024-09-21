@@ -1,0 +1,13 @@
+shader_type sky;
+
+uniform vec3 skyColor : source_color;
+uniform vec3 horizonColor : source_color;
+uniform sampler2D skyTexture;
+
+void sky() {
+	float col = clamp(EYEDIR.y / 0.05, 0.0, 1.0); // skyColor;
+	vec3 finalColor = mix(horizonColor, skyColor, col);
+	// COLOR = finalColor * LIGHT0_ENERGY;
+	COLOR = texture(skyTexture, SKY_COORDS).rgb; // * finalColor * LIGHT0_ENERGY;
+
+}

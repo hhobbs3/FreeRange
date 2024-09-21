@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://qn0kcpjn0ea3"]
+
+[ext_resource type="Shader" path="res://assets/shaders/sky_shader_01.gdshader" id="1_h4em4"]
+[ext_resource type="PackedScene" uid="uid://c6bfwkxxgeaks" path="res://scenes/3d/characters/player/player_fps.tscn" id="1_s5nia"]
+[ext_resource type="Texture2D" uid="uid://dqgsi7lkgjpej" path="res://assets/textures/overcast_soil_puresky_1k.exr" id="2_7kjd0"]
+[ext_resource type="PackedScene" uid="uid://dvsuh3y13ebwe" path="res://scenes/3d/foliage/grass.tscn" id="2_xus0v"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ext3"]
+shader = ExtResource("1_h4em4")
+shader_parameter/skyColor = Color(0.321039, 0.609571, 0.711004, 1)
+shader_parameter/horizonColor = Color(0.78, 0.919333, 1, 1)
+shader_parameter/skyTexture = ExtResource("2_7kjd0")
+
+[sub_resource type="Sky" id="Sky_sbb3j"]
+sky_material = SubResource("ShaderMaterial_0ext3")
+
+[sub_resource type="Environment" id="Environment_hmf8t"]
+background_mode = 2
+background_energy_multiplier = 0.4
+sky = SubResource("Sky_sbb3j")
+ambient_light_source = 3
+tonemap_mode = 2
+glow_enabled = true
+
+[node name="MapFpsTest" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_hmf8t")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(32.117, 0, 0, 0, 1, 0, 0, 0, 28.7009, 0, 0, 0)
+use_collision = true
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 7.16608, -6.50953, 1.42833, 0)
+use_collision = true
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 3.74001, 1.0666, -0.0319264, -4.4956)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(7.87382, 0, 0, 0, 2.50715, 0, 0, 0, 3.74001, 1.0666, 0.779506, -8.21991)
+use_collision = true
+
+[node name="PlayerFps" parent="." instance=ExtResource("1_s5nia")]
+
+[node name="Grass" parent="." instance=ExtResource("2_xus0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3)
