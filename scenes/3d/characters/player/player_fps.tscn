@@ -1,7 +1,8 @@
-[gd_scene load_steps=46 format=3 uid="uid://c6bfwkxxgeaks"]
+[gd_scene load_steps=49 format=3 uid="uid://c6bfwkxxgeaks"]
 
 [ext_resource type="Script" path="res://scripts/3d/characters/player/player_fps.gd" id="1_fmtug"]
 [ext_resource type="Script" path="res://scripts/states/label_state_debug.gd" id="2_ruduf"]
+[ext_resource type="Shader" path="res://assets/shaders/outline.gdshader" id="3_r2ud2"]
 [ext_resource type="Script" path="res://scripts/states/state_machine.gd" id="3_v8fn0"]
 [ext_resource type="Script" path="res://scripts/3d/characters/player/states/player_ground_3d.gd" id="4_m8e6j"]
 [ext_resource type="AudioStream" uid="uid://tujlca78em3t" path="res://assets/sounds/jump-15984.mp3" id="5_srvvl"]
@@ -10,6 +11,15 @@
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_sf0ff"]
 points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607, 0.498884, 0.169713, 0.559144, 0.464172, 0.231051, -0.803591, 0.320455, 0.40741, 0.651043, -0.243523, -0.482789, 0.594843, 0.0822132, -0.362868, -0.682312, 0.289697, 0.469044, -0.654529, -0.0662713, -0.127444, 0.842701, -0.338103, -0.393435, -0.683942, -0.244717, 0.438255, 0.623309, 0.200849, 0.0841477, 0.977454, 0.114795, -0.0682023, -0.976458, -0.12927, 0.20055, -0.563129, -0.451454, -0.185527, 0.595453, -0.453475, -0.273363, 0.592268, 0.407754, -0.00693649, -0.476823, 0.49966, 0.375821, -0.588614, 0.316955, 0.111579, 0.563059, -0.481177, -0.41725, 0.527866, -0.270497, -0.484546, -0.596972, -0.0665097, -0.279747, 0.908561, 0.0533361, -0.250197, -0.880712, 0.205319, 0.263647, -0.902771, -0.127394, 0.293368, 0.871526, -0.157196, 0.373412, -0.526319, -0.328246, 0.499663, 0.476641, -0.00688856, 0.0531056, 0.875001, 0.324703, -0.154543, -0.590854, 0.465879, -0.0972799, -0.782358, -0.398188, -0.387649, -0.498171, 0.31565, -0.30068, -0.587995, -0.388901)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_btwby"]
+render_priority = 0
+shader = ExtResource("3_r2ud2")
+
+[sub_resource type="QuadMesh" id="QuadMesh_1b46f"]
+material = SubResource("ShaderMaterial_btwby")
+flip_faces = true
+size = Vector2(2, 2)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_act4k"]
 animation = &"flap"
@@ -162,6 +172,11 @@ offset_bottom = -36.0
 text = "State:"
 script = ExtResource("2_ruduf")
 state_machine = NodePath("../../../StateMachine")
+
+[node name="PostProcessing" type="MeshInstance3D" parent="Head/Camera"]
+visible = false
+extra_cull_margin = 16384.0
+mesh = SubResource("QuadMesh_1b46f")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_v8fn0")
